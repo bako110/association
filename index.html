@@ -4,351 +4,1048 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APCDD - Association pour la Promotion de la Culture et du Développement Durable</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
     <style>
         :root {
-            --primary-color: #2E8B57;
+            --primary-color: #0B6623;
             --secondary-color: #FF6B35;
             --accent-color: #4ECDC4;
-            --dark-color: #2C3E50;
-            --light-color: #F8F9FA;
-            --text-color: #333;
+            --dark-color: #1A1A1A;
+            --light-color: #FAFAFA;
+            --text-color: #333333;
+            --text-light: #666666;
+            --gradient-1: linear-gradient(135deg, #0B6623, #4ECDC4);
+            --gradient-2: linear-gradient(135deg, #FF6B35, #FF8C42);
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
             color: var(--text-color);
+            overflow-x: hidden;
+            padding-top: 100px;
         }
-        
-        /* Navigation */
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
+
+        .font-display {
+            font-family: 'Playfair Display', serif;
         }
-        
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: white !important;
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        
-        .navbar-nav .nav-link {
-            color: white !important;
-            font-weight: 500;
-            margin: 0 0.5rem;
-            transition: color 0.3s ease;
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
         }
-        
-        .navbar-nav .nav-link:hover {
-            color: var(--secondary-color) !important;
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 10px;
         }
-        
-        .btn-donation {
-            background-color: var(--secondary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-donation:hover {
-            background-color: #e55a2b;
-            transform: translateY(-2px);
-            color: white;
-        }
-        
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(rgba(46, 139, 87, 0.8), rgba(78, 205, 196, 0.8)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect width="1200" height="600" fill="%23f0f8ff"/><circle cx="200" cy="150" r="100" fill="%23e6f3ff" opacity="0.5"/><circle cx="800" cy="300" r="150" fill="%23ddeeff" opacity="0.3"/><circle cx="1000" cy="100" r="80" fill="%23ccddff" opacity="0.4"/></svg>');
-            background-size: cover;
-            background-position: center;
-            min-height: 80vh;
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
             display: flex;
             align-items: center;
-            color: white;
+            justify-content: center;
+            z-index: 9999;
+            transition: all 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary-color) !important;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .navbar-brand i {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--text-color) !important;
+            font-weight: 500;
+            margin: 0 0.8rem;
+            padding: 0.5rem 0 !important;
             position: relative;
+            transition: all 0.3s ease;
         }
-        
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--gradient-1);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+
+        .navbar-nav .nav-link:hover::after,
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
         }
-        
-        .btn-primary-custom {
-            background-color: var(--secondary-color);
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .btn-donation {
+            background: var(--gradient-2);
+            color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-donation:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(11, 102, 35, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            text-align: center;
+            color: white;
+        }
+
+        .hero-stat h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-stat p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-2);
+            border: none;
+            padding: 1rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
             margin: 0.5rem;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
         }
-        
+
         .btn-primary-custom:hover {
-            background-color: #e55a2b;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
         }
-        
-        .btn-outline-custom {
+
+        .btn-outline-hero {
             border: 2px solid white;
             color: white;
-            background: transparent;
-            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2.5rem;
             font-size: 1.1rem;
             font-weight: 600;
             border-radius: 50px;
             margin: 0.5rem;
             transition: all 0.3s ease;
         }
-        
-        .btn-outline-custom:hover {
-            background-color: white;
+
+        .btn-outline-hero:hover {
+            background: white;
             color: var(--primary-color);
             transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
         }
-        
-        /* About Section */
-        .about-section {
-            padding: 6rem 0;
-            background-color: var(--light-color);
+
+        /* Sections communes */
+        .section-padding {
+            padding: 8rem 0;
         }
-        
+
         .section-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: var(--dark-color);
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
         }
-        
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--light-color);
+        }
+
         .mission-card {
             background: white;
-            border-radius: 15px;
-            padding: 2.5rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
             height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
         .mission-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
-        
+
+        .mission-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .mission-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin: 0 auto 2rem;
         }
-        
+
         .mission-card h4 {
             color: var(--dark-color);
             font-weight: 600;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
         }
-        
+
+        .mission-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
         /* Services Section */
         .services-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            background: var(--gradient-1);
+            color: white;
+            position: relative;
+        }
+
+        .services-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect fill="url(%23dots)" width="100%" height="100%"/></svg>');
+        }
+
+        .services-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-section .section-title {
             color: white;
         }
-        
+
+        .services-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         .service-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             height: 100%;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        
+
         .service-card:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px);
         }
-        
+
         .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 107, 53, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
             color: var(--secondary-color);
+            margin: 0 auto 1.5rem;
         }
-        
-        /* News Section */
-        .news-section {
+
+        .service-card h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Statistiques Section */
+        .stats-section {
+            background: var(--dark-color);
+            color: white;
             padding: 6rem 0;
         }
-        
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* News Section */
+        .news-section {
+            background: white;
+        }
+
         .news-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
             height: 100%;
         }
-        
+
         .news-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
         }
-        
+
         .news-image {
-            height: 200px;
-            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            height: 250px;
+            background: var(--gradient-1);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 3rem;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .news-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.1) 100%);
+        }
+
         .news-content {
-            padding: 1.5rem;
+            padding: 2rem;
         }
-        
+
         .news-date {
             color: var(--secondary-color);
             font-size: 0.9rem;
-            font-weight: 500;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--secondary-color), #FF8C42);
-            color: white;
-            text-align: center;
+
+        .news-card h5 {
+            font-weight: 600;
+            margin: 1rem 0;
+            color: var(--dark-color);
+            font-size: 1.3rem;
         }
-        
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
+
+        .news-card p {
+            color: var(--text-light);
+            line-height: 1.7;
             margin-bottom: 1.5rem;
         }
-        
+
+        .btn-news {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .btn-news::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .btn-news:hover::after {
+            width: 100%;
+        }
+
+        .btn-news:hover {
+            color: var(--primary-color);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-2);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
+        }
+
+        .cta-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta-primary {
+            background: white;
+            color: var(--secondary-color);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
+            color: var(--secondary-color);
+        }
+
+        .btn-cta-outline {
+            border: 2px solid white;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta-outline:hover {
+            background: white;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
+        }
+
         /* Footer */
         .footer {
-            background-color: var(--dark-color);
+            background: var(--dark-color);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 6rem 0 2rem;
         }
-        
+
         .footer h5 {
             color: var(--accent-color);
             font-weight: 600;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
         }
-        
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
         .footer a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 0.3rem 0;
         }
-        
+
         .footer a:hover {
             color: var(--accent-color);
+            transform: translateX(5px);
         }
-        
+
+        .social-icons {
+            margin-top: 2rem;
+        }
+
         .social-icons a {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
             margin: 0 0.5rem;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            transform: none;
         }
-        
+
         .social-icons a:hover {
+            background: var(--accent-color);
+            color: white;
             transform: translateY(-3px);
         }
-        
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-bottom a {
+            color: var(--accent-color);
+            padding: 0;
+            transform: none;
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+            transform: none;
+        }
+
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-content p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
+        @media (max-width: 991px) {
             .navbar-nav {
                 text-align: center;
                 margin-top: 1rem;
             }
-            
-            .btn-primary-custom,
-            .btn-outline-custom {
-                display: block;
-                margin: 0.5rem auto;
-                width: 80%;
+
+            .navbar-nav .nav-link {
+                margin: 0.5rem 0;
+                padding: 0.8rem 0 !important;
+            }
+
+            .hero-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 2rem;
             }
         }
-        
-        /* Animation */
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .section-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 3rem;
+            }
+
+            .section-padding {
+                padding: 5rem 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-section p {
+                font-size: 1.2rem;
+            }
+
+            .btn-primary-custom,
+            .btn-outline-hero,
+            .btn-cta-primary,
+            .btn-cta-outline {
+                display: block;
+                margin: 0.8rem auto;
+                width: 90%;
+                max-width: 300px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .mission-card,
+            .service-card {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .mission-card,
+            .service-card,
+            .news-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animations personnalisées */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
-        .animate-on-scroll {
-            animation: fadeInUp 0.8s ease-out;
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .scroll-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(11, 102, 35, 0.4);
+        }
+
+        /* Media Gallery Section */
+        .media-gallery-section {
+            background: var(--light-color);
+            padding: 8rem 0;
+        }
+
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .media-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 200px;
+            background: #ccc;
+        }
+
+        .media-item img, .media-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .media-item:hover img, .media-item:hover video {
+            transform: scale(1.05);
+        }
+
+        /* History Section */
+        .history-section {
+            background: white;
+            padding: 8rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-color);
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: var(--light-color);
+            padding: 8rem 0;
+        }
+
+        .partner-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            margin: 1rem;
+            padding: 1rem;
+        }
+
+        .partner-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
         }
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
                 <i class="fas fa-seedling me-2"></i>APCDD
             </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
             </button>
-            
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Accueil</a>
+                        <a class="nav-link active" href="#home">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">À propos</a>
@@ -373,8 +1070,12 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="#membership" class="btn btn-outline-light me-2">Devenir membre</a>
-                    <a href="#donation" class="btn btn-donation">Faire un don</a>
+                    <a href="#membership" class="btn btn-outline-custom me-3">
+                        <i class="fas fa-users me-2"></i>Devenir membre
+                    </a>
+                    <a href="#donation" class="btn btn-donation">
+                        <i class="fas fa-heart me-2"></i>Faire un don
+                    </a>
                 </div>
             </div>
         </div>
@@ -382,19 +1083,38 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
+        <div class="hero-particles"></div>
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center min-vh-100">
                 <div class="col-lg-8">
                     <div class="hero-content">
-                        <h1 class="animate-on-scroll">Promouvoir la culture au service du développement durable</h1>
-                        <p class="animate-on-scroll">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle et la préservation environnementale se conjuguent harmonieusement.</p>
-                        <div class="animate-on-scroll">
+                        <h1 data-aos="fade-up" data-aos-delay="200">Promouvoir la culture au service du développement durable</h1>
+                        <p data-aos="fade-up" data-aos-delay="400">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.</p>
+                        <div data-aos="fade-up" data-aos-delay="600">
                             <a href="#about" class="btn btn-primary-custom">
-                                <i class="fas fa-info-circle me-2"></i>En savoir plus
+                                <i class="fas fa-info-circle me-2"></i>Découvrir notre mission
                             </a>
-                            <a href="#membership" class="btn btn-outline-custom">
+                            <a href="#membership" class="btn btn-outline-hero">
                                 <i class="fas fa-users me-2"></i>Nous rejoindre
                             </a>
+                        </div>
+                        <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
+                            <div class="hero-stat">
+                                <h3 class="counter" data-count="500">0</h3>
+                                <p>Membres actifs</p>
+                            </div>
+                            <div class="hero-stat">
+                                <h3 class="counter" data-count="50">0</h3>
+                                <p>Projets réalisés</p>
+                            </div>
+                            <div class="hero-stat">
+                                <h3 class="counter" data-count="10000">0</h3>
+                                <p>Arbres plantés</p>
+                            </div>
+                            <div class="hero-stat">
+                                <h3 class="counter" data-count="25">0</h3>
+                                <p>Communautés touchées</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -403,80 +1123,192 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section">
+    <section id="about" class="about-section section-padding">
         <div class="container">
-            <h2 class="section-title">Notre Mission</h2>
+            <div data-aos="fade-up">
+                <h2 class="section-title">Notre Mission</h2>
+                <p class="section-subtitle">Nous créons un pont entre tradition culturelle et innovation durable pour construire un avenir meilleur</p>
+            </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="mission-card text-center">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="mission-card">
                         <div class="mission-icon">
                             <i class="fas fa-theater-masks"></i>
                         </div>
                         <h4>Promotion Culturelle</h4>
-                        <p>Valoriser et préserver la richesse culturelle locale à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine.</p>
+                        <p>Valoriser et préserver la richesse culturelle locale à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine ancestral tout en l'adaptant aux défis contemporains.</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="mission-card text-center">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="mission-card">
                         <div class="mission-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
                         <h4>Développement Durable</h4>
-                        <p>Promouvoir des pratiques respectueuses de l'environnement et sensibiliser aux enjeux écologiques pour un futur durable.</p>
+                        <p>Promouvoir des pratiques respectueuses de l'environnement et sensibiliser aux enjeux écologiques pour un futur durable. Nous intégrons les solutions traditionnelles aux innovations modernes.</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="mission-card text-center">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="mission-card">
                         <div class="mission-icon">
                             <i class="fas fa-hands-helping"></i>
                         </div>
                         <h4>Action Communautaire</h4>
-                        <p>Mobiliser les communautés locales pour créer des projets d'impact positif alliant culture, éducation et développement.</p>
+                        <p>Mobiliser les communautés locales pour créer des projets d'impact positif alliant culture, éducation et développement. Ensemble, nous bâtissons des solutions durables et inclusives.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section">
+    <!-- History Section -->
+    <section id="events" class="history-section section-padding">
         <div class="container">
-            <h2 class="section-title text-white">Nos Domaines d'Intervention</h2>
+            <div data-aos="fade-up">
+                <h2 class="section-title">Historique des Événements</h2>
+                <p class="section-subtitle">Découvrez les moments marquants de notre association</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-content">
+                        <h4>Fondation de l'APCDD</h4>
+                        <p>Création de l'Association pour la Promotion de la Culture et du Développement Durable avec pour mission de promouvoir la culture locale et le développement durable.</p>
+                        <p class="text-muted">Janvier 2020</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="timeline-content">
+                        <h4>Premier Festival Culturel</h4>
+                        <p>Organisation du premier festival culturel mettant en valeur les traditions locales et sensibilisant à l'importance de la préservation culturelle.</p>
+                        <p class="text-muted">Juin 2020</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="timeline-content">
+                        <h4>Lancement du Programme de Reboisement</h4>
+                        <p>Début du programme de reboisement avec la plantation de 1000 arbres en collaboration avec les communautés locales.</p>
+                        <p class="text-muted">Mars 2021</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="800">
+                    <div class="timeline-content">
+                        <h4>Partenariat avec l'UNESCO</h4>
+                        <p>Signature d'un partenariat avec l'UNESCO pour la promotion et la protection du patrimoine culturel immatériel.</p>
+                        <p class="text-muted">Octobre 2021</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Gallery Section -->
+    <section id="gallery" class="media-gallery-section section-padding">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title">Galerie Médias</h2>
+                <p class="section-subtitle">Découvrez nos photos et vidéos des événements passés</p>
+            </div>
+            <div class="media-gallery">
+                <div class="media-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://via.placeholder.com/300" alt="Festival Culturel">
+                </div>
+                <div class="media-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://via.placeholder.com/300" alt="Atelier Artisanal">
+                </div>
+                <div class="media-item" data-aos="fade-up" data-aos-delay="600">
+                    <img src="https://via.placeholder.com/300" alt="Plantation d'arbres">
+                </div>
+                <div class="media-item" data-aos="fade-up" data-aos-delay="800">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300" type="video/mp4">
+                    </video>
+                </div>
+                <div class="media-item" data-aos="fade-up" data-aos-delay="1000">
+                    <img src="https://via.placeholder.com/300" alt="Cérémonie Traditionnelle">
+                </div>
+                <div class="media-item" data-aos="fade-up" data-aos-delay="1200">
+                    <video controls>
+                        <source src="https://via.placeholder.com/300" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section section-padding">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title">Nos Domaines d'Intervention</h2>
+                <p class="section-subtitle">Des actions concrètes pour un impact durable et mesurable</p>
+            </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-music"></i>
                         </div>
                         <h4>Culture & Arts</h4>
-                        <p>Festivals, concerts, arts traditionnels et expositions</p>
+                        <p>Festivals culturels, concerts traditionnels, expositions d'art local et préservation du patrimoine immatériel</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <h4>Éducation</h4>
-                        <p>Ateliers, formations et transmission des savoirs</p>
+                        <p>Programmes éducatifs, ateliers de formation, transmission des savoirs ancestraux et sensibilisation environnementale</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="600">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-tree"></i>
                         </div>
                         <h4>Environnement</h4>
-                        <p>Reboisement, sensibilisation et énergies renouvelables</p>
+                        <p>Projets de reboisement, promotion des énergies renouvelables, gestion durable des ressources naturelles</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="800">
                     <div class="service-card">
                         <div class="service-icon">
                             <i class="fas fa-handshake"></i>
                         </div>
                         <h4>Développement Local</h4>
-                        <p>Économie verte, artisanat et initiatives communautaires</p>
+                        <p>Économie verte, promotion de l'artisanat local, initiatives entrepreneuriales communautaires et coopératives</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="stats" class="stats-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-count="5">0</div>
+                        <div class="stat-label">Années d'expérience</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-count="500">0</div>
+                        <div class="stat-label">Membres engagés</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-count="50">0</div>
+                        <div class="stat-label">Projets menés</div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="800">
+                    <div class="stat-card">
+                        <div class="stat-number counter" data-count="25">0</div>
+                        <div class="stat-label">Communautés aidées</div>
                     </div>
                 </div>
             </div>
@@ -484,47 +1316,92 @@
     </section>
 
     <!-- News Section -->
-    <section id="news" class="news-section">
+    <section id="news" class="news-section section-padding">
         <div class="container">
-            <h2 class="section-title">Dernières Actualités</h2>
+            <div data-aos="fade-up">
+                <h2 class="section-title">Actualités & Événements</h2>
+                <p class="section-subtitle">Suivez nos dernières réalisations et nos prochains événements</p>
+            </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="news-card">
                         <div class="news-image">
                             <i class="fas fa-calendar-alt"></i>
                         </div>
                         <div class="news-content">
-                            <p class="news-date">15 Juillet 2025</p>
-                            <h5>Festival Culturel d'Été</h5>
-                            <p>Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle et les pratiques durables.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Lire plus</a>
+                            <p class="news-date">15 Août 2025</p>
+                            <h5>Festival Culturel d'Été 2025</h5>
+                            <p>Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle et les pratiques durables. Une semaine d'événements exceptionnels vous attend.</p>
+                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="news-card">
                         <div class="news-image">
                             <i class="fas fa-seedling"></i>
                         </div>
                         <div class="news-content">
-                            <p class="news-date">10 Juillet 2025</p>
-                            <h5>Campagne de Reboisement</h5>
-                            <p>Lancement de notre initiative de plantation de 10,000 arbres en partenariat avec les communautés locales.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Lire plus</a>
+                            <p class="news-date">10 Août 2025</p>
+                            <h5>Grande Campagne de Reboisement</h5>
+                            <p>Lancement de notre ambitieuse initiative de plantation de 10,000 arbres en partenariat avec 15 communautés locales. Participez à cette action historique.</p>
+                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="news-card">
                         <div class="news-image">
                             <i class="fas fa-award"></i>
                         </div>
                         <div class="news-content">
-                            <p class="news-date">5 Juillet 2025</p>
-                            <h5>Reconnaissance Internationale</h5>
-                            <p>L'APCDD récompensée pour son approche innovante du développement culturel durable par l'UNESCO.</p>
-                            <a href="#" class="btn btn-sm btn-outline-primary">Lire plus</a>
+                            <p class="news-date">5 Août 2025</p>
+                            <h5>Reconnaissance UNESCO</h5>
+                            <p>L'APCDD récompensée pour son approche innovante du développement culturel durable. Une reconnaissance qui honore notre engagement et nos résultats.</p>
+                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="partners-section section-padding">
+        <div class="container">
+            <div data-aos="fade-up">
+                <h2 class="section-title">Nos Partenaires</h2>
+                <p class="section-subtitle">Découvrez les organisations qui nous soutiennent</p>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 1">
+                    </div>
+                </div>
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 2">
+                    </div>
+                </div>
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 3">
+                    </div>
+                </div>
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="800">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 4">
+                    </div>
+                </div>
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 5">
+                    </div>
+                </div>
+                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="partner-logo">
+                        <img src="https://via.placeholder.com/150" alt="Partenaire 6">
                     </div>
                 </div>
             </div>
@@ -532,126 +1409,321 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section section-padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h2>Rejoignez Notre Mission</h2>
-                    <p class="lead mb-4">Ensemble, construisons un avenir où culture et durabilité se rencontrent pour créer un impact positif dans nos communautés.</p>
-                    <a href="#membership" class="btn btn-outline-light btn-lg me-3">
-                        <i class="fas fa-user-plus me-2"></i>Devenir Membre
-                    </a>
-                    <a href="#donation" class="btn btn-light btn-lg">
-                        <i class="fas fa-heart me-2"></i>Faire un Don
-                    </a>
+                <div class="col-lg-10 mx-auto text-center">
+                    <h2 data-aos="fade-up">Rejoignez Notre Mission</h2>
+                    <p class="lead" data-aos="fade-up" data-aos-delay="200">Ensemble, construisons un avenir où culture et durabilité se rencontrent pour créer un impact positif et durable dans nos communautés. Votre engagement peut faire la différence.</p>
+                    <div data-aos="fade-up" data-aos-delay="400">
+                        <a href="#membership" class="btn btn-cta-primary">
+                            <i class="fas fa-user-plus me-2"></i>Devenir Membre
+                        </a>
+                        <a href="#donation" class="btn btn-cta-outline">
+                            <i class="fas fa-heart me-2"></i>Soutenir nos Actions
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-4">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <h5><i class="fas fa-seedling me-2"></i>APCDD</h5>
-                    <p>Association pour la Promotion de la Culture et du Développement Durable</p>
+                    <p>Association pour la Promotion de la Culture et du Développement Durable. Nous œuvrons pour un avenir harmonieux entre tradition culturelle et innovation durable.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 mb-4">
+                <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <h5>Navigation</h5>
                     <ul class="list-unstyled">
                         <li><a href="#about">À propos</a></li>
                         <li><a href="#services">Nos domaines</a></li>
-                        <li><a href="#events">Événements</a></li>
-                        <li><a href="#gallery">Galerie</a></li>
+                        <li><a href="#stats">Notre impact</a></li>
+                        <li><a href="#news">Actualités</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <h5>Services</h5>
                     <ul class="list-unstyled">
                         <li><a href="#membership">Devenir membre</a></li>
-                        <li><a href="#volunteer">Bénévolat</a></li>
+                        <li><a href="#volunteer">Programme bénévolat</a></li>
                         <li><a href="#donation">Faire un don</a></li>
-                        <li><a href="#projects">Projets</a></li>
+                        <li><a href="#projects">Nos projets</a></li>
+                        <li><a href="#partnership">Partenariats</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-3 col-md-6 mb-4">
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
                     <h5>Contact</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>Ouagadougou, Burkina Faso</p>
-                    <p><i class="fas fa-phone me-2"></i>+226 XX XX XX XX</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i>Secteur 15, Ouagadougou<br>Burkina Faso</p>
+                    <p><i class="fas fa-phone me-2"></i>+226 25 XX XX XX</p>
                     <p><i class="fas fa-envelope me-2"></i>contact@apcdd.org</p>
+                    <p><i class="fas fa-globe me-2"></i>www.apcdd.org</p>
                 </div>
             </div>
-            <hr class="my-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2025 APCDD. Tous droits réservés.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <a href="#" class="me-3">Politique de confidentialité</a>
-                    <a href="#">Conditions d'utilisation</a>
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 APCDD. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#privacy" class="me-3">Politique de confidentialité</a>
+                        <a href="#terms">Conditions d'utilisation</a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scroll to top button -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Retour en haut">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
     <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            setTimeout(() => {
+                loadingOverlay.classList.add('hidden');
+            }, 1500);
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Particle system for hero section
+        function createParticles() {
+            const particleContainer = document.querySelector('.hero-particles');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+
+                particleContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                const increment = target / 100;
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Navbar background change on scroll
+        // Navbar scroll effect and active link highlighting
         window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.backgroundColor = 'rgba(46, 139, 87, 0.95)';
+            const navbar = document.getElementById('mainNavbar');
+            const scrollTop = window.pageYOffset;
+
+            // Navbar background effect
+            if (scrollTop > 100) {
+                navbar.classList.add('scrolled');
             } else {
-                navbar.style.background = 'linear-gradient(135deg, var(--primary-color), var(--accent-color))';
+                navbar.classList.remove('scrolled');
+            }
+
+            // Active navigation link highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionHeight = section.clientHeight;
+
+                if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top button
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollTop > 500) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
             }
         });
 
-        // Animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Scroll to top functionality
+        document.getElementById('scrollToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        // Enhanced hover effects for cards
+        const cards = document.querySelectorAll('.mission-card, .service-card, .news-card');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Mobile navbar auto-close
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
                 }
             });
-        }, observerOptions);
-
-        // Observe all cards and sections
-        document.querySelectorAll('.mission-card, .service-card, .news-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s ease-out';
-            observer.observe(el);
         });
+
+        // Form validation and interaction enhancements
+        const buttons = document.querySelectorAll('.btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Add ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple effect
+        const rippleCSS = `
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+
+        const style = document.createElement('style');
+        style.textContent = rippleCSS;
+        document.head.appendChild(style);
+
+        // Performance optimization for animations
+        let ticking = false;
+
+        function updateAnimations() {
+            // Your scroll-based animations here
+            ticking = false;
+        }
+
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateAnimations);
+                ticking = true;
+            }
+        }
+
+        window.addEventListener('scroll', requestTick);
     </script>
 </body>
 </html>
