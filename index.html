@@ -427,6 +427,25 @@
             }
         }
 
+        @media (max-width: 991.98px) {
+            .navbar-toggler {
+                display: block !important;
+            }
+
+            .navbar-collapse {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.9);
+                z-index: 1000;
+            }
+
+            .navbar-collapse.show {
+                display: block;
+            }
+        }
+
         /* Custom modal styles */
         .modal-content {
             border-radius: 10px;
@@ -541,8 +560,8 @@
                 <i class="fas fa-seedling me-2"></i>APCDD
             </a>
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <i class="fas fa-bars"></i>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
