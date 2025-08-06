@@ -530,9 +530,9 @@
 </head>
 <body>
     <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
+    <!-- <div class="loading-overlay" id="loadingOverlay">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
@@ -1748,6 +1748,11 @@
 
             // Set current year in footer
             $('#currentYear').text(new Date().getFullYear());
+
+            // Fermer le menu lorsque vous cliquez sur un lien
+            $('.navbar-nav .nav-link').on('click', function(){
+                $('.navbar-collapse').collapse('hide');
+            });
         });
     </script>
 </body>
