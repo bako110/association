@@ -427,24 +427,26 @@
             }
         }
 
-        @media (max-width: 991.98px) {
-            .navbar-toggler {
-                display: block !important;
-            }
+@media (max-width: 991.98px) {
+    .navbar-toggler {
+        display: block !important;
+        margin-left: 10px; /* Ajoutez cette ligne pour déplacer le bouton vers la gauche */
+    }
 
-            .navbar-collapse {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: rgba(255, 255, 255, 0.9);
-                z-index: 1000;
-            }
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 10px; /* Ajoutez cette ligne pour aligner le menu avec le bouton */
+        width: calc(100% - 20px); /* Ajustez la largeur pour tenir compte du déplacement */
+        background-color: rgba(255, 255, 255, 0.9);
+        z-index: 1000;
+    }
 
-            .navbar-collapse.show {
-                display: block;
-            }
-        }
+    .navbar-collapse.show {
+        display: block;
+    }
+}
+
 
         /* Custom modal styles */
         .modal-content {
