@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>APCDD - Association pour la Promotion de la Culture et du Développement Durable</title>
 
     <!-- Bootstrap CSS -->
@@ -13,900 +13,306 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- AOS Animation Library -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-
+    <!-- Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0B6623;
-            --secondary-color: #FF6B35;
-            --accent-color: #4ECDC4;
-            --dark-color: #1A1A1A;
-            --light-color: #FAFAFA;
-            --text-color: #333333;
-            --text-light: #666666;
-            --gradient-1: linear-gradient(135deg, #0B6623, #4ECDC4);
-            --gradient-2: linear-gradient(135deg, #FF6B35, #FF8C42);
-            --shadow: 0 10px 40px rgba(0,0,0,0.1);
-            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --primary-color: #28a745;
+            --secondary-color: #ffc107;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            overflow-x: hidden;
-            padding-top: 100px;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .font-display {
+        h1, h2, h3, h4, h5, h6 {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.5"/></svg>') repeat;
+            animation: particles 15s linear infinite;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 10px;
+        @keyframes particles {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-1000px); }
         }
 
-        /* Loading Animation */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(40, 167, 69, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.scrolled .navbar-brand,
+        .navbar.scrolled .nav-link,
+        .navbar.scrolled .navbar-toggler {
+            color: white !important;
+        }
+
+        .navbar.scrolled .btn-outline-success {
+            color: white;
+            border-color: white;
+        }
+
+        .navbar.scrolled .btn-warning {
+            color: #212529;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--dark-color);
+            position: relative;
+            margin: 0 0.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            font-weight: 600;
+            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-success {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-success:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-warning {
+            background-color: var(--warning-color);
+            color: #212529;
+            border-color: var(--warning-color);
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: #212529;
+        }
+
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: var(--gradient-1);
+            background-color: rgba(255, 255, 255, 0.9);
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             z-index: 9999;
-            transition: all 0.5s ease;
-        }
-
-        .loading-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
 
         .loader {
             width: 60px;
             height: 60px;
-            border: 4px solid rgba(255,255,255,0.3);
-            border-top: 4px solid white;
+            border: 5px solid rgba(40, 167, 69, 0.2);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Navigation */
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--primary-color) !important;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .navbar-brand i {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--text-color) !important;
-            font-weight: 500;
-            margin: 0 0.8rem;
-            padding: 0.5rem 0 !important;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: var(--gradient-1);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .navbar-nav .nav-link:hover::after,
-        .navbar-nav .nav-link.active::after {
-            width: 100%;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: var(--primary-color) !important;
-        }
-
-        .btn-donation {
-            background: var(--gradient-2);
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-donation:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
-            color: white;
-        }
-
-        .btn-outline-custom {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            background: transparent;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-custom:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(11, 102, 35, 0.3);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            min-height: 100vh;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.5;
-        }
-
-        .hero-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+            to { transform: rotate(360deg); }
         }
 
         .hero-content {
-            position: relative;
-            z-index: 2;
-            color: white;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            max-width: 800px;
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            font-family: 'Playfair Display', serif;
-            line-height: 1.2;
+        .display-4 {
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 3.5rem;
         }
 
-        .hero-content p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            max-width: 600px;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .hero-stat {
-            text-align: center;
-            color: white;
-        }
-
-        .hero-stat h3 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .hero-stat p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-            margin: 0;
-        }
-
-        .btn-primary-custom {
-            background: var(--gradient-2);
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.3);
-        }
-
-        .btn-primary-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-outline-hero {
-            border: 2px solid white;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-hero:hover {
-            background: white;
-            color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Sections communes */
-        .section-padding {
-            padding: 8rem 0;
-        }
-
-        .section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            text-align: center;
-            margin-bottom: 1rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .section-subtitle {
+        .lead {
             font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
         }
 
-        /* About Section */
-        .about-section {
-            background: var(--light-color);
+        .counter {
+            font-weight: 700;
         }
 
-        .mission-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
-            height: 100%;
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            border-radius: 10px;
             overflow: hidden;
+            height: 100%;
         }
 
-        .mission-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-1);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .mission-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .mission-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .mission-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
-            margin: 0 auto 2rem;
-        }
-
-        .mission-card h4 {
-            color: var(--dark-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .mission-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        /* Services Section */
-        .services-section {
-            background: var(--gradient-1);
-            color: white;
-            position: relative;
-        }
-
-        .services-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect fill="url(%23dots)" width="100%" height="100%"/></svg>');
-        }
-
-        .services-section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .services-section .section-title {
-            color: white;
-        }
-
-        .services-section .section-subtitle {
-            color: rgba(255, 255, 255, 0.8);
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.4s ease;
             height: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .service-card:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-10px);
+        .service-card .card-body {
+            padding: 2rem;
         }
 
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(255, 107, 53, 0.2);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin: 0 auto 1.5rem;
+        .timeline {
+            position: relative;
         }
 
-        .service-card h4 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
         }
 
-        .service-card p {
-            opacity: 0.9;
-            line-height: 1.6;
+        .gallery-card {
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
-        /* Statistiques Section */
-        .stats-section {
-            background: var(--dark-color);
-            color: white;
-            padding: 6rem 0;
+        .gallery-card:hover {
+            transform: scale(1.03);
         }
 
-        .stat-card {
-            text-align: center;
-            padding: 2rem 1rem;
+        .gallery-card img {
+            transition: transform 0.5s ease;
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
         }
 
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 0.5rem;
+        .gallery-card:hover img {
+            transform: scale(1.1);
         }
 
-        .stat-label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* News Section */
-        .news-section {
-            background: white;
+        .stat-item {
+            padding: 1.5rem;
         }
 
         .news-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
             height: 100%;
         }
 
         .news-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .news-image {
-            height: 250px;
-            background: var(--gradient-1);
+        .partner-logo {
+            transition: all 0.3s ease;
+            height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
         }
 
-        .news-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.1) 100%);
+        .partner-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .news-content {
-            padding: 2rem;
-        }
-
-        .news-date {
-            color: var(--secondary-color);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .news-card h5 {
-            font-weight: 600;
-            margin: 1rem 0;
-            color: var(--dark-color);
-            font-size: 1.3rem;
-        }
-
-        .news-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-news {
-            color: var(--primary-color);
-            font-weight: 600;
-            text-decoration: none;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .btn-news::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .btn-news:hover::after {
-            width: 100%;
-        }
-
-        .btn-news:hover {
-            color: var(--primary-color);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--gradient-2);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,0 1000,300 1000,1000 0,700"/></svg>');
-        }
-
-        .cta-section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-cta-primary {
-            background: white;
-            color: var(--secondary-color);
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.4);
-            color: var(--secondary-color);
-        }
-
-        .btn-cta-outline {
-            border: 2px solid white;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-cta-outline:hover {
-            background: white;
-            color: var(--secondary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-color);
-            color: white;
-            padding: 6rem 0 2rem;
-        }
-
-        .footer h5 {
-            color: var(--accent-color);
-            font-weight: 600;
-            margin-bottom: 2rem;
-            font-size: 1.3rem;
-        }
-
-        .footer p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.7;
-        }
-
-        .footer a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-            padding: 0.3rem 0;
-        }
-
-        .footer a:hover {
-            color: var(--accent-color);
-            transform: translateX(5px);
-        }
-
-        .social-icons {
-            margin-top: 2rem;
-        }
-
-        .social-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            margin: 0 0.5rem;
-            font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            transform: none;
-        }
-
-        .social-icons a:hover {
-            background: var(--accent-color);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            margin-top: 3rem;
-        }
-
-        .footer-bottom a {
-            color: var(--accent-color);
-            padding: 0;
-            transform: none;
-        }
-
-        .footer-bottom a:hover {
-            color: white;
-            transform: none;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 991px) {
-            .navbar-nav {
-                text-align: center;
-                margin-top: 1rem;
-            }
-
-            .navbar-nav .nav-link {
-                margin: 0.5rem 0;
-                padding: 0.8rem 0 !important;
-            }
-
-            .hero-stats {
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .section-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 3rem;
-            }
-
-            .section-padding {
-                padding: 5rem 0;
-            }
-
-            .cta-section h2 {
-                font-size: 2.5rem;
-            }
-
-            .cta-section p {
-                font-size: 1.2rem;
-            }
-
-            .btn-primary-custom,
-            .btn-outline-hero,
-            .btn-cta-primary,
-            .btn-cta-outline {
-                display: block;
-                margin: 0.8rem auto;
-                width: 90%;
-                max-width: 300px;
-            }
-
-            .hero-stats {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-
-            .mission-card,
-            .service-card {
-                margin-bottom: 2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .mission-card,
-            .service-card,
-            .news-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .navbar-brand {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* Animations personnalisées */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        /* Scroll to top button */
         .scroll-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             width: 50px;
             height: 50px;
-            background: var(--gradient-1);
+            border-radius: 50%;
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            border-radius: 50%;
-            font-size: 1.2rem;
             cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
             z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
         }
 
         .scroll-to-top.show {
@@ -915,113 +321,210 @@
         }
 
         .scroll-to-top:hover {
+            background-color: #218838;
             transform: translateY(-3px);
-            box-shadow: 0 5px 20px rgba(11, 102, 35, 0.4);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
 
-        /* Media Gallery Section */
-        .media-gallery-section {
-            background: var(--light-color);
-            padding: 8rem 0;
+        footer {
+            background-color: var(--dark-color);
+            margin-top: auto;
         }
 
-        .media-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 1rem;
+        footer a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
         }
 
-        .media-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            height: 200px;
-            background: #ccc;
+        footer a:hover {
+            color: white;
+            text-decoration: none;
         }
 
-        .media-item img, .media-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        .social-media a {
+            transition: all 0.3s ease;
         }
 
-        .media-item:hover img, .media-item:hover video {
-            transform: scale(1.05);
-        }
-
-        /* History Section */
-        .history-section {
-            background: white;
-            padding: 8rem 0;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary-color);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -36px;
-            top: 0;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--primary-color);
-        }
-
-        .timeline-content {
-            background: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .timeline-content h4 {
+        .social-media a:hover {
+            transform: translateY(-3px);
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            border-color: var(--primary-color);
         }
 
-        /* Partners Section */
-        .partners-section {
-            background: var(--light-color);
-            padding: 8rem 0;
+        /* Responsive adjustments */
+        @media (max-width: 1400px) {
+            .display-4 {
+                font-size: 3rem;
+            }
         }
 
-        .partner-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100px;
-            background: white;
+        @media (max-width: 1200px) {
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .display-4 {
+                font-size: 2.5rem;
+            }
+
+            .lead {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .gallery-item {
+                margin-bottom: 1.5rem;
+            }
+
+            .display-4 {
+                font-size: 2rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 1rem;
+            }
+
+            .display-4 {
+                font-size: 1.8rem;
+            }
+
+            .lead {
+                font-size: 0.9rem;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+            }
+
+            .nav-link {
+                padding: 0.3rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .display-4 {
+                font-size: 1.5rem;
+            }
+
+            .lead {
+                font-size: 0.8rem;
+            }
+
+            .btn {
+                padding: 0.3rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Custom modal styles */
+        .modal-content {
             border-radius: 10px;
-            box-shadow: var(--shadow);
-            margin: 1rem;
-            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .partner-logo img {
-            max-height: 100%;
+        .modal-header {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding-top: 0;
+        }
+
+        /* Form styles */
+        .form-control {
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease;
+            width: 100%;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+        }
+
+        .form-select {
+            border-radius: 5px;
+            padding: 0.75rem 1rem;
+            width: 100%;
+        }
+
+        /* Membership section styles */
+        .membership-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .membership-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .membership-card .card-header {
+            padding: 1.5rem;
+        }
+
+        .membership-card .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Donation form styles */
+        #donationForm {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        /* Animation delays for AOS */
+        [data-aos-delay="200"] {
+            transition-delay: 0.2s;
+        }
+
+        [data-aos-delay="400"] {
+            transition-delay: 0.4s;
+        }
+
+        [data-aos-delay="600"] {
+            transition-delay: 0.6s;
+        }
+
+        [data-aos-delay="800"] {
+            transition-delay: 0.8s;
+        }
+
+        [data-aos-delay="1000"] {
+            transition-delay: 1.0s;
+        }
+
+        [data-aos-delay="1200"] {
+            transition-delay: 1.2s;
+        }
+
+        /* Ensure images are responsive */
+        img {
             max-width: 100%;
-            object-fit: contain;
+            height: auto;
         }
     </style>
 </head>
@@ -1032,7 +535,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#home">
                 <i class="fas fa-seedling me-2"></i>APCDD
@@ -1070,11 +573,11 @@
                     </li>
                 </ul>
                 <div class="d-flex">
-                    <a href="#membership" class="btn btn-outline-custom me-3">
-                        <i class="fas fa-users me-2"></i>Devenir membre
+                    <a href="#membership" class="btn btn-outline-success me-2">
+                        <i class="fas fa-users me-1"></i>Devenir membre
                     </a>
-                    <a href="#donation" class="btn btn-donation">
-                        <i class="fas fa-heart me-2"></i>Faire un don
+                    <a href="#donation" class="btn btn-warning">
+                        <i class="fas fa-heart me-1"></i>Faire un don
                     </a>
                 </div>
             </div>
@@ -1082,38 +585,38 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-section">
+    <section id="home" class="hero-section bg-success text-white py-5">
         <div class="hero-particles"></div>
         <div class="container">
             <div class="row align-items-center min-vh-100">
-                <div class="col-lg-8">
+                <div class="col-lg-8 mx-auto text-center">
                     <div class="hero-content">
-                        <h1 data-aos="fade-up" data-aos-delay="200">Promouvoir la culture au service du développement durable</h1>
-                        <p data-aos="fade-up" data-aos-delay="400">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.</p>
-                        <div data-aos="fade-up" data-aos-delay="600">
-                            <a href="#about" class="btn btn-primary-custom">
+                        <h1 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200">Promouvoir la culture au service du développement durable</h1>
+                        <p class="lead mb-5" data-aos="fade-up" data-aos-delay="400">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.</p>
+                        <div class="mb-5" data-aos="fade-up" data-aos-delay="600">
+                            <a href="#about" class="btn btn-light btn-lg me-2">
                                 <i class="fas fa-info-circle me-2"></i>Découvrir notre mission
                             </a>
-                            <a href="#membership" class="btn btn-outline-hero">
+                            <a href="#membership" class="btn btn-outline-light btn-lg">
                                 <i class="fas fa-users me-2"></i>Nous rejoindre
                             </a>
                         </div>
-                        <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
-                            <div class="hero-stat">
-                                <h3 class="counter" data-count="500">0</h3>
-                                <p>Membres actifs</p>
+                        <div class="row text-center" data-aos="fade-up" data-aos-delay="800">
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 class="counter display-6" data-count="500">0</h3>
+                                <p class="mb-0">Membres actifs</p>
                             </div>
-                            <div class="hero-stat">
-                                <h3 class="counter" data-count="50">0</h3>
-                                <p>Projets réalisés</p>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 class="counter display-6" data-count="50">0</h3>
+                                <p class="mb-0">Projets réalisés</p>
                             </div>
-                            <div class="hero-stat">
-                                <h3 class="counter" data-count="10000">0</h3>
-                                <p>Arbres plantés</p>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 class="counter display-6" data-count="10000">0</h3>
+                                <p class="mb-0">Arbres plantés</p>
                             </div>
-                            <div class="hero-stat">
-                                <h3 class="counter" data-count="25">0</h3>
-                                <p>Communautés touchées</p>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 class="counter display-6" data-count="25">0</h3>
+                                <p class="mb-0">Communautés touchées</p>
                             </div>
                         </div>
                     </div>
@@ -1123,160 +626,243 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about-section section-padding">
+    <section id="about" class="py-5 bg-light">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Notre Mission</h2>
-                <p class="section-subtitle">Nous créons un pont entre tradition culturelle et innovation durable pour construire un avenir meilleur</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Notre Mission</h2>
+                <p class="lead text-muted">Nous créons un pont entre tradition culturelle et innovation durable pour construire un avenir meilleur</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-theater-masks"></i>
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-theater-masks fa-3x text-success"></i>
+                            </div>
+                            <h4 class="card-title">Promotion Culturelle</h4>
+                            <p class="card-text">Valoriser et préserver la richesse culturelle locale à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine ancestral tout en l'adaptant aux défis contemporains.</p>
                         </div>
-                        <h4>Promotion Culturelle</h4>
-                        <p>Valoriser et préserver la richesse culturelle locale à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine ancestral tout en l'adaptant aux défis contemporains.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-leaf"></i>
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-leaf fa-3x text-success"></i>
+                            </div>
+                            <h4 class="card-title">Développement Durable</h4>
+                            <p class="card-text">Promouvoir des pratiques respectueuses de l'environnement et sensibiliser aux enjeux écologiques pour un futur durable. Nous intégrons les solutions traditionnelles aux innovations modernes.</p>
                         </div>
-                        <h4>Développement Durable</h4>
-                        <p>Promouvoir des pratiques respectueuses de l'environnement et sensibiliser aux enjeux écologiques pour un futur durable. Nous intégrons les solutions traditionnelles aux innovations modernes.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="mission-card">
-                        <div class="mission-icon">
-                            <i class="fas fa-hands-helping"></i>
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-hands-helping fa-3x text-success"></i>
+                            </div>
+                            <h4 class="card-title">Action Communautaire</h4>
+                            <p class="card-text">Mobiliser les communautés locales pour créer des projets d'impact positif alliant culture, éducation et développement. Ensemble, nous bâtissons des solutions durables et inclusives.</p>
                         </div>
-                        <h4>Action Communautaire</h4>
-                        <p>Mobiliser les communautés locales pour créer des projets d'impact positif alliant culture, éducation et développement. Ensemble, nous bâtissons des solutions durables et inclusives.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- History Section -->
-    <section id="events" class="history-section section-padding">
+    <!-- History/Events Timeline Section -->
+    <section id="events" class="py-5">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Historique des Événements</h2>
-                <p class="section-subtitle">Découvrez les moments marquants de notre association</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Historique des Événements</h2>
+                <p class="lead text-muted">Découvrez les moments marquants de notre association</p>
             </div>
             <div class="timeline">
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-                    <div class="timeline-content">
-                        <h4>Fondation de l'APCDD</h4>
-                        <p>Création de l'Association pour la Promotion de la Culture et du Développement Durable avec pour mission de promouvoir la culture locale et le développement durable.</p>
-                        <p class="text-muted">Janvier 2020</p>
+                <div class="row">
+                    <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="200">
+                        <div class="card border-start border-success border-4 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-alt text-success me-2"></i>
+                                    <small class="text-muted">Janvier 2020</small>
+                                </div>
+                                <h5 class="card-title">Fondation de l'APCDD</h5>
+                                <p class="card-text">Création de l'Association pour la Promotion de la Culture et du Développement Durable avec pour mission de promouvoir la culture locale et le développement durable.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
-                    <div class="timeline-content">
-                        <h4>Premier Festival Culturel</h4>
-                        <p>Organisation du premier festival culturel mettant en valeur les traditions locales et sensibilisant à l'importance de la préservation culturelle.</p>
-                        <p class="text-muted">Juin 2020</p>
+                    <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="400">
+                        <div class="card border-start border-warning border-4 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-alt text-warning me-2"></i>
+                                    <small class="text-muted">Juin 2020</small>
+                                </div>
+                                <h5 class="card-title">Premier Festival Culturel</h5>
+                                <p class="card-text">Organisation du premier festival culturel mettant en valeur les traditions locales et sensibilisant à l'importance de la préservation culturelle.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="600">
-                    <div class="timeline-content">
-                        <h4>Lancement du Programme de Reboisement</h4>
-                        <p>Début du programme de reboisement avec la plantation de 1000 arbres en collaboration avec les communautés locales.</p>
-                        <p class="text-muted">Mars 2021</p>
+                    <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="600">
+                        <div class="card border-start border-info border-4 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-alt text-info me-2"></i>
+                                    <small class="text-muted">Mars 2021</small>
+                                </div>
+                                <h5 class="card-title">Lancement du Programme de Reboisement</h5>
+                                <p class="card-text">Début du programme de reboisement avec la plantation de 1000 arbres en collaboration avec les communautés locales.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-aos="fade-up" data-aos-delay="800">
-                    <div class="timeline-content">
-                        <h4>Partenariat avec l'UNESCO</h4>
-                        <p>Signature d'un partenariat avec l'UNESCO pour la promotion et la protection du patrimoine culturel immatériel.</p>
-                        <p class="text-muted">Octobre 2021</p>
+                    <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="800">
+                        <div class="card border-start border-danger border-4 shadow">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-calendar-alt text-danger me-2"></i>
+                                    <small class="text-muted">Octobre 2021</small>
+                                </div>
+                                <h5 class="card-title">Partenariat avec l'UNESCO</h5>
+                                <p class="card-text">Signature d'un partenariat avec l'UNESCO pour la promotion et la protection du patrimoine culturel immatériel.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Media Gallery Section -->
-    <section id="gallery" class="media-gallery-section section-padding">
+    <!-- Interactive Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Galerie Médias</h2>
-                <p class="section-subtitle">Découvrez nos photos et vidéos des événements passés</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Galerie Médias</h2>
+                <p class="lead text-muted">Découvrez nos photos et vidéos des événements passés</p>
             </div>
-            <div class="media-gallery">
-                <div class="media-item" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://via.placeholder.com/300" alt="Festival Culturel">
+
+            <!-- Gallery Filter Buttons -->
+            <div class="text-center mb-4">
+                <div class="btn-group" role="group" aria-label="Gallery filter">
+                    <button type="button" class="btn btn-outline-success active" data-filter="all">Tout</button>
+                    <button type="button" class="btn btn-outline-success" data-filter="festivals">Festivals</button>
+                    <button type="button" class="btn btn-outline-success" data-filter="environment">Environnement</button>
+                    <button type="button" class="btn btn-outline-success" data-filter="community">Communauté</button>
                 </div>
-                <div class="media-item" data-aos="fade-up" data-aos-delay="400">
-                    <img src="https://via.placeholder.com/300" alt="Atelier Artisanal">
+            </div>
+
+            <div class="row g-3" id="galleryGrid">
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=300&fit=crop" class="card-img-top" alt="Festival Culturel" data-lightbox="gallery" data-title="Festival Culturel 2024">
+                        <div class="card-body">
+                            <h6 class="card-title">Festival Culturel 2024</h6>
+                            <p class="card-text small text-muted">Célébration de notre patrimoine culturel</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-item" data-aos="fade-up" data-aos-delay="600">
-                    <img src="https://via.placeholder.com/300" alt="Plantation d'arbres">
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" class="card-img-top" alt="Atelier Artisanal" data-lightbox="gallery" data-title="Atelier d'artisanat traditionnel">
+                        <div class="card-body">
+                            <h6 class="card-title">Atelier Artisanal</h6>
+                            <p class="card-text small text-muted">Formation aux métiers traditionnels</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-item" data-aos="fade-up" data-aos-delay="800">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300" type="video/mp4">
-                    </video>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop" class="card-img-top" alt="Plantation d'arbres" data-lightbox="gallery" data-title="Programme de reboisement">
+                        <div class="card-body">
+                            <h6 class="card-title">Plantation d'arbres</h6>
+                            <p class="card-text small text-muted">Action environnementale communautaire</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-item" data-aos="fade-up" data-aos-delay="1000">
-                    <img src="https://via.placeholder.com/300" alt="Cérémonie Traditionnelle">
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="800">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=300&fit=crop" class="card-img-top" alt="Concert traditionnel" data-lightbox="gallery" data-title="Concert de musique traditionnelle">
+                        <div class="card-body">
+                            <h6 class="card-title">Concert Traditionnel</h6>
+                            <p class="card-text small text-muted">Musique et danse ancestrales</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="media-item" data-aos="fade-up" data-aos-delay="1200">
-                    <video controls>
-                        <source src="https://via.placeholder.com/300" type="video/mp4">
-                    </video>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&h=300&fit=crop" class="card-img-top" alt="Cérémonie Traditionnelle" data-lightbox="gallery" data-title="Cérémonie traditionnelle">
+                        <div class="card-body">
+                            <h6 class="card-title">Cérémonie Traditionnelle</h6>
+                            <p class="card-text small text-muted">Rituel communautaire ancestral</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="card border-0 shadow gallery-card">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop" class="card-img-top" alt="Jardinage communautaire" data-lightbox="gallery" data-title="Jardins communautaires">
+                        <div class="card-body">
+                            <h6 class="card-title">Jardinage Communautaire</h6>
+                            <p class="card-text small text-muted">Agriculture durable locale</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services-section section-padding">
+    <section id="services" class="py-5">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Nos Domaines d'Intervention</h2>
-                <p class="section-subtitle">Des actions concrètes pour un impact durable et mesurable</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Nos Domaines d'Intervention</h2>
+                <p class="lead text-muted">Des actions concrètes pour un impact durable et mesurable</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-music"></i>
+                    <div class="card h-100 border-0 shadow text-center service-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-music fa-4x text-primary"></i>
+                            </div>
+                            <h4 class="card-title">Culture & Arts</h4>
+                            <p class="card-text">Festivals culturels, concerts traditionnels, expositions d'art local et préservation du patrimoine immatériel</p>
+                            <a href="#culture-details" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cultureModal">En savoir plus</a>
                         </div>
-                        <h4>Culture & Arts</h4>
-                        <p>Festivals culturels, concerts traditionnels, expositions d'art local et préservation du patrimoine immatériel</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="400">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-graduation-cap"></i>
+                    <div class="card h-100 border-0 shadow text-center service-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-graduation-cap fa-4x text-info"></i>
+                            </div>
+                            <h4 class="card-title">Éducation</h4>
+                            <p class="card-text">Programmes éducatifs, ateliers de formation, transmission des savoirs ancestraux et sensibilisation environnementale</p>
+                            <a href="#education-details" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#educationModal">En savoir plus</a>
                         </div>
-                        <h4>Éducation</h4>
-                        <p>Programmes éducatifs, ateliers de formation, transmission des savoirs ancestraux et sensibilisation environnementale</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="600">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-tree"></i>
+                    <div class="card h-100 border-0 shadow text-center service-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-tree fa-4x text-success"></i>
+                            </div>
+                            <h4 class="card-title">Environnement</h4>
+                            <p class="card-text">Projets de reboisement, promotion des énergies renouvelables, gestion durable des ressources naturelles</p>
+                            <a href="#environment-details" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#environmentModal">En savoir plus</a>
                         </div>
-                        <h4>Environnement</h4>
-                        <p>Projets de reboisement, promotion des énergies renouvelables, gestion durable des ressources naturelles</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="800">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-handshake"></i>
+                    <div class="card h-100 border-0 shadow text-center service-card">
+                        <div class="card-body p-4">
+                            <div class="mb-3">
+                                <i class="fas fa-handshake fa-4x text-warning"></i>
+                            </div>
+                            <h4 class="card-title">Développement Local</h4>
+                            <p class="card-text">Économie verte, promotion de l'artisanat local, initiatives entrepreneuriales communautaires et coopératives</p>
+                            <a href="#development-details" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#developmentModal">En savoir plus</a>
                         </div>
-                        <h4>Développement Local</h4>
-                        <p>Économie verte, promotion de l'artisanat local, initiatives entrepreneuriales communautaires et coopératives</p>
                     </div>
                 </div>
             </div>
@@ -1284,31 +870,31 @@
     </section>
 
     <!-- Statistics Section -->
-    <section id="stats" class="stats-section">
+    <section id="stats" class="py-5 bg-success text-white">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-card">
-                        <div class="stat-number counter" data-count="5">0</div>
-                        <div class="stat-label">Années d'expérience</div>
+            <div class="row text-center">
+                <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item">
+                        <h2 class="display-4 counter" data-count="5">0</h2>
+                        <p class="lead">Années d'expérience</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat-card">
-                        <div class="stat-number counter" data-count="500">0</div>
-                        <div class="stat-label">Membres engagés</div>
+                <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-item">
+                        <h2 class="display-4 counter" data-count="500">0</h2>
+                        <p class="lead">Membres engagés</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="stat-card">
-                        <div class="stat-number counter" data-count="50">0</div>
-                        <div class="stat-label">Projets menés</div>
+                <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="stat-item">
+                        <h2 class="display-4 counter" data-count="50">0</h2>
+                        <p class="lead">Projets menés</p>
                     </div>
                 </div>
-                <div class="col-lg-3 col-6" data-aos="fade-up" data-aos-delay="800">
-                    <div class="stat-card">
-                        <div class="stat-number counter" data-count="25">0</div>
-                        <div class="stat-label">Communautés aidées</div>
+                <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="stat-item">
+                        <h2 class="display-4 counter" data-count="25">0</h2>
+                        <p class="lead">Communautés aidées</p>
                     </div>
                 </div>
             </div>
@@ -1316,49 +902,78 @@
     </section>
 
     <!-- News Section -->
-    <section id="news" class="news-section section-padding">
+    <section id="news" class="py-5 bg-light">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Actualités & Événements</h2>
-                <p class="section-subtitle">Suivez nos dernières réalisations et nos prochains événements</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Actualités & Événements</h2>
+                <p class="lead text-muted">Suivez nos dernières réalisations et nos prochains événements</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <i class="fas fa-calendar-alt"></i>
+                    <div class="card h-100 border-0 shadow news-card">
+                        <div class="card-header bg-primary text-white text-center">
+                            <i class="fas fa-calendar-alt fa-2x mb-2"></i>
+                            <small class="d-block">15 Août 2025</small>
                         </div>
-                        <div class="news-content">
-                            <p class="news-date">15 Août 2025</p>
-                            <h5>Festival Culturel d'Été 2025</h5>
-                            <p>Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle et les pratiques durables. Une semaine d'événements exceptionnels vous attend.</p>
-                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Festival Culturel d'Été 2025</h5>
+                            <p class="card-text">Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle et les pratiques durables. Une semaine d'événements exceptionnels vous attend.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#news-detail" class="btn btn-primary btn-sm">Lire la suite</a>
+                                <small class="text-muted"><i class="fas fa-eye"></i> 245 vues</small>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <i class="fas fa-seedling"></i>
+                    <div class="card h-100 border-0 shadow news-card">
+                        <div class="card-header bg-success text-white text-center">
+                            <i class="fas fa-seedling fa-2x mb-2"></i>
+                            <small class="d-block">10 Août 2025</small>
                         </div>
-                        <div class="news-content">
-                            <p class="news-date">10 Août 2025</p>
-                            <h5>Grande Campagne de Reboisement</h5>
-                            <p>Lancement de notre ambitieuse initiative de plantation de 10,000 arbres en partenariat avec 15 communautés locales. Participez à cette action historique.</p>
-                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Grande Campagne de Reboisement</h5>
+                            <p class="card-text">Lancement de notre ambitieuse initiative de plantation de 10,000 arbres en partenariat avec 15 communautés locales. Participez à cette action historique.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#news-detail" class="btn btn-success btn-sm">Lire la suite</a>
+                                <small class="text-muted"><i class="fas fa-eye"></i> 189 vues</small>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="news-card">
-                        <div class="news-image">
-                            <i class="fas fa-award"></i>
+                    <div class="card h-100 border-0 shadow news-card">
+                        <div class="card-header bg-warning text-white text-center">
+                            <i class="fas fa-award fa-2x mb-2"></i>
+                            <small class="d-block">5 Août 2025</small>
                         </div>
-                        <div class="news-content">
-                            <p class="news-date">5 Août 2025</p>
-                            <h5>Reconnaissance UNESCO</h5>
-                            <p>L'APCDD récompensée pour son approche innovante du développement culturel durable. Une reconnaissance qui honore notre engagement et nos résultats.</p>
-                            <a href="#" class="btn-news">Lire la suite <i class="fas fa-arrow-right ms-1"></i></a>
+                        <div class="card-body">
+                            <h5 class="card-title">Reconnaissance UNESCO</h5>
+                            <p class="card-text">L'APCDD récompensée pour son approche innovante du développement culturel durable. Une reconnaissance qui honore notre engagement et nos résultats.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#news-detail" class="btn btn-warning btn-sm">Lire la suite</a>
+                                <small class="text-muted"><i class="fas fa-eye"></i> 312 vues</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="card bg-success text-white">
+                        <div class="card-body text-center p-4">
+                            <h4><i class="fas fa-envelope-open-text me-2"></i>Newsletter</h4>
+                            <p class="mb-3">Restez informés de nos actualités et événements</p>
+                            <form class="row g-2 justify-content-center" id="newsletterForm">
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Votre adresse email" required>
+                                </div>
+                                <div class="col-md-auto">
+                                    <button type="submit" class="btn btn-light">S'abonner</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -1367,41 +982,197 @@
     </section>
 
     <!-- Partners Section -->
-    <section id="partners" class="partners-section section-padding">
+    <section id="partners" class="py-5">
         <div class="container">
-            <div data-aos="fade-up">
-                <h2 class="section-title">Nos Partenaires</h2>
-                <p class="section-subtitle">Découvrez les organisations qui nous soutiennent</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold text-success">Nos Partenaires</h2>
+                <p class="lead text-muted">Découvrez les organisations qui nous soutiennent dans notre mission</p>
             </div>
-            <div class="row">
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 1">
+            <div class="row align-items-center">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=UNESCO" alt="UNESCO" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 2">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=UN" alt="Nations Unies" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="600">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 3">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=EU" alt="Union Européenne" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="800">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 4">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="800">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=AFD" alt="AFD" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="1000">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 5">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=WB" alt="World Bank" class="img-fluid">
                     </div>
                 </div>
-                <div class="col-md-2 col-6" data-aos="fade-up" data-aos-delay="1200">
-                    <div class="partner-logo">
-                        <img src="https://via.placeholder.com/150" alt="Partenaire 6">
+                <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="partner-logo p-3 bg-white rounded shadow text-center">
+                        <img src="https://via.placeholder.com/120x80?text=NGO" alt="Partenaire Local" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section id="membership" class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Devenir Membre</h2>
+                <p class="lead">Rejoignez notre communauté et participez activement à nos missions</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-header bg-light text-center">
+                            <h4 class="text-primary">Membre Sympathisant</h4>
+                            <h3 class="display-6">Gratuit</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Newsletter mensuelle</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Invitations aux événements publics</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Accès aux ressources éducatives</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Certificat de sympathisant</li>
+                            </ul>
+                            <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#membershipModal" data-plan="sympathisant">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100 border-0 shadow border-warning" style="border-width: 3px !important;">
+                        <div class="card-header bg-warning text-white text-center position-relative">
+                            <span class="badge bg-danger position-absolute top-0 start-50 translate-middle">Populaire</span>
+                            <h4>Membre Actif</h4>
+                            <h3 class="display-6">25,000 FCFA/an</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Tous les avantages sympathisant</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Participation aux assemblées</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Accès aux ateliers exclusifs</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Carte de membre officielle</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Réductions sur les événements</li>
+                            </ul>
+                            <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#membershipModal" data-plan="actif">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-header bg-success text-white text-center">
+                            <h4>Membre Bienfaiteur</h4>
+                            <h3 class="display-6">100,000 FCFA/an</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Tous les avantages précédents</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Participation au conseil consultatif</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Mention dans nos publications</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Rencontres privilégiées</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Rapport d'activité personnalisé</li>
+                            </ul>
+                            <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#membershipModal" data-plan="bienfaiteur">S'inscrire</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section id="donation" class="py-5 bg-warning text-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h2 class="display-5 fw-bold mb-4">Soutenez Nos Actions</h2>
+                    <p class="lead mb-4">Votre générosité nous permet de mener à bien nos projets culturels et environnementaux. Chaque contribution compte et fait la différence dans la vie des communautés.</p>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-white rounded">
+                                <h4 class="text-primary">50€</h4>
+                                <small>Plante 10 arbres</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-white rounded">
+                                <h4 class="text-success">100€</h4>
+                                <small>Forme un artisan</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-white rounded">
+                                <h4 class="text-info">200€</h4>
+                                <small>Soutient un festival</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center p-3 bg-white rounded">
+                                <h4 class="text-danger">500€</h4>
+                                <small>Lance un projet</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h4 class="card-title text-center mb-4">Faire un don</h4>
+                            <form id="donationForm">
+                                <div class="mb-3">
+                                    <label for="donationAmount" class="form-label">Montant du don (FCFA)</label>
+                                    <div class="btn-group w-100 mb-2" role="group">
+                                        <input type="radio" class="btn-check" name="amount" id="amount1" value="10000">
+                                        <label class="btn btn-outline-primary" for="amount1">10,000</label>
+
+                                        <input type="radio" class="btn-check" name="amount" id="amount2" value="25000">
+                                        <label class="btn btn-outline-primary" for="amount2">25,000</label>
+
+                                        <input type="radio" class="btn-check" name="amount" id="amount3" value="50000">
+                                        <label class="btn btn-outline-primary" for="amount3">50,000</label>
+
+                                        <input type="radio" class="btn-check" name="amount" id="amount4" value="100000">
+                                        <label class="btn btn-outline-primary" for="amount4">100,000</label>
+                                    </div>
+                                    <input type="number" class="form-control" id="customAmount" placeholder="Autre montant">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="donorName" class="form-label">Nom complet</label>
+                                    <input type="text" class="form-control" id="donorName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="donorEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="donorEmail" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="donationPurpose" class="form-label">Destination du don</label>
+                                    <select class="form-select" id="donationPurpose">
+                                        <option value="general">Fonds général</option>
+                                        <option value="environment">Projets environnementaux</option>
+                                        <option value="culture">Promotion culturelle</option>
+                                        <option value="education">Programmes éducatifs</option>
+                                    </select>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="anonymous">
+                                    <label class="form-check-label" for="anonymous">
+                                        Don anonyme
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-warning w-100 btn-lg">
+                                    <i class="fas fa-heart me-2"></i>Faire le don
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1409,18 +1180,21 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section section-padding">
+    <section class="py-5 bg-success text-white">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto text-center">
-                    <h2 data-aos="fade-up">Rejoignez Notre Mission</h2>
-                    <p class="lead" data-aos="fade-up" data-aos-delay="200">Ensemble, construisons un avenir où culture et durabilité se rencontrent pour créer un impact positif et durable dans nos communautés. Votre engagement peut faire la différence.</p>
-                    <div data-aos="fade-up" data-aos-delay="400">
-                        <a href="#membership" class="btn btn-cta-primary">
+                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Rejoignez Notre Mission</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Ensemble, construisons un avenir où culture et durabilité se rencontrent pour créer un impact positif et durable dans nos communautés. Votre engagement peut faire la différence.</p>
+                    <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="400">
+                        <a href="#membership" class="btn btn-light btn-lg">
                             <i class="fas fa-user-plus me-2"></i>Devenir Membre
                         </a>
-                        <a href="#donation" class="btn btn-cta-outline">
+                        <a href="#donation" class="btn btn-outline-light btn-lg">
                             <i class="fas fa-heart me-2"></i>Soutenir nos Actions
+                        </a>
+                        <a href="#volunteer" class="btn btn-warning btn-lg" data-bs-toggle="modal" data-bs-target="#volunteerModal">
+                            <i class="fas fa-hands-helping me-2"></i>Devenir Bénévole
                         </a>
                     </div>
                 </div>
@@ -1428,57 +1202,115 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact" class="footer">
+    <!-- Contact & Footer Section -->
+    <footer id="contact" class="bg-dark text-white py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-                    <h5><i class="fas fa-seedling me-2"></i>APCDD</h5>
-                    <p>Association pour la Promotion de la Culture et du Développement Durable. Nous œuvrons pour un avenir harmonieux entre tradition culturelle et innovation durable.</p>
-                    <div class="social-icons">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-seedling me-2 text-success"></i>APCDD
+                        </h5>
+                        <p class="text-light">Association pour la Promotion de la Culture et du Développement Durable. Nous œuvrons pour un avenir harmonieux entre tradition culturelle et innovation durable.</p>
+                    </div>
+                    <div class="social-media">
+                        <h6 class="fw-bold mb-3">Suivez-nous</h6>
+                        <div class="d-flex gap-2">
+                            <a href="https://facebook.com/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="https://twitter.com/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="https://instagram.com/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/company/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://youtube.com/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
                 <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="400">
-                    <h5>Navigation</h5>
+                    <h5 class="fw-bold mb-3">Navigation</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#about">À propos</a></li>
-                        <li><a href="#services">Nos domaines</a></li>
-                        <li><a href="#stats">Notre impact</a></li>
-                        <li><a href="#news">Actualités</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li class="mb-2"><a href="#about" class="text-light text-decoration-none">À propos</a></li>
+                        <li class="mb-2"><a href="#services" class="text-light text-decoration-none">Nos domaines</a></li>
+                        <li class="mb-2"><a href="#events" class="text-light text-decoration-none">Événements</a></li>
+                        <li class="mb-2"><a href="#gallery" class="text-light text-decoration-none">Galerie</a></li>
+                        <li class="mb-2"><a href="#news" class="text-light text-decoration-none">Actualités</a></li>
+                        <li class="mb-2"><a href="#partners" class="text-light text-decoration-none">Partenaires</a></li>
                     </ul>
                 </div>
+
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
-                    <h5>Services</h5>
+                    <h5 class="fw-bold mb-3">Services</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#membership">Devenir membre</a></li>
-                        <li><a href="#volunteer">Programme bénévolat</a></li>
-                        <li><a href="#donation">Faire un don</a></li>
-                        <li><a href="#projects">Nos projets</a></li>
-                        <li><a href="#partnership">Partenariats</a></li>
+                        <li class="mb-2"><a href="#membership" class="text-light text-decoration-none">Devenir membre</a></li>
+                        <li class="mb-2"><a href="#volunteer" class="text-light text-decoration-none" data-bs-toggle="modal" data-bs-target="#volunteerModal">Programme bénévolat</a></li>
+                        <li class="mb-2"><a href="#donation" class="text-light text-decoration-none">Faire un don</a></li>
+                        <li class="mb-2"><a href="#projects" class="text-light text-decoration-none" data-bs-toggle="modal" data-bs-target="#projectsModal">Nos projets</a></li>
+                        <li class="mb-2"><a href="#partnership" class="text-light text-decoration-none" data-bs-toggle="modal" data-bs-target="#partnershipModal">Partenariats</a></li>
                     </ul>
                 </div>
+
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
-                    <h5>Contact</h5>
-                    <p><i class="fas fa-map-marker-alt me-2"></i>Secteur 15, Ouagadougou<br>Burkina Faso</p>
-                    <p><i class="fas fa-phone me-2"></i>+226 25 XX XX XX</p>
-                    <p><i class="fas fa-envelope me-2"></i>contact@apcdd.org</p>
-                    <p><i class="fas fa-globe me-2"></i>www.apcdd.org</p>
+                    <h5 class="fw-bold mb-3">Contact</h5>
+                    <div class="contact-info">
+                        <p class="mb-2">
+                            <i class="fas fa-map-marker-alt me-2 text-success"></i>
+                            Secteur 15, Ouagadougou<br>
+                            <span class="ms-4">Burkina Faso</span>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-phone me-2 text-success"></i>
+                            <a href="tel:+22625000000" class="text-light text-decoration-none">+226 25 XX XX XX</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-envelope me-2 text-success"></i>
+                            <a href="mailto:contact@apcdd.org" class="text-light text-decoration-none">contact@apcdd.org</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fas fa-globe me-2 text-success"></i>
+                            <a href="https://www.apcdd.org" class="text-light text-decoration-none" target="_blank" rel="noopener">www.apcdd.org</a>
+                        </p>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="mt-4">
+                        <h6 class="fw-bold mb-3">Contactez-nous rapidement</h6>
+                        <form id="quickContactForm">
+                            <div class="mb-2">
+                                <input type="text" class="form-control form-control-sm" placeholder="Votre nom" required>
+                            </div>
+                            <div class="mb-2">
+                                <input type="email" class="form-control form-control-sm" placeholder="Votre email" required>
+                            </div>
+                            <div class="mb-2">
+                                <textarea class="form-control form-control-sm" rows="3" placeholder="Votre message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-sm w-100">Envoyer</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
+
+            <!-- Footer Bottom -->
+            <div class="border-top border-secondary mt-5 pt-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p>&copy; 2025 APCDD. Tous droits réservés.</p>
+                        <p class="mb-0 text-light">&copy; <span id="currentYear"></span> APCDD. Tous droits réservés.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <a href="#privacy" class="me-3">Politique de confidentialité</a>
-                        <a href="#terms">Conditions d'utilisation</a>
+                        <div class="d-flex justify-content-md-end justify-content-start gap-3 mt-2 mt-md-0">
+                            <a href="#privacy" class="text-light text-decoration-none small" data-bs-toggle="modal" data-bs-target="#privacyModal">Politique de confidentialité</a>
+                            <a href="#terms" class="text-light text-decoration-none small" data-bs-toggle="modal" data-bs-target="#termsModal">Conditions d'utilisation</a>
+                            <a href="#cookies" class="text-light text-decoration-none small" data-bs-toggle="modal" data-bs-target="#cookiesModal">Cookies</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1490,240 +1322,433 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Modals -->
+    <!-- Membership Modal -->
+    <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="membershipModalLabel">Devenir Membre</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="membershipForm">
+                        <div class="mb-3">
+                            <label for="membershipPlan" class="form-label">Type d'adhésion</label>
+                            <select class="form-select" id="membershipPlan" required>
+                                <option value="">Sélectionnez un plan</option>
+                                <option value="sympathisant">Membre Sympathisant (Gratuit)</option>
+                                <option value="actif">Membre Actif (25,000 FCFA/an)</option>
+                                <option value="bienfaiteur">Membre Bienfaiteur (100,000 FCFA/an)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Nom complet</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Adresse</label>
+                            <textarea class="form-control" id="address" rows="2" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="motivation" class="form-label">Motivation</label>
+                            <textarea class="form-control" id="motivation" rows="3" required></textarea>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="termsAgreement" required>
+                            <label class="form-check-label" for="termsAgreement">
+                                J'accepte les conditions d'adhésion et la politique de confidentialité
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Volunteer Modal -->
+    <div class="modal fade" id="volunteerModal" tabindex="-1" aria-labelledby="volunteerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning">
+                    <h5 class="modal-title" id="volunteerModalLabel">Devenir Bénévole</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="volunteerForm">
+                        <div class="mb-3">
+                            <label for="volunteerName" class="form-label">Nom complet</label>
+                            <input type="text" class="form-control" id="volunteerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="volunteerEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteerPhone" class="form-label">Téléphone</label>
+                            <input type="tel" class="form-control" id="volunteerPhone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteerSkills" class="form-label">Compétences</label>
+                            <textarea class="form-control" id="volunteerSkills" rows="2" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteerAvailability" class="form-label">Disponibilité</label>
+                            <select class="form-select" id="volunteerAvailability" required>
+                                <option value="">Sélectionnez votre disponibilité</option>
+                                <option value="weekdays">En semaine</option>
+                                <option value="weekends">Week-ends</option>
+                                <option value="evenings">Soirées</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="volunteerMotivation" class="form-label">Motivation</label>
+                            <textarea class="form-control" id="volunteerMotivation" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-warning w-100">Postuler</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Modals -->
+    <!-- Culture Modal -->
+    <div class="modal fade" id="cultureModal" tabindex="-1" aria-labelledby="cultureModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="cultureModalLabel">Culture & Arts</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Notre programme Culture & Arts vise à préserver et promouvoir le riche patrimoine culturel de nos communautés à travers diverses initiatives :</p>
+                    <ul>
+                        <li>Organisation de festivals culturels annuels mettant en valeur les traditions locales</li>
+                        <li>Expositions d'art et d'artisanat traditionnel</li>
+                        <li>Ateliers de transmission des savoir-faire ancestraux</li>
+                        <li>Spectacles de musique et de danse traditionnelle</li>
+                        <li>Programmes de documentation et de préservation du patrimoine immatériel</li>
+                    </ul>
+                    <p>Nous travaillons en étroite collaboration avec les artisans, artistes et gardiens de la tradition pour assurer la pérennité de notre héritage culturel.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Modal -->
+    <div class="modal fade" id="educationModal" tabindex="-1" aria-labelledby="educationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="educationModalLabel">Éducation</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Notre programme éducatif vise à sensibiliser et former les communautés aux enjeux du développement durable tout en valorisant les savoirs traditionnels :</p>
+                    <ul>
+                        <li>Ateliers éducatifs dans les écoles et centres communautaires</li>
+                        <li>Programmes de formation professionnelle dans les métiers traditionnels</li>
+                        <li>Sensibilisation à la protection de l'environnement</li>
+                        <li>Échanges intergénérationnels pour la transmission des savoirs</li>
+                        <li>Création de supports pédagogiques adaptés aux réalités locales</li>
+                    </ul>
+                    <p>Nous croyons que l'éducation est la clé pour un développement durable et harmonieux de nos communautés.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Environment Modal -->
+    <div class="modal fade" id="environmentModal" tabindex="-1" aria-labelledby="environmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="environmentModalLabel">Environnement</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Notre programme environnemental vise à promouvoir des pratiques durables et à protéger les ressources naturelles :</p>
+                    <ul>
+                        <li>Projets de reboisement et de restauration des écosystèmes</li>
+                        <li>Promotion des énergies renouvelables et des technologies propres</li>
+                        <li>Sensibilisation à la gestion durable des ressources naturelles</li>
+                        <li>Création de jardins communautaires et de systèmes agroforestiers</li>
+                        <li>Lutte contre la désertification et l'érosion des sols</li>
+                    </ul>
+                    <p>Nous travaillons main dans la main avec les communautés locales pour développer des solutions adaptées à leur environnement.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Development Modal -->
+    <div class="modal fade" id="developmentModal" tabindex="-1" aria-labelledby="developmentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="developmentModalLabel">Développement Local</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Notre programme de développement local vise à stimuler l'économie locale tout en respectant les principes du développement durable :</p>
+                    <ul>
+                        <li>Soutien aux initiatives entrepreneuriales communautaires</li>
+                        <li>Promotion de l'artisanat local et des produits du terroir</li>
+                        <li>Création de coopératives et de groupements d'intérêt économique</li>
+                        <li>Développement de l'écotourisme communautaire</li>
+                        <li>Accès aux microcrédits pour les projets durables</li>
+                    </ul>
+                    <p>Nous accompagnons les communautés dans la création de modèles économiques viables et respectueux de l'environnement.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Legal Modals -->
+    <!-- Privacy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">Politique de Confidentialité</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Collecte des informations</h6>
+                    <p>Nous collectons des informations lorsque vous vous inscrivez sur notre site, passez une commande, vous abonnez à notre newsletter ou remplissez un formulaire.</p>
+
+                    <h6>2. Utilisation des informations</h6>
+                    <p>Les informations que nous collectons peuvent être utilisées pour :</p>
+                    <ul>
+                        <li>Personnaliser votre expérience</li>
+                        <li>Améliorer notre site web</li>
+                        <li>Améliorer le service client</li>
+                        <li>Vous contacter par e-mail</li>
+                    </ul>
+
+                    <h6>3. Protection des informations</h6>
+                    <p>Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles.</p>
+
+                    <h6>4. Divulgation à des tiers</h6>
+                    <p>Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles identifiables à des tiers.</p>
+
+                    <h6>5. Consentement</h6>
+                    <p>En utilisant notre site, vous consentez à notre politique de confidentialité.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">Conditions d'Utilisation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>1. Acceptation des conditions</h6>
+                    <p>En accédant à ce site web, vous acceptez d'être lié par ces conditions d'utilisation.</p>
+
+                    <h6>2. Modifications</h6>
+                    <p>Nous nous réservons le droit de modifier ces conditions à tout moment.</p>
+
+                    <h6>3. Propriété intellectuelle</h6>
+                    <p>Tout le contenu publié sur ce site est la propriété de APCDD ou de ses partenaires.</p>
+
+                    <h6>4. Limitation de responsabilité</h6>
+                    <p>APCDD ne sera pas responsable des dommages résultant de l'utilisation de ce site.</p>
+
+                    <h6>5. Loi applicable</h6>
+                    <p>Ces conditions sont régies par les lois du Burkina Faso.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cookies Modal -->
+    <div class="modal fade" id="cookiesModal" tabindex="-1" aria-labelledby="cookiesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cookiesModalLabel">Politique des Cookies</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Notre site web utilise des cookies pour améliorer votre expérience de navigation. Les cookies sont de petits fichiers texte stockés sur votre appareil.</p>
+                    <p>Nous utilisons deux types de cookies :</p>
+                    <ul>
+                        <li><strong>Cookies nécessaires :</strong> Essentiels au fonctionnement de notre site web.</li>
+                        <li><strong>Cookies analytiques :</strong> Nous aident à comprendre comment vous utilisez notre site pour l'améliorer.</li>
+                    </ul>
+                    <p>Vous pouvez gérer vos préférences de cookies dans les paramètres de votre navigateur.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- AOS Animation Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Waypoints -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <!-- Counter Up -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            const loadingOverlay = document.getElementById('loadingOverlay');
-            setTimeout(() => {
-                loadingOverlay.classList.add('hidden');
-            }, 1500);
-        });
-
         // Initialize AOS
         AOS.init({
             duration: 1000,
-            once: true,
-            offset: 100
+            once: true
         });
 
-        // Particle system for hero section
-        function createParticles() {
-            const particleContainer = document.querySelector('.hero-particles');
-            const particleCount = 20;
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
+        // Counter Up initialization
+        $('.counter').counterUp({
+            delay: 10,
+            time: 1000
+        });
 
-                const size = Math.random() * 6 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        // Gallery filter functionality
+        $(document).ready(function() {
+            $('.btn-group button').click(function() {
+                $('.btn-group button').removeClass('active');
+                $(this).addClass('active');
 
-                particleContainer.appendChild(particle);
-            }
-        }
-        createParticles();
-
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const increment = target / 100;
-                let current = 0;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.textContent = target.toLocaleString();
-                        clearInterval(timer);
+                var filterValue = $(this).attr('data-filter');
+                $('.gallery-item').each(function() {
+                    if (filterValue === 'all' || $(this).attr('data-category') === filterValue) {
+                        $(this).show();
                     } else {
-                        counter.textContent = Math.floor(current).toLocaleString();
+                        $(this).hide();
                     }
-                }, 20);
+                });
             });
-        }
 
-        // Trigger counter animation when stats section is visible
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    statsObserver.unobserve(entry.target);
+            // Membership modal plan selection
+            $('#membershipModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var plan = button.data('plan');
+                var modal = $(this);
+
+                if (plan) {
+                    modal.find('#membershipPlan').val(plan);
                 }
             });
-        });
 
-        const statsSection = document.getElementById('stats');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            // Form submissions
+            $('#newsletterForm').submit(function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - navbarHeight;
-
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Navbar scroll effect and active link highlighting
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('mainNavbar');
-            const scrollTop = window.pageYOffset;
-
-            // Navbar background effect
-            if (scrollTop > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            // Active navigation link highlighting
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-            let currentSection = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 200;
-                const sectionHeight = section.clientHeight;
-
-                if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-                    currentSection = section.getAttribute('id');
-                }
+                alert('Merci pour votre abonnement à notre newsletter!');
+                this.reset();
             });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSection}`) {
-                    link.classList.add('active');
-                }
+            $('#membershipForm').submit(function(e) {
+                e.preventDefault();
+                alert('Merci pour votre inscription! Nous vous contacterons bientôt.');
+                $('#membershipModal').modal('hide');
+                this.reset();
+            });
+
+            $('#volunteerForm').submit(function(e) {
+                e.preventDefault();
+                alert('Merci pour votre candidature! Nous vous contacterons bientôt.');
+                $('#volunteerModal').modal('hide');
+                this.reset();
+            });
+
+            $('#donationForm').submit(function(e) {
+                e.preventDefault();
+                alert('Merci pour votre don généreux! Votre soutien fait la différence.');
+                this.reset();
+            });
+
+            $('#quickContactForm').submit(function(e) {
+                e.preventDefault();
+                alert('Merci pour votre message! Nous vous répondrons bientôt.');
+                this.reset();
             });
 
             // Scroll to top button
-            const scrollToTopBtn = document.getElementById('scrollToTop');
-            if (scrollTop > 500) {
-                scrollToTopBtn.classList.add('show');
-            } else {
-                scrollToTopBtn.classList.remove('show');
-            }
-        });
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 100) {
+                    $('#scrollToTop').addClass('show');
+                } else {
+                    $('#scrollToTop').removeClass('show');
+                }
 
-        // Scroll to top functionality
-        document.getElementById('scrollToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Enhanced hover effects for cards
-        const cards = document.querySelectorAll('.mission-card, .service-card, .news-card');
-
-        cards.forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-            });
-
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Mobile navbar auto-close
-        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const navbarCollapse = document.getElementById('navbarNav');
-                if (navbarCollapse.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                    bsCollapse.hide();
+                // Navbar scroll effect
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
                 }
             });
-        });
 
-        // Form validation and interaction enhancements
-        const buttons = document.querySelectorAll('.btn');
-        buttons.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                // Add ripple effect
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                ripple.classList.add('ripple');
-
-                this.appendChild(ripple);
-
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+            $('#scrollToTop').click(function() {
+                $('html, body').animate({scrollTop: 0}, 800);
+                return false;
             });
-        });
 
-        // Add CSS for ripple effect
-        const rippleCSS = `
-            .btn {
-                position: relative;
-                overflow: hidden;
-            }
-            .ripple {
-                position: absolute;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.4);
-                transform: scale(0);
-                animation: ripple-animation 0.6s linear;
-                pointer-events: none;
-            }
-            @keyframes ripple-animation {
-                to {
-                    transform: scale(2);
-                    opacity: 0;
+            // Smooth scrolling for anchor links
+            $('a[href*="#"]:not([href="#"])').click(function() {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 70
+                        }, 1000);
+                        return false;
+                    }
                 }
-            }
-        `;
+            });
 
-        const style = document.createElement('style');
-        style.textContent = rippleCSS;
-        document.head.appendChild(style);
+            // Loading overlay
+            $(window).on('load', function() {
+                $('#loadingOverlay').fadeOut('slow');
+            });
 
-        // Performance optimization for animations
-        let ticking = false;
-
-        function updateAnimations() {
-            // Your scroll-based animations here
-            ticking = false;
-        }
-
-        function requestTick() {
-            if (!ticking) {
-                requestAnimationFrame(updateAnimations);
-                ticking = true;
-            }
-        }
-
-        window.addEventListener('scroll', requestTick);
+            // Set current year in footer
+            $('#currentYear').text(new Date().getFullYear());
+        });
     </script>
 </body>
 </html>
