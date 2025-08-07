@@ -10,26 +10,38 @@ $('.counter').counterUp({
     time: 1000
 });
 
-// Changement automatique des images de fond de la section hero
+// Animation fondu pour le changement automatique des images de fond
 const heroSection = $('.hero-section');
 const bgImages = [
-  'images/bobo.jpg',  // image initiale CSS
+  'images/bobo.jpg',
   'images/culture.jpg',
   'images/masque.jpg',
   'images/africain.jpg',
 ];
-let currentIndex = 1;  // commence à 1 car 0 est déjà en CSS
 
+// Création dynamique de 2 divs pour le fond
+heroSection.append('<div class="bg-slide bg-slide-1"></div><div class="bg-slide bg-slide-2"></div>');
+const slides = [$('.bg-slide-1'), $('.bg-slide-2')];
+let currentIndex = 0;
+let visibleSlide = 0;
+
+// Initialise le premier fond
+slides[visibleSlide].css('background-image', `url('${bgImages[currentIndex]}')`);
+slides[visibleSlide].addClass('visible');
+
+// Fonction pour changer avec fondu
 function changeBackground() {
-  heroSection.css('background', `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('${bgImages[currentIndex]}')`);
-  heroSection.css('background-size', 'cover');
-  heroSection.css('background-position', 'center');
-  heroSection.css('background-repeat', 'no-repeat');
-
   currentIndex = (currentIndex + 1) % bgImages.length;
+  let nextSlide = 1 - visibleSlide;
+
+  slides[nextSlide].css('background-image', `url('${bgImages[currentIndex]}')`);
+  slides[nextSlide].addClass('visible');
+  slides[visibleSlide].removeClass('visible');
+
+  visibleSlide = nextSlide;
 }
-// Change l’image toutes les 10 secondes
-setInterval(changeBackground, 10000);
+// Change toutes les 10 secondes
+setInterval(changeBackground, 4000);
 
 // Gallery filter functionality
 $(document).ready(function() {
