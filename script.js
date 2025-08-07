@@ -18,6 +18,10 @@ const bgImages = [
   'images/culture.jpg',
   'images/masque.jpg',
   'images/africain.jpg',
+  'images/326A6514.jpg',
+  'images/326A6571.jpg',
+  'images/326A6573 .jpg',
+  'images/326A6574.jpg',
 ];
 
 // Création dynamique de 2 divs pour le fond

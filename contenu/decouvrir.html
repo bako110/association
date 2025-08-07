@@ -5,18 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Découvrir Plus</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
     body {
       background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
     }
-    .card {
-      margin-bottom: 20px;
-    }
+
     header {
-      background-color: #28a745;
+      background: linear-gradient(90deg, #28a745, #218838);
       color: white;
-      padding: 1.5rem;
+      padding: 2rem 1rem;
       text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .card {
+      border: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery-card img {
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .btn-success {
+      border-radius: 50px;
+      padding: 0.6rem 1.5rem;
     }
   </style>
 </head>
@@ -24,11 +45,12 @@
 
   <header>
     <h1>En savoir plus sur l'association</h1>
+    <p class="lead">Notre vision, nos actions et notre impact</p>
   </header>
 
-  <div class="container mt-4">
-    <!-- Bloc 1 -->
-    <div class="card">
+  <div class="container mt-5">
+    <!-- Étapes -->
+    <div class="card mb-4" data-aos="fade-up">
       <div class="card-body">
         <h3 class="card-title">Notre mission</h3>
         <p class="card-text">
@@ -37,21 +59,19 @@
       </div>
     </div>
 
-    <!-- Bloc 2 -->
-    <div class="card">
+    <div class="card mb-4" data-aos="fade-up" data-aos-delay="100">
       <div class="card-body">
         <h3 class="card-title">Nos projets</h3>
-        <p class="card-text">
-          - Festival culturel annuel<br>
-          - Ateliers pour les jeunes<br>
-          - Campagnes de reboisement<br>
-          - Appui aux initiatives locales durables
-        </p>
+        <ul class="card-text">
+          <li>Festival culturel annuel</li>
+          <li>Ateliers pour les jeunes</li>
+          <li>Campagnes de reboisement</li>
+          <li>Appui aux initiatives locales durables</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Bloc 3 -->
-    <div class="card">
+    <div class="card mb-4" data-aos="fade-up" data-aos-delay="200">
       <div class="card-body">
         <h3 class="card-title">Nos partenaires</h3>
         <p class="card-text">
@@ -60,8 +80,7 @@
       </div>
     </div>
 
-    <!-- Bloc 4 -->
-    <div class="card">
+    <div class="card mb-4" data-aos="fade-up" data-aos-delay="300">
       <div class="card-body">
         <h3 class="card-title">Comment nous soutenir ?</h3>
         <p class="card-text">
@@ -70,11 +89,98 @@
       </div>
     </div>
 
-    <!-- Retour -->
-    <div class="text-center mt-4">
-      <a href="/index.html" class="btn btn-success">← Retour à l'accueil</a>
+    <!-- Galerie Complète -->
+    <h2 class="text-success mt-5 mb-4 text-center" data-aos="fade-up">Galerie Complète</h2>
+
+    <div class="row g-4" id="galleryGrid">
+      <!-- Cartes de galerie (réutilisées depuis ta grille précédente, avec des descriptions corrigées) -->
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="card gallery-card">
+          <img src="images/326A6117.jpg" class="card-img-top" alt="Festival">
+          <div class="card-body">
+            <h6 class="card-title">Festival Culturel de Bansa 2025 (Tchériba)</h6>
+            <p class="card-text small text-muted">Célébration de notre patrimoine culturel burkinabè.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card gallery-card">
+          <img src="images/326A6360.jpg" class="card-img-top" alt="Danse">
+          <div class="card-body">
+            <h6 class="card-title">Danse Traditionnelle (Dalo)</h6>
+            <p class="card-text small text-muted">Valorisation de la culture à travers les danses et savoir-faire traditionnels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card gallery-card">
+          <img src="images/326A6462.jpg" class="card-img-top" alt="Lutte">
+          <div class="card-body">
+            <h6 class="card-title">Lutte Traditionnelle Masculine</h6>
+            <p class="card-text small text-muted">
+              Une discipline de force et d’honneur, ancrée dans notre patrimoine.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="card gallery-card">
+          <img src="images/326A6483.jpg" class="card-img-top" alt="Vainqueur">
+          <div class="card-body">
+            <h6 class="card-title">Vainqueur de la Lutte – Édition 2025</h6>
+            <p class="card-text small text-muted">Un champion au talent exceptionnel, salué par tous.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="card gallery-card">
+          <img src="images/326A6492.jpg" class="card-img-top" alt="Lutte féminine">
+          <div class="card-body">
+            <h6 class="card-title">Lutte Traditionnelle Féminine</h6>
+            <p class="card-text small text-muted">
+              Les femmes aussi brillent dans la transmission de cette tradition guerrière.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="card gallery-card">
+          <img src="images/326A6494.jpg" class="card-img-top" alt="Agriculture">
+          <div class="card-body">
+            <h6 class="card-title">Agriculture Communautaire Durable</h6>
+            <p class="card-text small text-muted">Une pratique respectueuse du climat et des ressources du Sahel.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6" data-aos="fade-up">
+        <div class="card gallery-card">
+          <img src="images/326A6514.jpg" class="card-img-top" alt="Danse masquée">
+          <div class="card-body">
+            <h6 class="card-title">Danse Masquée (Peuple Bobo)</h6>
+            <p class="card-text small text-muted">
+              Expression spirituelle profonde à travers les masques sacrés.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bouton Retour -->
+    <div class="text-center mt-5 mb-5" data-aos="fade-up">
+      <a href="index.html" class="btn btn-success">← Retour à l'accueil</a>
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 </html>
