@@ -15,566 +15,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
     <!-- Lightbox CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #28a745;
-            --secondary-color: #ffc107;
-            --dark-color: #212529;
-            --light-color: #f8f9fa;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .hero-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.5"/></svg>') repeat;
-            animation: particles 15s linear infinite;
-        }
-
-        @keyframes particles {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-1000px); }
-        }
-
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar.scrolled {
-            background-color: rgba(40, 167, 69, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar.scrolled .navbar-brand,
-        .navbar.scrolled .nav-link,
-        .navbar.scrolled .navbar-toggler {
-            color: white !important;
-        }
-
-        .navbar.scrolled .btn-outline-success {
-            color: white;
-            border-color: white;
-        }
-
-        .navbar.scrolled .btn-warning {
-            color: #212529;
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-family: 'Playfair Display', serif;
-            color: var(--primary-color);
-            font-size: 1.5rem;
-        }
-
-        .nav-link {
-            font-weight: 500;
-            color: var(--dark-color);
-            position: relative;
-            margin: 0 0.5rem;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-color);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .btn {
-            font-weight: 600;
-            border-radius: 30px;
-            padding: 0.5rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn-outline-success {
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn-outline-success:hover {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .btn-warning {
-            background-color: var(--warning-color);
-            color: #212529;
-            border-color: var(--warning-color);
-        }
-
-        .btn-warning:hover {
-            background-color: #e0a800;
-            color: #212529;
-        }
-
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(40, 167, 69, 0.2);
-            border-radius: 50%;
-            border-top-color: var(--primary-color);
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-content {
-            padding: 2rem;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            max-width: 800px;
-        }
-
-        .display-4 {
-            font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            font-size: 3.5rem;
-        }
-
-        .lead {
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
-
-        .counter {
-            font-weight: 700;
-        }
-
-        .card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .service-card {
-            height: 100%;
-        }
-
-        .service-card .card-body {
-            padding: 2rem;
-        }
-
-        .timeline {
-            position: relative;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 3px;
-            background-color: var(--primary-color);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1.5px;
-        }
-
-        .gallery-card {
-            overflow: hidden;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .gallery-card:hover {
-            transform: scale(1.03);
-        }
-
-        .gallery-card img {
-            transition: transform 0.5s ease;
-            height: 200px;
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .gallery-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-        }
-
-        .news-card {
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .partner-logo {
-            transition: all 0.3s ease;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .partner-logo:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .scroll-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-to-top:hover {
-            background-color: #218838;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background-color: var(--dark-color);
-            margin-top: auto;
-        }
-
-        footer a {
-            color: rgba(255, 255, 255, 0.7);
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: white;
-            text-decoration: none;
-        }
-
-        .social-media a {
-            transition: all 0.3s ease;
-        }
-
-        .social-media a:hover {
-            transform: translateY(-3px);
-            color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1400px) {
-            .display-4 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .hero-content {
-                padding: 1.5rem;
-            }
-
-            .display-4 {
-                font-size: 2.5rem;
-            }
-
-            .lead {
-                font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .timeline::before {
-                left: 20px;
-            }
-
-            .gallery-item {
-                margin-bottom: 1.5rem;
-            }
-
-            .display-4 {
-                font-size: 2rem;
-            }
-
-            .lead {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-content {
-                padding: 1rem;
-            }
-
-            .display-4 {
-                font-size: 1.8rem;
-            }
-
-            .lead {
-                font-size: 0.9rem;
-            }
-
-            .navbar-brand {
-                font-size: 1.2rem;
-            }
-
-            .nav-link {
-                padding: 0.3rem 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .display-4 {
-                font-size: 1.5rem;
-            }
-
-            .lead {
-                font-size: 0.8rem;
-            }
-
-            .btn {
-                padding: 0.3rem 1rem;
-                font-size: 0.9rem;
-            }
-        }
-
-@media (max-width: 991.98px) {
-    .navbar-toggler {
-        display: block !important;
-        margin-left: 10px;
-    }
-
-    .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 10px;
-        width: calc(100% - 20px);
-        background-color: rgba(255, 255, 255, 0.9);
-        z-index: 1000;
-    }
-
-    .navbar-collapse.show {
-        display: block;
-    }
-}
-
-@media (max-width: 400px) {
-    .navbar-toggler {
-        display: block !important;
-        margin-left: 10px;
-    }
-
-    .navbar-collapse {
-        position: absolute;
-        top: 100%;
-        left: 10px;
-        width: calc(100% - 20px);
-        background-color: rgba(255, 255, 255, 0.9);
-        z-index: 1000;
-    }
-
-    .navbar-collapse.show {
-        display: block;
-    }
-}
-
-
-        /* Custom modal styles */
-        .modal-content {
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-header {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .modal-title {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        .modal-body {
-            padding-top: 0;
-        }
-
-        /* Form styles */
-        .form-control {
-            border-radius: 5px;
-            padding: 0.75rem 1rem;
-            border: 1px solid #ced4da;
-            transition: border-color 0.3s ease;
-            width: 100%;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
-        }
-
-        .form-select {
-            border-radius: 5px;
-            padding: 0.75rem 1rem;
-            width: 100%;
-        }
-
-        /* Membership section styles */
-        .membership-card {
-            transition: all 0.3s ease;
-            border: none;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 100%;
-        }
-
-        .membership-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .membership-card .card-header {
-            padding: 1.5rem;
-        }
-
-        .membership-card .card-body {
-            padding: 1.5rem;
-        }
-
-        /* Donation form styles */
-        #donationForm {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        /* Animation delays for AOS */
-        [data-aos-delay="200"] {
-            transition-delay: 0.2s;
-        }
-
-        [data-aos-delay="400"] {
-            transition-delay: 0.4s;
-        }
-
-        [data-aos-delay="600"] {
-            transition-delay: 0.6s;
-        }
-
-        [data-aos-delay="800"] {
-            transition-delay: 0.8s;
-        }
-
-        [data-aos-delay="1000"] {
-            transition-delay: 1.0s;
-        }
-
-        [data-aos-delay="1200"] {
-            transition-delay: 1.2s;
-        }
-
-        /* Ensure images are responsive */
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Loading Overlay -->
-    <!-- <div class="loading-overlay" id="loadingOverlay">
-        <div class="loader"></div>
-    </div> -->
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
@@ -632,8 +76,8 @@
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-8 mx-auto text-center">
                     <div class="hero-content">
-                        <h1 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200">Promouvoir la culture au service du développement durable</h1>
-                        <p class="lead mb-5" data-aos="fade-up" data-aos-delay="400">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.</p>
+                        <h1 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200">Promouvoir la culture africaine au service du développement durable</h1>
+                        <p class="lead mb-5" data-aos="fade-up" data-aos-delay="400">L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle africaine et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.</p>
                         <div class="mb-5" data-aos="fade-up" data-aos-delay="600">
                             <a href="#about" class="btn btn-light btn-lg me-2">
                                 <i class="fas fa-info-circle me-2"></i>Découvrir notre mission
@@ -644,20 +88,20 @@
                         </div>
                         <div class="row text-center" data-aos="fade-up" data-aos-delay="800">
                             <div class="col-6 col-md-3 mb-3">
-                                <h3 class="counter display-6" data-count="500">0</h3>
+                                <h3 class="counter display-6" data-count="1200">0</h3>
                                 <p class="mb-0">Membres actifs</p>
                             </div>
                             <div class="col-6 col-md-3 mb-3">
-                                <h3 class="counter display-6" data-count="50">0</h3>
+                                <h3 class="counter display-6" data-count="75">0</h3>
                                 <p class="mb-0">Projets réalisés</p>
                             </div>
                             <div class="col-6 col-md-3 mb-3">
-                                <h3 class="counter display-6" data-count="10000">0</h3>
+                                <h3 class="counter display-6" data-count="50000">0</h3>
                                 <p class="mb-0">Arbres plantés</p>
                             </div>
                             <div class="col-6 col-md-3 mb-3">
-                                <h3 class="counter display-6" data-count="25">0</h3>
-                                <p class="mb-0">Communautés touchées</p>
+                                <h3 class="counter display-6" data-count="45">0</h3>
+                                <p class="mb-0">Villages touchés</p>
                             </div>
                         </div>
                     </div>
@@ -671,17 +115,17 @@
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="display-5 fw-bold text-success">Notre Mission</h2>
-                <p class="lead text-muted">Nous créons un pont entre tradition culturelle et innovation durable pour construire un avenir meilleur</p>
+                <p class="lead text-muted">Nous créons un pont entre tradition africaine et innovation durable pour construire un avenir meilleur</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="card h-100 border-0 shadow">
                         <div class="card-body text-center p-4">
                             <div class="mb-3">
-                                <i class="fas fa-theater-masks fa-3x text-success"></i>
+                                <i class="fas fa-drum fa-3x text-success"></i>
                             </div>
-                            <h4 class="card-title">Promotion Culturelle</h4>
-                            <p class="card-text">Valoriser et préserver la richesse culturelle locale à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine ancestral tout en l'adaptant aux défis contemporains.</p>
+                            <h4 class="card-title">Promotion Culturelle Africaine</h4>
+                            <p class="card-text">Valoriser et préserver la richesse culturelle africaine à travers des festivals, expositions et événements artistiques qui célèbrent notre patrimoine ancestral tout en l'adaptant aux défis contemporains du continent.</p>
                         </div>
                     </div>
                 </div>
@@ -691,8 +135,8 @@
                             <div class="mb-3">
                                 <i class="fas fa-leaf fa-3x text-success"></i>
                             </div>
-                            <h4 class="card-title">Développement Durable</h4>
-                            <p class="card-text">Promouvoir des pratiques respectueuses de l'environnement et sensibiliser aux enjeux écologiques pour un futur durable. Nous intégrons les solutions traditionnelles aux innovations modernes.</p>
+                            <h4 class="card-title">Développement Durable Africain</h4>
+                            <p class="card-text">Promouvoir des pratiques respectueuses de l'environnement adaptées au contexte africain et sensibiliser aux enjeux écologiques locaux. Nous intégrons les solutions traditionnelles africaines aux innovations modernes.</p>
                         </div>
                     </div>
                 </div>
@@ -703,7 +147,7 @@
                                 <i class="fas fa-hands-helping fa-3x text-success"></i>
                             </div>
                             <h4 class="card-title">Action Communautaire</h4>
-                            <p class="card-text">Mobiliser les communautés locales pour créer des projets d'impact positif alliant culture, éducation et développement. Ensemble, nous bâtissons des solutions durables et inclusives.</p>
+                            <p class="card-text">Mobiliser les communautés africaines pour créer des projets d'impact positif alliant culture, éducation et développement. Ensemble, nous bâtissons des solutions durables et inclusives adaptées à nos réalités.</p>
                         </div>
                     </div>
                 </div>
@@ -728,7 +172,7 @@
                                     <small class="text-muted">Janvier 2020</small>
                                 </div>
                                 <h5 class="card-title">Fondation de l'APCDD</h5>
-                                <p class="card-text">Création de l'Association pour la Promotion de la Culture et du Développement Durable avec pour mission de promouvoir la culture locale et le développement durable.</p>
+                                <p class="card-text">Création de l'Association pour la Promotion de la Culture et du Développement Durable à Ouagadougou avec pour mission de promouvoir la culture africaine et le développement durable au Burkina Faso.</p>
                             </div>
                         </div>
                     </div>
@@ -739,8 +183,8 @@
                                     <i class="fas fa-calendar-alt text-warning me-2"></i>
                                     <small class="text-muted">Juin 2020</small>
                                 </div>
-                                <h5 class="card-title">Premier Festival Culturel</h5>
-                                <p class="card-text">Organisation du premier festival culturel mettant en valeur les traditions locales et sensibilisant à l'importance de la préservation culturelle.</p>
+                                <h5 class="card-title">Premier Festival Culturel Mossi</h5>
+                                <p class="card-text">Organisation du premier festival culturel mettant en valeur les traditions Mossi et sensibilisant à l'importance de la préservation culturelle au Burkina Faso.</p>
                             </div>
                         </div>
                     </div>
@@ -751,8 +195,8 @@
                                     <i class="fas fa-calendar-alt text-info me-2"></i>
                                     <small class="text-muted">Mars 2021</small>
                                 </div>
-                                <h5 class="card-title">Lancement du Programme de Reboisement</h5>
-                                <p class="card-text">Début du programme de reboisement avec la plantation de 1000 arbres en collaboration avec les communautés locales.</p>
+                                <h5 class="card-title">Lancement du Programme de Reboisement Sahélien</h5>
+                                <p class="card-text">Début du programme de reboisement avec la plantation de 5000 arbres résistants à la sécheresse en collaboration avec 15 villages ruraux du Centre-Nord.</p>
                             </div>
                         </div>
                     </div>
@@ -763,8 +207,8 @@
                                     <i class="fas fa-calendar-alt text-danger me-2"></i>
                                     <small class="text-muted">Octobre 2021</small>
                                 </div>
-                                <h5 class="card-title">Partenariat avec l'UNESCO</h5>
-                                <p class="card-text">Signature d'un partenariat avec l'UNESCO pour la promotion et la protection du patrimoine culturel immatériel.</p>
+                                <h5 class="card-title">Partenariat avec le Ministère de la Culture</h5>
+                                <p class="card-text">Signature d'un partenariat avec le Ministère de la Culture du Burkina Faso pour la promotion et la protection du patrimoine culturel burkinabè.</p>
                             </div>
                         </div>
                     </div>
@@ -794,55 +238,55 @@
             <div class="row g-3" id="galleryGrid">
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="200">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=400&h=300&fit=crop" class="card-img-top" alt="Festival Culturel" data-lightbox="gallery" data-title="Festival Culturel 2024">
+                        <img src="https://images.unsplash.com/photo-1541948153-f1a67f9af83e?w=400&h=300&fit=crop" class="card-img-top" alt="Festival Culturel Africain" data-lightbox="gallery" data-title="Festival Culturel Africain 2024">
                         <div class="card-body">
-                            <h6 class="card-title">Festival Culturel 2024</h6>
-                            <p class="card-text small text-muted">Célébration de notre patrimoine culturel</p>
+                            <h6 class="card-title">Festival Culturel Africain 2024</h6>
+                            <p class="card-text small text-muted">Célébration de notre patrimoine culturel burkinabè</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="400">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" class="card-img-top" alt="Atelier Artisanal" data-lightbox="gallery" data-title="Atelier d'artisanat traditionnel">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" class="card-img-top" alt="Atelier Artisanal Africain" data-lightbox="gallery" data-title="Atelier d'artisanat traditionnel africain">
                         <div class="card-body">
-                            <h6 class="card-title">Atelier Artisanal</h6>
-                            <p class="card-text small text-muted">Formation aux métiers traditionnels</p>
+                            <h6 class="card-title">Atelier Artisanal Traditionnel</h6>
+                            <p class="card-text small text-muted">Formation aux métiers traditionnels africains</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="600">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=300&fit=crop" class="card-img-top" alt="Plantation d'arbres" data-lightbox="gallery" data-title="Programme de reboisement">
+                        <img src="https://images.unsplash.com/photo-1571845043697-81d1e6ea61ba?w=400&h=300&fit=crop" class="card-img-top" alt="Reboisement Sahel" data-lightbox="gallery" data-title="Programme de reboisement au Sahel">
                         <div class="card-body">
-                            <h6 class="card-title">Plantation d'arbres</h6>
-                            <p class="card-text small text-muted">Action environnementale communautaire</p>
+                            <h6 class="card-title">Reboisement Sahélien</h6>
+                            <p class="card-text small text-muted">Action environnementale contre la désertification</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="800">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=300&fit=crop" class="card-img-top" alt="Concert traditionnel" data-lightbox="gallery" data-title="Concert de musique traditionnelle">
+                        <img src="https://images.unsplash.com/photo-1551470230-42c3e9164848?w=400&h=300&fit=crop" class="card-img-top" alt="Musique Traditionnelle Africaine" data-lightbox="gallery" data-title="Concert de musique traditionnelle africaine">
                         <div class="card-body">
-                            <h6 class="card-title">Concert Traditionnel</h6>
-                            <p class="card-text small text-muted">Musique et danse ancestrales</p>
+                            <h6 class="card-title">Musique Traditionnelle</h6>
+                            <p class="card-text small text-muted">Djembé et balafon ancestraux</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="1000">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=400&h=300&fit=crop" class="card-img-top" alt="Cérémonie Traditionnelle" data-lightbox="gallery" data-title="Cérémonie traditionnelle">
+                        <img src="https://images.unsplash.com/photo-1609918636375-3bbaa4e64dba?w=400&h=300&fit=crop" class="card-img-top" alt="Cérémonie Traditionnelle Africaine" data-lightbox="gallery" data-title="Cérémonie traditionnelle africaine">
                         <div class="card-body">
                             <h6 class="card-title">Cérémonie Traditionnelle</h6>
-                            <p class="card-text small text-muted">Rituel communautaire ancestral</p>
+                            <p class="card-text small text-muted">Rituel communautaire ancestral africain</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="1200">
                     <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=400&h=300&fit=crop" class="card-img-top" alt="Jardinage communautaire" data-lightbox="gallery" data-title="Jardins communautaires">
+                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop" class="card-img-top" alt="Agriculture Africaine" data-lightbox="gallery" data-title="Jardins communautaires africains">
                         <div class="card-body">
-                            <h6 class="card-title">Jardinage Communautaire</h6>
-                            <p class="card-text small text-muted">Agriculture durable locale</p>
+                            <h6 class="card-title">Agriculture Communautaire</h6>
+                            <p class="card-text small text-muted">Agriculture durable adaptée au Sahel</p>
                         </div>
                     </div>
                 </div>
@@ -855,17 +299,17 @@
         <div class="container">
             <div class="text-center mb-5" data-aos="fade-up">
                 <h2 class="display-5 fw-bold text-success">Nos Domaines d'Intervention</h2>
-                <p class="lead text-muted">Des actions concrètes pour un impact durable et mesurable</p>
+                <p class="lead text-muted">Des actions concrètes pour un impact durable et mesurable en Afrique</p>
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                     <div class="card h-100 border-0 shadow text-center service-card">
                         <div class="card-body p-4">
                             <div class="mb-3">
-                                <i class="fas fa-music fa-4x text-primary"></i>
+                                <i class="fas fa-drum fa-4x text-primary"></i>
                             </div>
-                            <h4 class="card-title">Culture & Arts</h4>
-                            <p class="card-text">Festivals culturels, concerts traditionnels, expositions d'art local et préservation du patrimoine immatériel</p>
+                            <h4 class="card-title">Culture & Arts Africains</h4>
+                            <p class="card-text">Festivals culturels africains, concerts traditionnels, expositions d'art local et préservation du patrimoine immatériel burkinabè</p>
                             <a href="#culture-details" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#cultureModal">En savoir plus</a>
                         </div>
                     </div>
@@ -876,8 +320,8 @@
                             <div class="mb-3">
                                 <i class="fas fa-graduation-cap fa-4x text-info"></i>
                             </div>
-                            <h4 class="card-title">Éducation</h4>
-                            <p class="card-text">Programmes éducatifs, ateliers de formation, transmission des savoirs ancestraux et sensibilisation environnementale</p>
+                            <h4 class="card-title">Éducation Communautaire</h4>
+                            <p class="card-text">Programmes éducatifs adaptés, ateliers de formation, transmission des savoirs ancestraux africains et alphabétisation fonctionnelle</p>
                             <a href="#education-details" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#educationModal">En savoir plus</a>
                         </div>
                     </div>
@@ -888,8 +332,8 @@
                             <div class="mb-3">
                                 <i class="fas fa-tree fa-4x text-success"></i>
                             </div>
-                            <h4 class="card-title">Environnement</h4>
-                            <p class="card-text">Projets de reboisement, promotion des énergies renouvelables, gestion durable des ressources naturelles</p>
+                            <h4 class="card-title">Environnement Sahélien</h4>
+                            <p class="card-text">Projets de reboisement adaptés au Sahel, promotion des énergies solaires, lutte contre la désertification et gestion des ressources en eau</p>
                             <a href="#environment-details" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#environmentModal">En savoir plus</a>
                         </div>
                     </div>
@@ -900,8 +344,8 @@
                             <div class="mb-3">
                                 <i class="fas fa-handshake fa-4x text-warning"></i>
                             </div>
-                            <h4 class="card-title">Développement Local</h4>
-                            <p class="card-text">Économie verte, promotion de l'artisanat local, initiatives entrepreneuriales communautaires et coopératives</p>
+                            <h4 class="card-title">Développement Rural</h4>
+                            <p class="card-text">Économie verte africaine, promotion de l'artisanat local, initiatives entrepreneuriales rurales et coopératives agricoles</p>
                             <a href="#development-details" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#developmentModal">En savoir plus</a>
                         </div>
                     </div>
@@ -922,20 +366,20 @@
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="500">0</h2>
+                        <h2 class="display-4 counter" data-count="1200">0</h2>
                         <p class="lead">Membres engagés</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="600">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="50">0</h2>
+                        <h2 class="display-4 counter" data-count="75">0</h2>
                         <p class="lead">Projets menés</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="800">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="25">0</h2>
-                        <p class="lead">Communautés aidées</p>
+                        <h2 class="display-4 counter" data-count="45">0</h2>
+                        <p class="lead">Villages aidés</p>
                     </div>
                 </div>
             </div>
@@ -957,8 +401,8 @@
                             <small class="d-block">15 Août 2025</small>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Festival Culturel d'Été 2025</h5>
-                            <p class="card-text">Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle et les pratiques durables. Une semaine d'événements exceptionnels vous attend.</p>
+                            <h5 class="card-title">Festival Culturel des Peuples du Sahel 2025</h5>
+                            <p class="card-text">Découvrez le programme complet de notre festival annuel célébrant la diversité culturelle sahélienne et les pratiques durables. Une semaine d'événements exceptionnels à Ouagadougou.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="#news-detail" class="btn btn-primary btn-sm">Lire la suite</a>
                                 <small class="text-muted"><i class="fas fa-eye"></i> 245 vues</small>
@@ -973,8 +417,8 @@
                             <small class="d-block">10 Août 2025</small>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Grande Campagne de Reboisement</h5>
-                            <p class="card-text">Lancement de notre ambitieuse initiative de plantation de 10,000 arbres en partenariat avec 15 communautés locales. Participez à cette action historique.</p>
+                            <h5 class="card-title">Grande Campagne de Reboisement Sahélien</h5>
+                            <p class="card-text">Lancement de notre ambitieuse initiative de plantation de 25,000 arbres résistants à la sécheresse en partenariat avec 30 villages du Burkina Faso. Participez à cette action historique.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="#news-detail" class="btn btn-success btn-sm">Lire la suite</a>
                                 <small class="text-muted"><i class="fas fa-eye"></i> 189 vues</small>
@@ -989,8 +433,8 @@
                             <small class="d-block">5 Août 2025</small>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Reconnaissance UNESCO</h5>
-                            <p class="card-text">L'APCDD récompensée pour son approche innovante du développement culturel durable. Une reconnaissance qui honore notre engagement et nos résultats.</p>
+                            <h5 class="card-title">Reconnaissance du Ministère</h5>
+                            <p class="card-text">L'APCDD récompensée par le Ministère de la Culture du Burkina Faso pour son approche innovante du développement culturel durable. Une reconnaissance qui honore notre engagement.</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="#news-detail" class="btn btn-warning btn-sm">Lire la suite</a>
                                 <small class="text-muted"><i class="fas fa-eye"></i> 312 vues</small>
@@ -1032,32 +476,32 @@
             <div class="row align-items-center">
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=UNESCO" alt="UNESCO" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=Min.+Culture+BF" alt="Ministère Culture Burkina" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=UN" alt="Nations Unies" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=CEDEAO" alt="CEDEAO" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="600">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=EU" alt="Union Européenne" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=Union+Africaine" alt="Union Africaine" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="800">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=AFD" alt="AFD" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=BAD" alt="Banque Africaine Développement" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="1000">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=WB" alt="World Bank" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=PNUD" alt="PNUD Burkina" class="img-fluid">
                     </div>
                 </div>
                 <div class="col-md-2 col-6 mb-4" data-aos="fade-up" data-aos-delay="1200">
                     <div class="partner-logo p-3 bg-white rounded shadow text-center">
-                        <img src="https://via.placeholder.com/120x80?text=NGO" alt="Partenaire Local" class="img-fluid">
+                        <img src="https://via.placeholder.com/120x80?text=ONG+Locales" alt="ONG Partenaires" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -1094,7 +538,7 @@
                         <div class="card-header bg-warning text-white text-center position-relative">
                             <span class="badge bg-danger position-absolute top-0 start-50 translate-middle">Populaire</span>
                             <h4>Membre Actif</h4>
-                            <h3 class="display-6">25,000 FCFA/an</h3>
+                            <h3 class="display-6">15 000 FCFA/an</h3>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
@@ -1112,7 +556,7 @@
                     <div class="card h-100 border-0 shadow">
                         <div class="card-header bg-success text-white text-center">
                             <h4>Membre Bienfaiteur</h4>
-                            <h3 class="display-6">100,000 FCFA/an</h3>
+                            <h3 class="display-6">50 000 FCFA/an</h3>
                         </div>
                         <div class="card-body">
                             <ul class="list-unstyled">
@@ -1136,29 +580,29 @@
             <div class="row align-items-center">
                 <div class="col-lg-6" data-aos="fade-right">
                     <h2 class="display-5 fw-bold mb-4">Soutenez Nos Actions</h2>
-                    <p class="lead mb-4">Votre générosité nous permet de mener à bien nos projets culturels et environnementaux. Chaque contribution compte et fait la différence dans la vie des communautés.</p>
+                    <p class="lead mb-4">Votre générosité nous permet de mener à bien nos projets culturels et environnementaux. Chaque contribution compte et fait la différence dans la vie des communautés africaines.</p>
                     <div class="row g-3 mb-4">
                         <div class="col-6">
                             <div class="text-center p-3 bg-white rounded">
-                                <h4 class="text-primary">50€</h4>
+                                <h4 class="text-primary">5 000 FCFA</h4>
                                 <small>Plante 10 arbres</small>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-center p-3 bg-white rounded">
-                                <h4 class="text-success">100€</h4>
+                                <h4 class="text-success">10 000 FCFA</h4>
                                 <small>Forme un artisan</small>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-center p-3 bg-white rounded">
-                                <h4 class="text-info">200€</h4>
+                                <h4 class="text-info">25 000 FCFA</h4>
                                 <small>Soutient un festival</small>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="text-center p-3 bg-white rounded">
-                                <h4 class="text-danger">500€</h4>
+                                <h4 class="text-danger">50 000 FCFA</h4>
                                 <small>Lance un projet</small>
                             </div>
                         </div>
@@ -1172,19 +616,19 @@
                                 <div class="mb-3">
                                     <label for="donationAmount" class="form-label">Montant du don (FCFA)</label>
                                     <div class="btn-group w-100 mb-2" role="group">
-                                        <input type="radio" class="btn-check" name="amount" id="amount1" value="10000">
-                                        <label class="btn btn-outline-primary" for="amount1">10,000</label>
+                                        <input type="radio" class="btn-check" name="amount" id="amount1" value="5000">
+                                        <label class="btn btn-outline-primary" for="amount1">5 000</label>
 
-                                        <input type="radio" class="btn-check" name="amount" id="amount2" value="25000">
-                                        <label class="btn btn-outline-primary" for="amount2">25,000</label>
+                                        <input type="radio" class="btn-check" name="amount" id="amount2" value="10000">
+                                        <label class="btn btn-outline-primary" for="amount2">10 000</label>
 
-                                        <input type="radio" class="btn-check" name="amount" id="amount3" value="50000">
-                                        <label class="btn btn-outline-primary" for="amount3">50,000</label>
+                                        <input type="radio" class="btn-check" name="amount" id="amount3" value="25000">
+                                        <label class="btn btn-outline-primary" for="amount3">25 000</label>
 
-                                        <input type="radio" class="btn-check" name="amount" id="amount4" value="100000">
-                                        <label class="btn btn-outline-primary" for="amount4">100,000</label>
+                                        <input type="radio" class="btn-check" name="amount" id="amount4" value="50000">
+                                        <label class="btn btn-outline-primary" for="amount4">50 000</label>
                                     </div>
-                                    <input type="number" class="form-control" id="customAmount" placeholder="Autre montant">
+                                    <input type="number" class="form-control" id="customAmount" placeholder="Autre montant en FCFA">
                                 </div>
                                 <div class="mb-3">
                                     <label for="donorName" class="form-label">Nom complet</label>
@@ -1195,12 +639,27 @@
                                     <input type="email" class="form-control" id="donorEmail" required>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="donorPhone" class="form-label">Téléphone</label>
+                                    <input type="tel" class="form-control" id="donorPhone" placeholder="+226 XX XX XX XX" required>
+                                </div>
+                                <div class="mb-3">
                                     <label for="donationPurpose" class="form-label">Destination du don</label>
                                     <select class="form-select" id="donationPurpose">
                                         <option value="general">Fonds général</option>
-                                        <option value="environment">Projets environnementaux</option>
-                                        <option value="culture">Promotion culturelle</option>
-                                        <option value="education">Programmes éducatifs</option>
+                                        <option value="environment">Projets environnementaux sahéliens</option>
+                                        <option value="culture">Promotion culturelle africaine</option>
+                                        <option value="education">Programmes éducatifs communautaires</option>
+                                        <option value="rural">Développement rural</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="paymentMethod" class="form-label">Mode de paiement</label>
+                                    <select class="form-select" id="paymentMethod" required>
+                                        <option value="">Choisir un mode de paiement</option>
+                                        <option value="mobile">Mobile Money (Orange/Moov/Airtel)</option>
+                                        <option value="bank">Virement bancaire local</option>
+                                        <option value="cash">Espèces au bureau</option>
+                                        <option value="western">Western Union</option>
                                     </select>
                                 </div>
                                 <div class="form-check mb-3">
@@ -1226,7 +685,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto text-center">
                     <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Rejoignez Notre Mission</h2>
-                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Ensemble, construisons un avenir où culture et durabilité se rencontrent pour créer un impact positif et durable dans nos communautés. Votre engagement peut faire la différence.</p>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="200">Ensemble, construisons un avenir où culture africaine et durabilité se rencontrent pour créer un impact positif et durable dans nos communautés. Votre engagement peut faire la différence.</p>
                     <div class="d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="400">
                         <a href="#membership" class="btn btn-light btn-lg">
                             <i class="fas fa-user-plus me-2"></i>Devenir Membre
@@ -1252,7 +711,7 @@
                         <h5 class="fw-bold mb-3">
                             <i class="fas fa-seedling me-2 text-success"></i>APCDD
                         </h5>
-                        <p class="text-light">Association pour la Promotion de la Culture et du Développement Durable. Nous œuvrons pour un avenir harmonieux entre tradition culturelle et innovation durable.</p>
+                        <p class="text-light">Association pour la Promotion de la Culture et du Développement Durable. Nous œuvrons pour un avenir harmonieux entre tradition culturelle africaine et innovation durable.</p>
                     </div>
                     <div class="social-media">
                         <h6 class="fw-bold mb-3">Suivez-nous</h6>
@@ -1271,6 +730,9 @@
                             </a>
                             <a href="https://youtube.com/apcdd" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
                                 <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://wa.me/22670000000" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener">
+                                <i class="fab fa-whatsapp"></i>
                             </a>
                         </div>
                     </div>
@@ -1309,15 +771,19 @@
                         </p>
                         <p class="mb-2">
                             <i class="fas fa-phone me-2 text-success"></i>
-                            <a href="tel:+22625000000" class="text-light text-decoration-none">+226 25 XX XX XX</a>
+                            <a href="tel:+22670000000" class="text-light text-decoration-none">+226 70 XX XX XX</a>
+                        </p>
+                        <p class="mb-2">
+                            <i class="fab fa-whatsapp me-2 text-success"></i>
+                            <a href="https://wa.me/22670000000" class="text-light text-decoration-none">+226 70 XX XX XX</a>
                         </p>
                         <p class="mb-2">
                             <i class="fas fa-envelope me-2 text-success"></i>
-                            <a href="mailto:contact@apcdd.org" class="text-light text-decoration-none">contact@apcdd.org</a>
+                            <a href="mailto:contact@apcdd.bf" class="text-light text-decoration-none">contact@apcdd.bf</a>
                         </p>
                         <p class="mb-2">
                             <i class="fas fa-globe me-2 text-success"></i>
-                            <a href="https://www.apcdd.org" class="text-light text-decoration-none" target="_blank" rel="noopener">www.apcdd.org</a>
+                            <a href="https://www.apcdd.bf" class="text-light text-decoration-none" target="_blank" rel="noopener">www.apcdd.bf</a>
                         </p>
                     </div>
 
@@ -1332,6 +798,9 @@
                                 <input type="email" class="form-control form-control-sm" placeholder="Votre email" required>
                             </div>
                             <div class="mb-2">
+                                <input type="tel" class="form-control form-control-sm" placeholder="Votre téléphone" required>
+                            </div>
+                            <div class="mb-2">
                                 <textarea class="form-control form-control-sm" rows="3" placeholder="Votre message" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-success btn-sm w-100">Envoyer</button>
@@ -1344,7 +813,7 @@
             <div class="border-top border-secondary mt-5 pt-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <p class="mb-0 text-light">&copy; <span id="currentYear"></span> APCDD. Tous droits réservés.</p>
+                        <p class="mb-0 text-light">&copy; <span id="currentYear"></span> APCDD - Burkina Faso. Tous droits réservés.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <div class="d-flex justify-content-md-end justify-content-start gap-3 mt-2 mt-md-0">
@@ -1379,8 +848,8 @@
                             <select class="form-select" id="membershipPlan" required>
                                 <option value="">Sélectionnez un plan</option>
                                 <option value="sympathisant">Membre Sympathisant (Gratuit)</option>
-                                <option value="actif">Membre Actif (25,000 FCFA/an)</option>
-                                <option value="bienfaiteur">Membre Bienfaiteur (100,000 FCFA/an)</option>
+                                <option value="actif">Membre Actif (15 000 FCFA/an)</option>
+                                <option value="bienfaiteur">Membre Bienfaiteur (50 000 FCFA/an)</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -1393,15 +862,19 @@
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Téléphone</label>
-                            <input type="tel" class="form-control" id="phone" required>
+                            <input type="tel" class="form-control" id="phone" placeholder="+226 XX XX XX XX" required>
                         </div>
                         <div class="mb-3">
-                            <label for="address" class="form-label">Adresse</label>
-                            <textarea class="form-control" id="address" rows="2" required></textarea>
+                            <label for="city" class="form-label">Ville/Commune</label>
+                            <input type="text" class="form-control" id="city" placeholder="Ex: Ouagadougou, Bobo-Dioulasso..." required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profession" class="form-label">Profession</label>
+                            <input type="text" class="form-control" id="profession" required>
                         </div>
                         <div class="mb-3">
                             <label for="motivation" class="form-label">Motivation</label>
-                            <textarea class="form-control" id="motivation" rows="3" required></textarea>
+                            <textarea class="form-control" id="motivation" rows="3" placeholder="Pourquoi souhaitez-vous rejoindre l'APCDD ?" required></textarea>
                         </div>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="termsAgreement" required>
@@ -1675,126 +1148,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
 
-        // Counter Up initialization
-        $('.counter').counterUp({
-            delay: 10,
-            time: 1000
-        });
-
-        // Gallery filter functionality
-        $(document).ready(function() {
-            $('.btn-group button').click(function() {
-                $('.btn-group button').removeClass('active');
-                $(this).addClass('active');
-
-                var filterValue = $(this).attr('data-filter');
-                $('.gallery-item').each(function() {
-                    if (filterValue === 'all' || $(this).attr('data-category') === filterValue) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
-
-            // Membership modal plan selection
-            $('#membershipModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget);
-                var plan = button.data('plan');
-                var modal = $(this);
-
-                if (plan) {
-                    modal.find('#membershipPlan').val(plan);
-                }
-            });
-
-            // Form submissions
-            $('#newsletterForm').submit(function(e) {
-                e.preventDefault();
-                alert('Merci pour votre abonnement à notre newsletter!');
-                this.reset();
-            });
-
-            $('#membershipForm').submit(function(e) {
-                e.preventDefault();
-                alert('Merci pour votre inscription! Nous vous contacterons bientôt.');
-                $('#membershipModal').modal('hide');
-                this.reset();
-            });
-
-            $('#volunteerForm').submit(function(e) {
-                e.preventDefault();
-                alert('Merci pour votre candidature! Nous vous contacterons bientôt.');
-                $('#volunteerModal').modal('hide');
-                this.reset();
-            });
-
-            $('#donationForm').submit(function(e) {
-                e.preventDefault();
-                alert('Merci pour votre don généreux! Votre soutien fait la différence.');
-                this.reset();
-            });
-
-            $('#quickContactForm').submit(function(e) {
-                e.preventDefault();
-                alert('Merci pour votre message! Nous vous répondrons bientôt.');
-                this.reset();
-            });
-
-            // Scroll to top button
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 100) {
-                    $('#scrollToTop').addClass('show');
-                } else {
-                    $('#scrollToTop').removeClass('show');
-                }
-
-                // Navbar scroll effect
-                if ($(this).scrollTop() > 50) {
-                    $('.navbar').addClass('scrolled');
-                } else {
-                    $('.navbar').removeClass('scrolled');
-                }
-            });
-
-            $('#scrollToTop').click(function() {
-                $('html, body').animate({scrollTop: 0}, 800);
-                return false;
-            });
-
-            // Smooth scrolling for anchor links
-            $('a[href*="#"]:not([href="#"])').click(function() {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-                    var target = $(this.hash);
-                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                    if (target.length) {
-                        $('html, body').animate({
-                            scrollTop: target.offset().top - 70
-                        }, 1000);
-                        return false;
-                    }
-                }
-            });
-
-            // Loading overlay
-            $(window).on('load', function() {
-                $('#loadingOverlay').fadeOut('slow');
-            });
-
-            // Set current year in footer
-            $('#currentYear').text(new Date().getFullYear());
-
-            // Fermer le menu lorsque vous cliquez sur un lien
-            $('.navbar-nav .nav-link').on('click', function(){
-                $('.navbar-collapse').collapse('hide');
-            });
-        });
     </script>
 </body>
 </html>
