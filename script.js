@@ -10,6 +10,7 @@ $('.counter').counterUp({
     time: 1000
 });
 
+
 // Animation fondu pour le changement automatique des images de fond
 const heroSection = $('.hero-section');
 const bgImages = [

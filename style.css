@@ -9,6 +9,12 @@
     --info-color: #17a2b8;
 }
 
+/* Empêcher le défilement horizontal */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -18,6 +24,24 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+/* S'assurer que tous les conteneurs ne dépassent pas */
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -32,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   color: white;
   overflow: hidden;
+  width: 100%;
 }
 
 .bg-slide {
@@ -40,10 +65,11 @@ h1, h2, h3, h4, h5, h6 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: brightness(0.4); /* assombrit un peu */
+  filter: brightness(0.4);
   transition: opacity 1.5s ease-in-out;
   opacity: 0;
   z-index: 0;
+  width: 100%;
 }
 
 .bg-slide.visible {
@@ -52,9 +78,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero-content {
-  position: relative; /* au-dessus des bg */
+  position: relative;
   z-index: 10;
   text-align: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-particles {
@@ -80,6 +109,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     top: 0;
     z-index: 1000;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .navbar.scrolled {
@@ -107,6 +138,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
     color: var(--primary-color);
     font-size: 1.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .nav-link {
@@ -115,6 +150,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     margin: 0 0.5rem;
     padding: 0.5rem 0;
+    white-space: nowrap;
 }
 
 .nav-link:hover,
@@ -137,7 +173,6 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
 }
 
-/* Menu toggler - Toujours visible et adaptatif */
 .navbar-toggler {
     display: none;
     border: none;
@@ -178,6 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-collapse {
     transition: all 0.3s ease;
+    max-width: 100%;
 }
 
 .btn {
@@ -185,6 +221,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 30px;
     padding: 0.5rem 1.5rem;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-outline-success {
@@ -240,17 +277,21 @@ h1, h2, h3, h4, h5, h6 {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     max-width: 800px;
+    margin: 0 auto;
+    width: calc(100% - 40px);
 }
 
 .display-4 {
     font-weight: 800;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     font-size: 3.5rem;
+    word-wrap: break-word;
 }
 
 .lead {
     font-size: 1.2rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    word-wrap: break-word;
 }
 
 .counter {
@@ -263,6 +304,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 10px;
     overflow: hidden;
     height: 100%;
+    max-width: 100%;
 }
 
 .card:hover {
@@ -297,6 +339,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     transition: all 0.3s ease;
     height: 100%;
+    max-width: 100%;
 }
 
 .gallery-card:hover {
@@ -321,6 +364,7 @@ h1, h2, h3, h4, h5, h6 {
 .news-card {
     transition: all 0.3s ease;
     height: 100%;
+    max-width: 100%;
 }
 
 .news-card:hover {
@@ -334,6 +378,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
 }
 
 .partner-logo:hover {
@@ -376,6 +421,8 @@ h1, h2, h3, h4, h5, h6 {
 footer {
     background-color: var(--dark-color);
     margin-top: auto;
+    width: 100%;
+    overflow: hidden;
 }
 
 footer a {
@@ -398,10 +445,10 @@ footer a:hover {
     border-color: var(--primary-color);
 }
 
-/* Custom modal styles */
 .modal-content {
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
 }
 
 .modal-header {
@@ -418,13 +465,14 @@ footer a:hover {
     padding-top: 0;
 }
 
-/* Form styles */
 .form-control {
     border-radius: 5px;
     padding: 0.75rem 1rem;
     border: 1px solid #ced4da;
     transition: border-color 0.3s ease;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-control:focus {
@@ -436,15 +484,17 @@ footer a:hover {
     border-radius: 5px;
     padding: 0.75rem 1rem;
     width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-/* Membership section styles */
 .membership-card {
     transition: all 0.3s ease;
     border: none;
     border-radius: 10px;
     overflow: hidden;
     height: 100%;
+    max-width: 100%;
 }
 
 .membership-card:hover {
@@ -460,14 +510,13 @@ footer a:hover {
     padding: 1.5rem;
 }
 
-/* Donation form styles */
 #donationForm {
     background-color: white;
     padding: 2rem;
     border-radius: 10px;
+    max-width: 100%;
 }
 
-/* Animation delays for AOS */
 [data-aos-delay="200"] {
     transition-delay: 0.2s;
 }
@@ -492,15 +541,14 @@ footer a:hover {
     transition-delay: 1.2s;
 }
 
-/* Ensure images are responsive */
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
 /* ============= MEDIA QUERIES RENFORCÉES ============= */
 
-/* Desktop et tablettes grandes (1400px et moins) */
 @media (max-width: 1400px) {
     .display-4 {
         font-size: 3rem;
@@ -510,7 +558,6 @@ img {
     }
 }
 
-/* Ordinateurs portables et tablettes (1200px et moins) */
 @media (max-width: 1200px) {
     .hero-content {
         padding: 1.5rem;
@@ -527,7 +574,6 @@ img {
     }
 }
 
-/* Tablettes (992px et moins) */
 @media (max-width: 992px) {
     .timeline::before {
         left: 20px;
@@ -555,7 +601,6 @@ img {
     }
 }
 
-/* Tablettes petites et mobiles larges (768px et moins) */
 @media (max-width: 768px) {
     .hero-content {
         padding: 1rem;
@@ -588,7 +633,6 @@ img {
     }
 }
 
-/* Mobiles (576px et moins) */
 @media (max-width: 576px) {
     .display-4 {
         font-size: 1.5rem;
@@ -619,7 +663,6 @@ img {
     }
 }
 
-/* Très petits mobiles (480px et moins) */
 @media (max-width: 480px) {
     .display-4 {
         font-size: 1.4rem;
@@ -653,7 +696,6 @@ img {
     }
 }
 
-/* Petits mobiles (400px et moins) */
 @media (max-width: 400px) {
     .display-4 {
         font-size: 1.3rem;
@@ -698,7 +740,6 @@ img {
     }
 }
 
-/* Très petits écrans (350px et moins) */
 @media (max-width: 350px) {
     .display-4 {
         font-size: 1.2rem;
@@ -740,7 +781,6 @@ img {
     }
 }
 
-/* Écrans mini (300px et moins) */
 @media (max-width: 300px) {
     .display-4 {
         font-size: 1.1rem;
@@ -781,7 +821,6 @@ img {
     }
 }
 
-/* Écrans ultra-mini (250px et moins) */
 @media (max-width: 250px) {
     .display-4 {
         font-size: 1rem;
@@ -825,7 +864,6 @@ img {
     }
 }
 
-/* Écrans extrêmement petits (200px et moins) */
 @media (max-width: 200px) {
     .display-4 {
         font-size: 0.9rem;
@@ -889,7 +927,6 @@ img {
         font-size: 0.65rem;
     }
     
-    /* Ajustements spéciaux pour navigation très petite */
     .navbar-nav {
         text-align: center;
     }
@@ -898,19 +935,16 @@ img {
         margin: 0.1rem 0;
     }
     
-    /* Réduction des espacements */
     .container, .container-fluid {
         padding-left: 5px;
         padding-right: 5px;
         overflow-x: hidden;
     }
     
-    /* Masquer certains éléments non essentiels sur très petits écrans */
     .hero-particles {
         display: none;
     }
     
-    /* S'assurer que le navbar ne déborde pas */
     .navbar > .container,
     .navbar > .container-fluid,
     .navbar > .container-sm,
@@ -925,4 +959,49 @@ img {
         padding-right: 5px;
         overflow: hidden;
     }
+}
+
+/* Règles supplémentaires pour empêcher tout débordement */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+.col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
+.col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12,
+.col-xl-auto {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+/* Force le contenu à rester dans les limites */
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Empêche les images de causer un débordement */
+img, svg, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Garantit que les éléments flex ne causent pas de débordement */
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Correction pour les éléments positionnés */
+.position-relative, .position-absolute, .position-fixed, .position-sticky {
+    max-width: 100%;
 }

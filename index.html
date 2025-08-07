@@ -222,82 +222,112 @@
         </div>
     </section>
 
-    <!-- Interactive Gallery Section -->
-    <section id="gallery" class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold text-success">Galerie Médias</h2>
-                <p class="lead text-muted">Découvrez nos photos et vidéos des événements passés</p>
-            </div>
+<!-- Interactive Gallery Section -->
+<section id="gallery" class="py-5 bg-light">
+  <div class="container">
+    <!-- Titre -->
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-5 fw-bold text-success">Galerie Médias</h2>
+      <p class="lead text-muted">Découvrez nos photos et vidéos des événements passés</p>
+    </div>
 
-            <!-- Gallery Filter Buttons -->
-            <div class="text-center mb-4">
-                <div class="btn-group" role="group" aria-label="Gallery filter">
-                    <button type="button" class="btn btn-outline-success active" data-filter="all">Tout</button>
-                    <button type="button" class="btn btn-outline-success" data-filter="festivals">Festivals</button>
-                    <button type="button" class="btn btn-outline-success" data-filter="environment">Environnement</button>
-                    <button type="button" class="btn btn-outline-success" data-filter="community">Communauté</button>
-                </div>
-            </div>
+    <!-- Filtres -->
+    <div class="text-center mb-4">
+      <div class="btn-group" role="group" aria-label="Gallery filter">
+        <button type="button" class="btn btn-outline-success active" data-filter="all">Tout</button>
+        <button type="button" class="btn btn-outline-success" data-filter="festivals">Festivals</button>
+        <button type="button" class="btn btn-outline-success" data-filter="environment">Environnement</button>
+        <button type="button" class="btn btn-outline-success" data-filter="community">Communauté</button>
+      </div>
+    </div>
 
-            <div class="row g-3" id="galleryGrid">
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1541948153-f1a67f9af83e?w=400&h=300&fit=crop" class="card-img-top" alt="Festival Culturel Africain" data-lightbox="gallery" data-title="Festival Culturel Africain 2024">
-                        <div class="card-body">
-                            <h6 class="card-title">Festival Culturel Africain 2024</h6>
-                            <p class="card-text small text-muted">Célébration de notre patrimoine culturel burkinabè</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="400">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" class="card-img-top" alt="Atelier Artisanal Africain" data-lightbox="gallery" data-title="Atelier d'artisanat traditionnel africain">
-                        <div class="card-body">
-                            <h6 class="card-title">Atelier Artisanal Traditionnel</h6>
-                            <p class="card-text small text-muted">Formation aux métiers traditionnels africains</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="600">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1571845043697-81d1e6ea61ba?w=400&h=300&fit=crop" class="card-img-top" alt="Reboisement Sahel" data-lightbox="gallery" data-title="Programme de reboisement au Sahel">
-                        <div class="card-body">
-                            <h6 class="card-title">Reboisement Sahélien</h6>
-                            <p class="card-text small text-muted">Action environnementale contre la désertification</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals" data-aos="fade-up" data-aos-delay="800">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1551470230-42c3e9164848?w=400&h=300&fit=crop" class="card-img-top" alt="Musique Traditionnelle Africaine" data-lightbox="gallery" data-title="Concert de musique traditionnelle africaine">
-                        <div class="card-body">
-                            <h6 class="card-title">Musique Traditionnelle</h6>
-                            <p class="card-text small text-muted">Djembé et balafon ancestraux</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="community" data-aos="fade-up" data-aos-delay="1000">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1609918636375-3bbaa4e64dba?w=400&h=300&fit=crop" class="card-img-top" alt="Cérémonie Traditionnelle Africaine" data-lightbox="gallery" data-title="Cérémonie traditionnelle africaine">
-                        <div class="card-body">
-                            <h6 class="card-title">Cérémonie Traditionnelle</h6>
-                            <p class="card-text small text-muted">Rituel communautaire ancestral africain</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 gallery-item" data-category="environment" data-aos="fade-up" data-aos-delay="1200">
-                    <div class="card border-0 shadow gallery-card">
-                        <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop" class="card-img-top" alt="Agriculture Africaine" data-lightbox="gallery" data-title="Jardins communautaires africains">
-                        <div class="card-body">
-                            <h6 class="card-title">Agriculture Communautaire</h6>
-                            <p class="card-text small text-muted">Agriculture durable adaptée au Sahel</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Grille -->
+    <div class="row g-3" id="galleryGrid">
+      <!-- Cartes de galerie (tes 6 premières visibles) -->
+      <!-- Les 6 premières cartes (visibles) -->
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1541948153-f1a67f9af83e?w=400&h=300&fit=crop" class="card-img-top" alt="Festival">
+          <div class="card-body">
+            <h6 class="card-title">Festival Culturel Africain 2024</h6>
+            <p class="card-text small text-muted">Célébration de notre patrimoine culturel burkinabè</p>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=300&fit=crop" class="card-img-top" alt="Atelier">
+          <div class="card-body">
+            <h6 class="card-title">Atelier Artisanal Traditionnel</h6>
+            <p class="card-text small text-muted">Formation aux métiers traditionnels africains</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="environment">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1571845043697-81d1e6ea61ba?w=400&h=300&fit=crop" class="card-img-top" alt="Reboisement">
+          <div class="card-body">
+            <h6 class="card-title">Reboisement Sahélien</h6>
+            <p class="card-text small text-muted">Action environnementale contre la désertification</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1551470230-42c3e9164848?w=400&h=300&fit=crop" class="card-img-top" alt="Musique">
+          <div class="card-body">
+            <h6 class="card-title">Musique Traditionnelle</h6>
+            <p class="card-text small text-muted">Djembé et balafon ancestraux</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1609918636375-3bbaa4e64dba?w=400&h=300&fit=crop" class="card-img-top" alt="Cérémonie">
+          <div class="card-body">
+            <h6 class="card-title">Cérémonie Traditionnelle</h6>
+            <p class="card-text small text-muted">Rituel communautaire ancestral africain</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 gallery-item" data-category="environment">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop" class="card-img-top" alt="Agriculture">
+          <div class="card-body">
+            <h6 class="card-title">Agriculture Communautaire</h6>
+            <p class="card-text small text-muted">Agriculture durable adaptée au Sahel</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cartes supplémentaires masquées au début -->
+      <div class="col-lg-4 col-md-6 gallery-item gallery-hidden d-none" data-category="festivals">
+        <div class="card border-0 shadow gallery-card">
+          <img src="https://images.unsplash.com/photo-1602433894986-3f8ba7a8fd7d?w=400&h=300&fit=crop" class="card-img-top" alt="Danse">
+          <div class="card-body">
+            <h6 class="card-title">Danse Masquée</h6>
+            <p class="card-text small text-muted">Danse traditionnelle du peuple Bobo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ajoute autant d'autres éléments ici -->
+    </div>
+
+<!-- Bouton “Découvrir plus” -->
+    <div class="text-center mt-4">
+    <a href="/contenu/decouvrir.html" class="btn btn-outline-success">
+        Découvrir plus
+    </a>
+    </div>
+
+  </div>
+</section>
 
     <!-- Services Section -->
     <section id="services" class="py-5">
