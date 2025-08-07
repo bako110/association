@@ -141,6 +141,8 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-toggler {
     display: none;
     border: none;
+    position: relative;
+    right: 0;
     background: none;
     padding: 0.25rem 0.5rem;
     font-size: 1.25rem;
@@ -638,6 +640,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.85rem;
+        right: 300px;
         padding: 0.15rem 0.35rem;
     }
     .navbar-toggler-icon {
@@ -669,6 +672,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.8rem;
+        right: 300px;
         padding: 0.1rem 0.3rem;
         margin-left: 10px;
         border: 1px solid rgba(0, 0, 0, 0.1);
@@ -718,6 +722,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.75rem;
+        right: 300px;
         padding: 0.08rem 0.25rem;
         margin-left: 8px;
     }
@@ -758,6 +763,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.7rem;
+        right: 300px;
         padding: 0.06rem 0.2rem;
         margin-left: 5px;
     }
@@ -765,7 +771,6 @@ img {
         width: 0.8em;
         height: 0.8em;
         position: relative;
-        right: 100px;
     }
     .hero-content {
         padding: 0.3rem;
@@ -803,6 +808,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.65rem;
+        right: 300px;
         padding: 0.05rem 0.15rem;
         margin-left: 3px;
     }
@@ -851,6 +857,7 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.6rem;
+        right: 300px;
         padding: 0.04rem 0.12rem;
         margin-left: 2px;
         border-radius: 3px;
