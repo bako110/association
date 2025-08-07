@@ -20,7 +20,7 @@ const bgImages = [
   'images/africain.jpg',
   'images/326A6514.jpg',
   'images/326A6571.jpg',
-  'images/326A6573 .jpg',
+  'images/326A6573.jpg',
   'images/326A6574.jpg',
 ];
 
