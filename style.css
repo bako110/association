@@ -142,7 +142,6 @@ h1, h2, h3, h4, h5, h6 {
     display: none;
     border: none;
     position: relative;
-    right: 0;
     background: none;
     padding: 0.25rem 0.5rem;
     font-size: 1.25rem;
@@ -151,6 +150,7 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid transparent;
     border-radius: 0.25rem;
     transition: box-shadow 0.15s ease-in-out;
+    margin-left: auto;
 }
 
 .navbar-toggler:focus {
@@ -640,8 +640,8 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.85rem;
-        right: 300px;
         padding: 0.15rem 0.35rem;
+        margin-left: auto;
     }
     .navbar-toggler-icon {
         width: 1.1em;
@@ -667,14 +667,12 @@ img {
     }
     .navbar-brand {
         font-size: 0.9rem;
-        margin-right: auto;
     }
     .navbar-toggler {
         display: block !important;
         font-size: 0.8rem;
-        right: 300px;
         padding: 0.1rem 0.3rem;
-        margin-left: 10px;
+        margin-left: auto;
         border: 1px solid rgba(0, 0, 0, 0.1);
     }
     .navbar-toggler-icon {
@@ -722,9 +720,8 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.75rem;
-        right: 300px;
         padding: 0.08rem 0.25rem;
-        margin-left: 8px;
+        margin-left: auto;
     }
     .navbar-toggler-icon {
         width: 0.9em;
@@ -763,9 +760,8 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.7rem;
-        right: 300px;
         padding: 0.06rem 0.2rem;
-        margin-left: 5px;
+        margin-left: auto;
     }
     .navbar-toggler-icon {
         width: 0.8em;
@@ -808,9 +804,8 @@ img {
     .navbar-toggler {
         display: block !important;
         font-size: 0.65rem;
-        right: 300px;
         padding: 0.05rem 0.15rem;
-        margin-left: 3px;
+        margin-left: auto;
     }
     .navbar-toggler-icon {
         width: 0.7em;
@@ -849,18 +844,20 @@ img {
     }
     .navbar {
         padding: 0.2rem 0;
+        overflow-x: hidden;
     }
     .navbar-brand {
         font-size: 0.7rem;
         margin-right: 0.5rem;
+        flex-shrink: 0;
     }
     .navbar-toggler {
         display: block !important;
         font-size: 0.6rem;
-        right: 300px;
         padding: 0.04rem 0.12rem;
-        margin-left: 2px;
+        margin-left: auto;
         border-radius: 3px;
+        flex-shrink: 0;
     }
     .navbar-toggler-icon {
         width: 0.6em;
@@ -905,10 +902,27 @@ img {
     .container, .container-fluid {
         padding-left: 5px;
         padding-right: 5px;
+        overflow-x: hidden;
     }
     
     /* Masquer certains éléments non essentiels sur très petits écrans */
     .hero-particles {
         display: none;
+    }
+    
+    /* S'assurer que le navbar ne déborde pas */
+    .navbar > .container,
+    .navbar > .container-fluid,
+    .navbar > .container-sm,
+    .navbar > .container-md,
+    .navbar > .container-lg,
+    .navbar > .container-xl {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 5px;
+        padding-right: 5px;
+        overflow: hidden;
     }
 }
