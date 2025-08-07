@@ -40,7 +40,7 @@ function changeBackground() {
 
   visibleSlide = nextSlide;
 }
-// Change toutes les 10 secondes
+// Change toutes les 4 secondes
 setInterval(changeBackground, 4000);
 
 // Gallery filter functionality
