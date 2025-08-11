@@ -13,7 +13,7 @@ function getStatusClasses(status) {
   switch (status?.toLowerCase()) {
     case 'ongoing':
       return { border: 'border-success', badge: 'bg-success', label: 'En cours' };
-    case 'planned':
+    case 'upcoming':
       return { border: 'border-warning', badge: 'bg-warning text-dark', label: 'Prévu' };
     case 'completed':
       return { border: 'border-info', badge: 'bg-info text-dark', label: 'Terminé' };
