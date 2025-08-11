@@ -2,185 +2,605 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Découvrir Plus</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
+    :root {
+      --primary-color: #2c5f2d;
+      --secondary-color: #97bc62;
+      --accent-color: #f39c12;
+      --dark-bg: #1a1a1a;
+      --light-bg: #f8fffe;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #f8f9fa;
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      33% { transform: translateY(-10px) rotate(1deg); }
+      66% { transform: translateY(5px) rotate(-1deg); }
     }
 
     header {
-      background: linear-gradient(90deg, #28a745, #218838);
+      background: linear-gradient(135deg, rgba(44, 95, 45, 0.95) 0%, rgba(151, 188, 98, 0.95) 100%);
+      backdrop-filter: blur(20px);
       color: white;
-      padding: 2rem 1rem;
+      padding: 4rem 1rem;
       text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+      border-radius: 0 0 50px 50px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
     }
 
-    .card {
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.05)"><polygon points="0,0 1000,0 1000,100 0,80"/></svg>');
+      border-radius: 0 0 50px 50px;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: slideInFromTop 1s ease-out;
+    }
+
+    header .lead {
+      font-size: 1.3rem;
+      font-weight: 300;
+      opacity: 0.9;
+      animation: slideInFromBottom 1s ease-out 0.3s both;
+    }
+
+    @keyframes slideInFromTop {
+      0% { transform: translateY(-50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideInFromBottom {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .container {
+      max-width: 1200px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mission-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
+      backdrop-filter: blur(20px);
       border: none;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease;
+      border-radius: 25px;
+      box-shadow: 
+        0 20px 40px rgba(0,0,0,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.6);
+      margin-bottom: 2rem;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    .card:hover {
-      transform: translateY(-5px);
+    .mission-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
     }
 
-    .gallery-card img {
-      height: 230px;
+    .mission-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 
+        0 30px 60px rgba(0,0,0,0.15),
+        inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .mission-card .card-body {
+      padding: 2.5rem;
+      position: relative;
+    }
+
+    .mission-card .card-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .mission-card .card-title::before {
+      content: '';
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: white;
+      font-size: 1.2rem;
+    }
+
+    .mission-card:nth-child(1) .card-title::before { content: '\f0eb'; }
+    .mission-card:nth-child(2) .card-title::before { content: '\f1ad'; }
+    .mission-card:nth-child(3) .card-title::before { content: '\f0c0'; }
+    .mission-card:nth-child(4) .card-title::before { content: '\f004'; }
+
+    .mission-card .card-text {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #555;
+    }
+
+    .mission-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .mission-card li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      position: relative;
+      padding-left: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .mission-card li:hover {
+      background: rgba(151, 188, 98, 0.1);
+      border-radius: 10px;
+      padding-left: 2.5rem;
+    }
+
+    .mission-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 25px;
+      height: 25px;
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .gallery-title {
+      text-align: center;
+      margin: 5rem 0 3rem 0;
+      position: relative;
+    }
+
+    .gallery-title h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-title::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+      border-radius: 2px;
+    }
+
+    #galleryGrid .col-lg-4 {
+      margin-bottom: 2rem;
+    }
+
+    .gallery-card {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      border: none;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      height: 100%;
+    }
+
+    .gallery-card:hover {
+      transform: translateY(-15px) rotateY(5deg);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    }
+
+    .gallery-card img,
+    .gallery-card video {
+      height: 250px;
+      width: 100%;
       object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-card:hover img,
+    .gallery-card:hover video {
+      transform: scale(1.1);
+    }
+
+    .gallery-card .card-body {
+      padding: 1.5rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.9) 100%);
+    }
+
+    .gallery-card .card-title {
+      font-weight: 600;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
     }
 
     .btn-success {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
       border-radius: 50px;
-      padding: 0.6rem 1.5rem;
+      padding: 1rem 3rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(44, 95, 45, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-success::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-success:hover::before {
+      left: 100%;
+    }
+
+    .btn-success:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(44, 95, 45, 0.4);
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+
+    .empty-gallery {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .empty-gallery i {
+      font-size: 4rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+
+    /* Animations de scroll */
+    [data-aos] {
+      transition-duration: 0.8s;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .mission-card .card-body {
+        padding: 2rem;
+      }
+      
+      .gallery-title h2 {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* Scrollbar personnalisée */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>En savoir plus sur l'association</h1>
-    <p class="lead">Notre vision, nos actions et notre impact</p>
+    <div class="container">
+      <h1><i class="fas fa-leaf me-3"></i>En savoir plus sur l'association</h1>
+      <p class="lead">Notre vision, nos actions et notre impact pour un avenir durable</p>
+    </div>
   </header>
 
-  <div class="container mt-5">
-    <!-- Étapes -->
-    <div class="card mb-4" data-aos="fade-up">
+  <div class="container">
+    <!-- Mission Cards -->
+    <div class="mission-card" data-aos="fade-up">
       <div class="card-body">
         <h3 class="card-title">Notre mission</h3>
         <p class="card-text">
-          Nous œuvrons pour la promotion de la culture et du développement durable à travers des activités, des événements, et des formations.
+          Nous œuvrons pour la promotion de la culture et du développement durable à travers des activités innovantes, des événements marquants, et des formations transformatrices qui impactent positivement nos communautés.
         </p>
       </div>
     </div>
 
-    <div class="card mb-4" data-aos="fade-up" data-aos-delay="100">
+    <div class="mission-card" data-aos="fade-up" data-aos-delay="100">
       <div class="card-body">
         <h3 class="card-title">Nos projets</h3>
         <ul class="card-text">
-          <li>Festival culturel annuel</li>
-          <li>Ateliers pour les jeunes</li>
-          <li>Campagnes de reboisement</li>
-          <li>Appui aux initiatives locales durables</li>
+          <li>Festival culturel annuel - Célébration de la diversité</li>
+          <li>Ateliers pour les jeunes - Formation et développement</li>
+          <li>Campagnes de reboisement - Action environnementale</li>
+          <li>Appui aux initiatives locales durables - Innovation communautaire</li>
         </ul>
       </div>
     </div>
 
-    <div class="card mb-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="mission-card" data-aos="fade-up" data-aos-delay="200">
       <div class="card-body">
         <h3 class="card-title">Nos partenaires</h3>
         <p class="card-text">
-          Nous collaborons avec des ONG, des collectivités, des écoles, et des partenaires techniques nationaux et internationaux.
+          Nous collaborons avec des ONG internationales, des collectivités locales engagées, des institutions éducatives et des partenaires techniques nationaux et internationaux pour maximiser notre impact et créer un réseau de changement positif.
         </p>
       </div>
     </div>
 
-    <div class="card mb-4" data-aos="fade-up" data-aos-delay="300">
+    <div class="mission-card" data-aos="fade-up" data-aos-delay="300">
       <div class="card-body">
         <h3 class="card-title">Comment nous soutenir ?</h3>
         <p class="card-text">
-          Vous pouvez faire un don, devenir bénévole ou nous suivre sur nos réseaux sociaux pour participer à nos actions.
+          Rejoignez notre mouvement ! Vous pouvez faire un don pour financer nos projets, devenir bénévole pour participer activement, ou nous suivre sur nos réseaux sociaux pour rester informé et participer à nos actions communautaires.
         </p>
       </div>
     </div>
 
-    <!-- Galerie Complète -->
-    <h2 class="text-success mt-5 mb-4 text-center" data-aos="fade-up">Galerie Complète</h2>
+    <!-- Galerie Section -->
+    <div class="gallery-title" data-aos="fade-up">
+      <h2><i class="fas fa-images me-3"></i>Galerie Complète</h2>
+      <p class="text-muted">Découvrez nos actions en images et vidéos</p>
+    </div>
 
     <div class="row g-4" id="galleryGrid">
-      <!-- Cartes de galerie (réutilisées depuis ta grille précédente, avec des descriptions corrigées) -->
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
-        <div class="card gallery-card">
-          <img src="/images/326A6117.jpg" class="card-img-top" alt="Festival">
-          <div class="card-body">
-            <h6 class="card-title">Festival Culturel de Bansa 2025 (Tchériba)</h6>
-            <p class="card-text small text-muted">Célébration de notre patrimoine culturel burkinabè.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="card gallery-card">
-          <img src="/images/326A6360.jpg" class="card-img-top" alt="Danse">
-          <div class="card-body">
-            <h6 class="card-title">Danse Traditionnelle (Dalo)</h6>
-            <p class="card-text small text-muted">Valorisation de la culture à travers les danses et savoir-faire traditionnels.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="card gallery-card">
-          <img src="/images/326A6462.jpg" class="card-img-top" alt="Lutte">
-          <div class="card-body">
-            <h6 class="card-title">Lutte Traditionnelle Masculine</h6>
-            <p class="card-text small text-muted">
-              Une discipline de force et d’honneur, ancrée dans notre patrimoine.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
-        <div class="card gallery-card">
-          <img src="/images/326A6483.jpg" class="card-img-top" alt="Vainqueur">
-          <div class="card-body">
-            <h6 class="card-title">Vainqueur de la Lutte – Édition 2025</h6>
-            <p class="card-text small text-muted">Un champion au talent exceptionnel, salué par tous.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="card gallery-card">
-          <img src="/images/326A6492.jpg" class="card-img-top" alt="Lutte féminine">
-          <div class="card-body">
-            <h6 class="card-title">Lutte Traditionnelle Féminine</h6>
-            <p class="card-text small text-muted">
-              Les femmes aussi brillent dans la transmission de cette tradition guerrière.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="card gallery-card">
-          <img src="/images/326A6494.jpg" class="card-img-top" alt="Agriculture">
-          <div class="card-body">
-            <h6 class="card-title">Agriculture Communautaire Durable</h6>
-            <p class="card-text small text-muted">Une pratique respectueuse du climat et des ressources du Sahel.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6" data-aos="fade-up">
-        <div class="card gallery-card">
-          <img src="/images/326A6514.jpg" class="card-img-top" alt="Danse masquée">
-          <div class="card-body">
-            <h6 class="card-title">Danse Masquée (Peuple Bobo)</h6>
-            <p class="card-text small text-muted">
-              Expression spirituelle profonde à travers les masques sacrés.
-            </p>
-          </div>
-        </div>
-      </div>
+      <!-- Les cartes seront injectées ici via JS -->
     </div>
 
     <!-- Bouton Retour -->
     <div class="text-center mt-5 mb-5" data-aos="fade-up">
-      <a href="index.html" class="btn btn-success">← Retour à l'accueil</a>
+      <a href="index.html" class="btn btn-success">
+        <i class="fas fa-arrow-left me-2"></i>
+        Retour à l'accueil
+      </a>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <script>
-    AOS.init();
+    // Initialisation des animations
+    AOS.init({
+      duration: 800,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 100
+    });
+
+    // API Configuration
+    const API_BASE_URL = 'http://localhost:3000';
+
+    function createMediaElement(item) {
+      const baseMediaUrl = API_BASE_URL.replace('/api', '');
+      const mediaUrl = baseMediaUrl + item.imageUrl;
+      const isVideo = /\.(mp4|webm|ogg)$/i.test(mediaUrl);
+
+      if (isVideo) {
+        const video = document.createElement('video');
+        video.src = mediaUrl;
+        video.controls = true;
+        video.className = 'card-img-top';
+        return video;
+      } else {
+        const img = document.createElement('img');
+        img.src = mediaUrl;
+        img.alt = item.title || '';
+        img.className = 'card-img-top';
+        img.loading = 'lazy'; // Lazy loading pour les performances
+        return img;
+      }
+    }
+
+    function loadRemainingGallery() {
+      const restJSON = localStorage.getItem('galleryRest');
+      const items = restJSON ? JSON.parse(restJSON) : [];
+
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      if (items.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'col-12';
+        emptyDiv.innerHTML = `
+          <div class="empty-gallery" data-aos="fade-up">
+            <i class="fas fa-images"></i>
+            <h4>Galerie en construction</h4>
+            <p class="text-muted">Aucun élément supplémentaire disponible pour le moment.</p>
+          </div>
+        `;
+        grid.appendChild(emptyDiv);
+        return;
+      }
+
+      items.forEach((item, i) => {
+        const col = document.createElement('div');
+        col.classList.add('col-lg-4', 'col-md-6', 'gallery-item');
+        col.dataset.category = item.category;
+
+        const card = document.createElement('div');
+        card.className = 'card gallery-card';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.dataset.title = item.title;
+        card.dataset.description = item.description;
+
+        // Effet de clic
+        card.addEventListener('click', () => {
+          card.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            card.style.transform = '';
+          }, 150);
+        });
+
+        const mediaEl = createMediaElement(item);
+        card.appendChild(mediaEl);
+
+        const cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+
+        const titleEl = document.createElement('h6');
+        titleEl.className = 'card-title';
+        titleEl.textContent = item.title;
+
+        const descEl = document.createElement('p');
+        descEl.className = 'card-text small text-muted';
+        descEl.textContent = item.description || 'Description à venir...';
+
+        cardBody.appendChild(titleEl);
+        cardBody.appendChild(descEl);
+
+        card.appendChild(cardBody);
+        col.appendChild(card);
+        grid.appendChild(col);
+
+        // Animation delay progressive
+        col.setAttribute('data-aos', 'fade-up');
+        col.setAttribute('data-aos-delay', (i % 6) * 50);
+      });
+
+      // Réinitialiser AOS pour les nouveaux éléments
+      AOS.refresh();
+    }
+
+    // Effet de parallaxe simple sur le scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('header');
+      const speed = scrolled * 0.5;
+      if (parallax) {
+        parallax.style.transform = `translateY(${speed}px)`;
+      }
+    });
+
+    // Chargement de la galerie
+    window.addEventListener('DOMContentLoaded', () => {
+      loadRemainingGallery();
+      
+      // Animation de typing pour le titre
+      const title = document.querySelector('header h1');
+      const text = title.textContent;
+      title.textContent = '';
+      let i = 0;
+      
+      const typeWriter = () => {
+        if (i < text.length) {
+          title.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 50);
+        }
+      };
+      
+      setTimeout(typeWriter, 500);
+    });
+
+    // Amélioration de l'accessibilité
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Tab') {
+        document.body.classList.add('keyboard-navigation');
+      }
+    });
+
+    document.addEventListener('mousedown', () => {
+      document.body.classList.remove('keyboard-navigation');
+    });
   </script>
+
+  <style>
+    /* Focus visible pour l'accessibilité */
+    .keyboard-navigation .gallery-card:focus {
+      outline: 3px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+  </style>
 </body>
 </html>

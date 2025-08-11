@@ -10,7 +10,6 @@ $('.counter').counterUp({
     time: 1000
 });
 
-
 // Animation fondu pour le changement automatique des images de fond
 const heroSection = $('.hero-section');
 const bgImages = [
@@ -46,10 +45,10 @@ function changeBackground() {
   visibleSlide = nextSlide;
 }
 // Change toutes les 4 secondes
-setInterval(changeBackground, 4000);
+setInterval(changeBackground, 10000);
 
-// Gallery filter functionality
 $(document).ready(function() {
+    // Gallery filter buttons
     $('.btn-group button').click(function() {
         $('.btn-group button').removeClass('active');
         $(this).addClass('active');
@@ -75,7 +74,7 @@ $(document).ready(function() {
         }
     });
 
-    // Form submissions
+    // Form submissions with alerts and reset
     $('#newsletterForm').submit(function(e) {
         e.preventDefault();
         alert('Merci pour votre abonnement à notre newsletter!');
@@ -108,7 +107,7 @@ $(document).ready(function() {
         this.reset();
     });
 
-    // Scroll to top button
+    // Scroll to top button and navbar scroll effect
     $(window).scroll(function() {
         if ($(this).scrollTop() > 100) {
             $('#scrollToTop').addClass('show');
@@ -116,7 +115,6 @@ $(document).ready(function() {
             $('#scrollToTop').removeClass('show');
         }
 
-        // Navbar scroll effect
         if ($(this).scrollTop() > 50) {
             $('.navbar').addClass('scrolled');
         } else {
@@ -131,7 +129,8 @@ $(document).ready(function() {
 
     // Smooth scrolling for anchor links
     $('a[href*="#"]:not([href="#"])').click(function() {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') 
+            && location.hostname == this.hostname) {
             var target = $(this.hash);
             target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
             if (target.length) {
@@ -155,4 +154,35 @@ $(document).ready(function() {
     $('.navbar-nav .nav-link').on('click', function(){
         $('.navbar-collapse').collapse('hide');
     });
+});
+
+// Modal galerie - afficher détails au clic sur une carte
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.gallery-card')) {
+    const card = e.target.closest('.gallery-card');
+    const title = card.dataset.title || '';
+    const description = card.dataset.description || '';
+    const media = card.querySelector('img, video');
+
+    const modalTitle = document.getElementById('galleryDetailLabel');
+    const modalImage = document.getElementById('galleryDetailImage');
+    const modalText = document.getElementById('galleryDetailText');
+
+    modalTitle.textContent = title;
+    modalText.textContent = description;
+
+    if (media) {
+      if (media.tagName === 'IMG') {
+        modalImage.src = media.src;
+        modalImage.style.display = 'block';
+      } else {
+        // Pour les vidéos, masquer l'image ou tu peux ajouter une miniature si tu veux
+        modalImage.style.display = 'none';
+      }
+    }
+
+    // Afficher le modal avec Bootstrap 5 JS
+    const galleryModal = new bootstrap.Modal(document.getElementById('galleryDetailModal'));
+    galleryModal.show();
+  }
 });

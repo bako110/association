@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>APCDD - Association pour la Promotion de la Culture et du Développement Durable</title>
-
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -17,28 +16,25 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-<<<<<<< HEAD
-=======
     <script type="module" src="scripts/config.js" defer></script>
     <script type="module" src="scripts/content.js" defer></script>
     <script type="module" src="scripts/members.js" defer></script>
     <script type="module" src="scripts/donations.js" defer></script>
-
->>>>>>> cb6cb99 (Initial commit - contenu pages uniquement)
+    <script type="module" src="scripts/state.js" defer></script>
+    <script type="module" src="scripts/gallery.js" defer></script>
+    <script type="module" src="scripts/event.js" defer></script>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="#home">
-            <img src="images/logo.jpg"  style="height: 40px; margin-right: 20px; border-radius: 100px;">
-            APCDD
+                <img src="images/logo.jpg" style="height: 40px; margin-right: 20px; border-radius: 100px;">
+                APCDD
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
@@ -78,78 +74,46 @@
         </div>
     </nav>
 
-<<<<<<< HEAD
-<!-- Hero Section -->
-=======
->>>>>>> cb6cb99 (Initial commit - contenu pages uniquement)
-<section id="home" class="hero-section text-white py-5">
-    <div class="hero-particles"></div>
-    <div class="container">
-        <div class="row align-items-center min-vh-100">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="hero-content">
-<<<<<<< HEAD
-                    <h1 class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200">
-                        Promouvoir la culture africaine au service du développement durable
-                    </h1>
-                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="400">
-                        L'Association pour la Promotion de la Culture et du Développement Durable (APCDD) œuvre pour un avenir où la richesse culturelle africaine et la préservation environnementale se conjuguent harmonieusement pour le bien-être des communautés.
-                    </p>
-=======
-                    <h1 id="hero-title" class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200"></h1>
-                    <p id="hero-description" class="lead mb-5" data-aos="fade-up" data-aos-delay="400"></p>
-
->>>>>>> cb6cb99 (Initial commit - contenu pages uniquement)
-                    <div class="mb-5" data-aos="fade-up" data-aos-delay="600">
-                        <a href="#about" class="btn btn-light btn-lg me-2">
-                            <i class="fas fa-info-circle me-2"></i>Découvrir notre mission
-                        </a>
-                        <a href="#membership" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-users me-2"></i>Nous rejoindre
-                        </a>
-                    </div>
-<<<<<<< HEAD
-                    <div class="row text-center" data-aos="fade-up" data-aos-delay="800">
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 class="counter display-6" data-count="1200">0</h3>
-                            <p class="mb-0">Membres actifs</p>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-5">
+        <div class="hero-particles"></div>
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="hero-content">
+                        <h1 id="hero-title" class="display-4 fw-bold mb-4" data-aos="fade-up" data-aos-delay="200"></h1>
+                        <p id="hero-description" class="lead mb-5" data-aos="fade-up" data-aos-delay="400"></p>
+                        <div class="mb-5" data-aos="fade-up" data-aos-delay="600">
+                            <a href="#about" class="btn btn-light btn-lg me-2">
+                                <i class="fas fa-info-circle me-2"></i>Découvrir notre mission
+                            </a>
+                            <a href="#membership" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-users me-2"></i>Nous rejoindre
+                            </a>
                         </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 class="counter display-6" data-count="75">0</h3>
-                            <p class="mb-0">Projets réalisés</p>
-                        </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 class="counter display-6" data-count="50000">0</h3>
-                            <p class="mb-0">Arbres plantés</p>
-                        </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 class="counter display-6" data-count="45">0</h3>
-=======
-
-                    <div class="row text-center" data-aos="fade-up" data-aos-delay="800">
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 id="activeMembers" class="counter display-6" data-count="0">0</h3>
-                            <p class="mb-0">Membres actifs</p>
-                        </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 id="projectsDone" class="counter display-6" data-count="0">0</h3>
-                            <p class="mb-0">Projets réalisés</p>
-                        </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 id="treesPlanted" class="counter display-6" data-count="0">0</h3>
-                            <p class="mb-0">Arbres plantés</p>
-                        </div>
-                        <div class="col-6 col-md-3 mb-3">
-                            <h3 id="villagesTouched" class="counter display-6" data-count="0">0</h3>
->>>>>>> cb6cb99 (Initial commit - contenu pages uniquement)
-                            <p class="mb-0">Villages touchés</p>
+                        <div class="row text-center" data-aos="fade-up" data-aos-delay="800">
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 id="activeMembers" class="counter display-6" data-count="0">0</h3>
+                                <p class="mb-0">Membres actifs</p>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 id="projectsDone" class="counter display-6" data-count="0">0</h3>
+                                <p class="mb-0">Projets réalisés</p>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 id="treesPlanted" class="counter display-6" data-count="0">0</h3>
+                                <p class="mb-0">Arbres plantés</p>
+                            </div>
+                            <div class="col-6 col-md-3 mb-3">
+                                <h3 id="villagesTouched" class="counter display-6" data-count="0">0</h3>
+                                <p class="mb-0">Villages touchés</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-5 bg-light">
@@ -196,78 +160,30 @@
         </div>
     </section>
 
-    <!-- History/Events Timeline Section -->
-    <section id="events" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="display-5 fw-bold text-success">Historique des Événements</h2>
-                <p class="lead text-muted">Découvrez les moments marquants de notre association</p>
-            </div>
-            <div class="timeline">
-                <div class="row">
-                    <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="200">
-                        <div class="card border-start border-success border-4 shadow">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="fas fa-calendar-alt text-success me-2"></i>
-                                    <small class="text-muted">Janvier 2020</small>
-                                </div>
-                                <h5 class="card-title">Fondation de l'APCDD</h5>
-                                <p class="card-text">Création de l'Association pour la Promotion de la Culture et du Développement Durable à Ouagadougou avec pour mission de promouvoir la culture africaine et le développement durable au Burkina Faso.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="400">
-                        <div class="card border-start border-warning border-4 shadow">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="fas fa-calendar-alt text-warning me-2"></i>
-                                    <small class="text-muted">Juin 2020</small>
-                                </div>
-                                <h5 class="card-title">Premier Festival Culturel Mossi</h5>
-                                <p class="card-text">Organisation du premier festival culturel mettant en valeur les traditions Mossi et sensibilisant à l'importance de la préservation culturelle au Burkina Faso.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-right" data-aos-delay="600">
-                        <div class="card border-start border-info border-4 shadow">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="fas fa-calendar-alt text-info me-2"></i>
-                                    <small class="text-muted">Mars 2021</small>
-                                </div>
-                                <h5 class="card-title">Lancement du Programme de Reboisement Sahélien</h5>
-                                <p class="card-text">Début du programme de reboisement avec la plantation de 5000 arbres résistants à la sécheresse en collaboration avec 15 villages ruraux du Centre-Nord.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4" data-aos="fade-left" data-aos-delay="800">
-                        <div class="card border-start border-danger border-4 shadow">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="fas fa-calendar-alt text-danger me-2"></i>
-                                    <small class="text-muted">Octobre 2021</small>
-                                </div>
-                                <h5 class="card-title">Partenariat avec le Ministère de la Culture</h5>
-                                <p class="card-text">Signature d'un partenariat avec le Ministère de la Culture du Burkina Faso pour la promotion et la protection du patrimoine culturel burkinabè.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+<!-- Section Historique des Événements -->
+<section id="events" class="py-5">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <h2 class="display-5 fw-bold text-success">Historique des Événements</h2>
+      <p class="lead text-muted">Découvrez les moments marquants de notre association</p>
+    </div>
+    <div class="timeline">
+      <div class="row" id="eventsContainer">
+        <!-- Événements chargés dynamiquement ici -->
+      </div>
+      <div class="text-center mt-3">
+        <button id="showAllEventsBtn" class="btn btn-outline-success">Voir tous les événements</button>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- Interactive Gallery Section -->
 <section id="gallery" class="py-5 bg-light">
   <div class="container">
-    <!-- Titre -->
     <div class="text-center mb-5" data-aos="fade-up">
       <h2 class="display-5 fw-bold text-success">Galerie Médias</h2>
       <p class="lead text-muted">Découvrez nos photos et vidéos des événements passés</p>
     </div>
-
-    <!-- Filtres -->
     <div class="text-center mb-4">
       <div class="btn-group" role="group" aria-label="Gallery filter">
         <button type="button" class="btn btn-outline-success active" data-filter="all">Tout</button>
@@ -276,107 +192,12 @@
         <button type="button" class="btn btn-outline-success" data-filter="community">Communauté</button>
       </div>
     </div>
-
-    <!-- Grille -->
-<div class="row g-3" id="galleryGrid">
-  <!-- Les 6 premières cartes (visibles) -->
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6117.jpg" class="card-img-top" alt="Festival">
-      <div class="card-body">
-        <h6 class="card-title">Festival Culturel de Bansa 2025 (Tchériba)</h6>
-        <p class="card-text small text-muted">
-          Une célébration vivante de notre patrimoine culturel burkinabè, réunissant traditions, danses et échanges intergénérationnels.
-        </p>
-      </div>
+    <div class="row g-3" id="galleryGrid">
+      <!-- Les médias chargés dynamiquement ici -->
     </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6360.jpg" class="card-img-top" alt="Danse traditionnelle">
-      <div class="card-body">
-        <h6 class="card-title">Danse Traditionnelle (Dalo)</h6>
-        <p class="card-text small text-muted">
-          Mise en valeur de notre richesse culturelle à travers des danses rituelles accompagnées de chants et de rythmes authentiques.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="environment">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6462.jpg" class="card-img-top" alt="Lutte traditionnelle hommes">
-      <div class="card-body">
-        <h6 class="card-title">Lutte Traditionnelle Masculine</h6>
-        <p class="card-text small text-muted">
-          Symbole de force, d’endurance et de fraternité, la lutte traditionnelle réunit les communautés dans un esprit de compétition, tout en soutenant la préservation de nos valeurs et de notre environnement.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="festivals">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6483.jpg" class="card-img-top" alt="Vainqueur de la lutte">
-      <div class="card-body">
-        <h6 class="card-title">Vainqueur de la Lutte – Édition 2025</h6>
-        <p class="card-text small text-muted">
-          Le champion de cette édition a impressionné par sa technique et son courage, captivant tous les spectateurs par son talent exceptionnel.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="community">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6492.jpg" class="card-img-top" alt="Lutte féminine">
-      <div class="card-body">
-        <h6 class="card-title">Lutte Traditionnelle Féminine</h6>
-        <p class="card-text small text-muted">
-          Témoignage de l’engagement des femmes dans la sauvegarde des traditions, cette épreuve a mis à l’honneur leur force, leur détermination et leur rôle actif dans la culture locale.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 gallery-item" data-category="environment">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6494.jpg" class="card-img-top" alt="Agriculture communautaire">
-      <div class="card-body">
-        <h6 class="card-title">Agriculture Communautaire Durable</h6>
-        <p class="card-text small text-muted">
-          Promouvoir une agriculture respectueuse de l’environnement et adaptée aux réalités du Sahel : un pilier du développement rural.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Cartes supplémentaires masquées au début -->
-  <div class="col-lg-4 col-md-6 gallery-item gallery-hidden d-none" data-category="festivals">
-    <div class="card border-0 shadow gallery-card">
-      <img src="images/326A6514.jpg" class="card-img-top" alt="Danse masquée">
-      <div class="card-body">
-        <h6 class="card-title">Danse Masquée (Peuple Bobo)</h6>
-        <p class="card-text small text-muted">
-          Une performance mystique et symbolique qui révèle l’âme du peuple Bobo à travers des masques sacrés et des gestes séculaires.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ajoute d'autres cartes si besoin -->
-</div>
-
-
-<!-- Bouton “Découvrir plus” -->
     <div class="text-center mt-4">
-    <a href="/contenu/decouvrir.html" class="btn btn-outline-success">
-        Découvrir plus
-    </a>
+      <a href="/pages/contenu/decouvrir.html" class="btn btn-outline-success">Découvrir plus</a>
     </div>
-
   </div>
 </section>
 
@@ -446,25 +267,25 @@
             <div class="row text-center">
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="5">0</h2>
-                        <p class="lead">Années d'expérience</p>
+                        <h2 id="activeMembers" class="display-4 counter" data-count="0">0</h2>
+                        <p class="lead">Membres engagés</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="1200">0</h2>
-                        <p class="lead">Membres engagés</p>
+                        <h2 id="projectsDone" class="display-4 counter" data-count="0">0</h2>
+                        <p class="lead">Projets menés</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="600">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="75">0</h2>
-                        <p class="lead">Projets menés</p>
+                        <h2 id="treesPlanted" class="display-4 counter" data-count="0">0</h2>
+                        <p class="lead">Arbres plantés</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="800">
                     <div class="stat-item">
-                        <h2 class="display-4 counter" data-count="45">0</h2>
+                        <h2 id="villagesTouched" class="display-4 counter" data-count="0">0</h2>
                         <p class="lead">Villages aidés</p>
                     </div>
                 </div>
@@ -529,8 +350,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Newsletter Subscription -->
             <div class="row mt-5">
                 <div class="col-lg-8 mx-auto">
                     <div class="card bg-success text-white">
@@ -704,13 +523,10 @@
                                     <div class="btn-group w-100 mb-2" role="group">
                                         <input type="radio" class="btn-check" name="amount" id="amount1" value="5000">
                                         <label class="btn btn-outline-primary" for="amount1">5 000</label>
-
                                         <input type="radio" class="btn-check" name="amount" id="amount2" value="10000">
                                         <label class="btn btn-outline-primary" for="amount2">10 000</label>
-
                                         <input type="radio" class="btn-check" name="amount" id="amount3" value="25000">
                                         <label class="btn btn-outline-primary" for="amount3">25 000</label>
-
                                         <input type="radio" class="btn-check" name="amount" id="amount4" value="50000">
                                         <label class="btn btn-outline-primary" for="amount4">50 000</label>
                                     </div>
@@ -750,9 +566,7 @@
                                 </div>
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" id="anonymous">
-                                    <label class="form-check-label" for="anonymous">
-                                        Don anonyme
-                                    </label>
+                                    <label class="form-check-label" for="anonymous">Don anonyme</label>
                                 </div>
                                 <button type="submit" class="btn btn-warning w-100 btn-lg">
                                     <i class="fas fa-heart me-2"></i>Faire le don
@@ -823,7 +637,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-2 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <h5 class="fw-bold mb-3">Navigation</h5>
                     <ul class="list-unstyled">
@@ -835,7 +648,6 @@
                         <li class="mb-2"><a href="#partners" class="text-light text-decoration-none">Partenaires</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <h5 class="fw-bold mb-3">Services</h5>
                     <ul class="list-unstyled">
@@ -846,7 +658,6 @@
                         <li class="mb-2"><a href="#partnership" class="text-light text-decoration-none" data-bs-toggle="modal" data-bs-target="#partnershipModal">Partenariats</a></li>
                     </ul>
                 </div>
-
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
                     <h5 class="fw-bold mb-3">Contact</h5>
                     <div class="contact-info">
@@ -872,8 +683,6 @@
                             <a href="https://www.apcdd.bf" class="text-light text-decoration-none" target="_blank" rel="noopener">www.apcdd.bf</a>
                         </p>
                     </div>
-
-                    <!-- Contact Form -->
                     <div class="mt-4">
                         <h6 class="fw-bold mb-3">Contactez-nous rapidement</h6>
                         <form id="quickContactForm">
@@ -894,8 +703,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Footer Bottom -->
             <div class="border-top border-secondary mt-5 pt-4">
                 <div class="row align-items-center">
                     <div class="col-md-6">
@@ -918,7 +725,6 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Modals -->
     <!-- Membership Modal -->
     <div class="modal fade" id="membershipModal" tabindex="-1" aria-labelledby="membershipModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -964,9 +770,7 @@
                         </div>
                         <div class="form-check mb-3">
                             <input class="form-check-input" type="checkbox" id="termsAgreement" required>
-                            <label class="form-check-label" for="termsAgreement">
-                                J'accepte les conditions d'adhésion et la politique de confidentialité
-                            </label>
+                            <label class="form-check-label" for="termsAgreement">J'accepte les conditions d'adhésion et la politique de confidentialité</label>
                         </div>
                         <button type="submit" class="btn btn-success w-100">S'inscrire</button>
                     </form>
@@ -1023,7 +827,6 @@
     </div>
 
     <!-- Service Modals -->
-    <!-- Culture Modal -->
     <div class="modal fade" id="cultureModal" tabindex="-1" aria-labelledby="cultureModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1049,7 +852,6 @@
         </div>
     </div>
 
-    <!-- Education Modal -->
     <div class="modal fade" id="educationModal" tabindex="-1" aria-labelledby="educationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1075,7 +877,6 @@
         </div>
     </div>
 
-    <!-- Environment Modal -->
     <div class="modal fade" id="environmentModal" tabindex="-1" aria-labelledby="environmentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1101,7 +902,6 @@
         </div>
     </div>
 
-    <!-- Development Modal -->
     <div class="modal fade" id="developmentModal" tabindex="-1" aria-labelledby="developmentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1128,7 +928,6 @@
     </div>
 
     <!-- Legal Modals -->
-    <!-- Privacy Modal -->
     <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1139,7 +938,6 @@
                 <div class="modal-body">
                     <h6>1. Collecte des informations</h6>
                     <p>Nous collectons des informations lorsque vous vous inscrivez sur notre site, passez une commande, vous abonnez à notre newsletter ou remplissez un formulaire.</p>
-
                     <h6>2. Utilisation des informations</h6>
                     <p>Les informations que nous collectons peuvent être utilisées pour :</p>
                     <ul>
@@ -1148,13 +946,10 @@
                         <li>Améliorer le service client</li>
                         <li>Vous contacter par e-mail</li>
                     </ul>
-
                     <h6>3. Protection des informations</h6>
                     <p>Nous mettons en œuvre une variété de mesures de sécurité pour préserver la sécurité de vos informations personnelles.</p>
-
                     <h6>4. Divulgation à des tiers</h6>
                     <p>Nous ne vendons, n'échangeons ni ne transférons vos informations personnelles identifiables à des tiers.</p>
-
                     <h6>5. Consentement</h6>
                     <p>En utilisant notre site, vous consentez à notre politique de confidentialité.</p>
                 </div>
@@ -1165,7 +960,6 @@
         </div>
     </div>
 
-    <!-- Terms Modal -->
     <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -1176,16 +970,12 @@
                 <div class="modal-body">
                     <h6>1. Acceptation des conditions</h6>
                     <p>En accédant à ce site web, vous acceptez d'être lié par ces conditions d'utilisation.</p>
-
                     <h6>2. Modifications</h6>
                     <p>Nous nous réservons le droit de modifier ces conditions à tout moment.</p>
-
                     <h6>3. Propriété intellectuelle</h6>
                     <p>Tout le contenu publié sur ce site est la propriété de APCDD ou de ses partenaires.</p>
-
                     <h6>4. Limitation de responsabilité</h6>
                     <p>APCDD ne sera pas responsable des dommages résultant de l'utilisation de ce site.</p>
-
                     <h6>5. Loi applicable</h6>
                     <p>Ces conditions sont régies par les lois du Burkina Faso.</p>
                 </div>
@@ -1196,7 +986,6 @@
         </div>
     </div>
 
-    <!-- Cookies Modal -->
     <div class="modal fade" id="cookiesModal" tabindex="-1" aria-labelledby="cookiesModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -1220,6 +1009,21 @@
         </div>
     </div>
 
+<!-- Gallery Detail Modal -->
+<div class="modal fade" id="galleryDetailModal" tabindex="-1" aria-labelledby="galleryDetailLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="galleryDetailLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" alt="" id="galleryDetailImage" class="img-fluid mb-3">
+        <p id="galleryDetailText"></p>
+      </div>
+    </div>
+  </div>
+</div>
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <!-- AOS Animation Library -->
@@ -1232,9 +1036,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- Counter Up -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
-
-    <script>
-
-    </script>
 </body>
 </html>
