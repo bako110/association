@@ -94,7 +94,7 @@ async function loadEvents() {
     } else {
       showAllBtn.style.display = 'inline-block';
       showAllBtn.onclick = () => {
-        window.location.href = '/pages/contenu/allevent.html';
+        window.location.href = '/contenu/allevent.html';
       };
     }
 
