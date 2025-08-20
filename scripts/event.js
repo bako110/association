@@ -1,6 +1,5 @@
 import API_BASE_URL from './config.js';
 
-const IMAGES_BASE_URL = API_BASE_URL.replace(/\/api\/?$/, '');
 const MAX_INITIAL_EVENTS = 2;
 
 function formatDateToMonthYear(dateStr) {
@@ -25,7 +24,7 @@ function getStatusClasses(status) {
 }
 
 const statusPriority = {
-  planned: 1,
+  upcoming: 1,
   ongoing: 2,
   completed: 3,
   cancelled: 4,
@@ -39,7 +38,7 @@ function createEventCard(event, index) {
 
   const imageHtml = (typeof event.image === 'string' && event.image.trim() !== '')
     ? `<div class="event-image-container mb-3">
-         <img src="${IMAGES_BASE_URL}/uploads/${encodeURIComponent(event.image)}" 
+         <img src="${event.image}" 
               alt="${event.title || 'Image événement'}" 
               class="event-image">
        </div>`
@@ -82,7 +81,6 @@ async function loadEvents() {
     const container = document.getElementById('eventsContainer');
     container.innerHTML = '';
 
-    // Affiche par défaut seulement MAX_INITIAL_EVENTS événements
     events.slice(0, MAX_INITIAL_EVENTS).forEach((event, i) => {
       container.insertAdjacentHTML('beforeend', createEventCard(event, i));
     });
@@ -94,7 +92,7 @@ async function loadEvents() {
     } else {
       showAllBtn.style.display = 'inline-block';
       showAllBtn.onclick = () => {
-        window.location.href = '/contenu/allevent.html';
+        window.location.href = '/pages/contenu/allevent.html';
       };
     }
 
@@ -113,7 +111,7 @@ async function loadEvents() {
 
 window.addEventListener('DOMContentLoaded', loadEvents);
 
-// Ajout du CSS pour uniformiser les images
+// CSS pour uniformiser les images
 const style = document.createElement('style');
 style.textContent = `
   .event-image-container {

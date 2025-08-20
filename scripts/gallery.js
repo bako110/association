@@ -1,8 +1,8 @@
 import API_BASE_URL from './config.js';
 
 function createMediaElement(item) {
-  const baseMediaUrl = API_BASE_URL.replace('/api', '');
-  const mediaUrl = baseMediaUrl + item.imageUrl;
+  // On suppose que item.imageUrl contient déjà l'URL complète (Cloudinary)
+  const mediaUrl = item.imageUrl;
   const isVideo = /\.(mp4|webm|ogg)$/i.test(mediaUrl);
 
   if (isVideo) {
