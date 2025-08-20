@@ -1,4 +1,5 @@
-import API_BASE_URL from "./config";
+import API_BASE_URL from './config.js';
+
 // Formater la date au format français
 function formatDate(dateString) {
     const options = { day: '2-digit', month: 'long', year: 'numeric' };
@@ -8,7 +9,7 @@ function formatDate(dateString) {
 // Charger les actualités depuis la BD
 async function loadNews() {
     try {
-        const res = await fetch(`${API_BASE_UR}/news`);
+        const res = await fetch(`${API_BASE_URL}/news`);
         if (!res.ok) throw new Error('Erreur lors du chargement des actualités');
         const newsList = await res.json();
 
@@ -24,12 +25,13 @@ async function loadNews() {
             const card = document.createElement('div');
             card.className = 'card h-100 border-0 shadow news-card';
 
-            // Choix de la couleur du header en fonction de la catégorie (tu peux adapter)
+            // Couleur header selon la catégorie
             let headerColor = 'bg-primary';
             if (news.category === 'culture') headerColor = 'bg-success';
             else if (news.category === 'award') headerColor = 'bg-warning';
 
             card.innerHTML = `
+                ${news.image ? `<img src="${news.image}" class="card-img-top" alt="${news.title}">` : ''}
                 <div class="card-header ${headerColor} text-white text-center">
                     <i class="fas fa-calendar-alt fa-2x mb-2"></i>
                     <small class="d-block">${formatDate(news.date)}</small>
