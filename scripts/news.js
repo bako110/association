@@ -7,7 +7,7 @@ function formatDate(dateString) {
 }
 
 // Charger les actualités depuis la BD
-async function loadNews() {
+async function loadNews(limit = 6) {
     try {
         const res = await fetch(`${API_BASE_URL}/news`);
         if (!res.ok) throw new Error('Erreur lors du chargement des actualités');
@@ -16,7 +16,7 @@ async function loadNews() {
         const container = document.getElementById('newsList');
         container.innerHTML = '';
 
-        newsList.forEach((news, index) => {
+        newsList.slice(0, limit).forEach((news, index) => {
             const col = document.createElement('div');
             col.className = 'col-lg-4 col-md-6 mb-4';
             col.setAttribute('data-aos', 'fade-up');
@@ -38,7 +38,7 @@ async function loadNews() {
                 </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title fw-bold">${news.title}</h5>
-                    <p class="card-text text-truncate" style="max-height:80px;">${news.summary}</p>
+                    <p class="card-text text-truncate" style="max-height:80px; overflow:hidden;">${news.summary}</p>
                     <div class="mt-auto d-flex justify-content-between align-items-center">
                         <a href="#news-detail-${news._id}" class="btn btn-sm ${headerColor.replace('bg-', 'btn-')}">Lire la suite</a>
                         <small class="text-muted"><i class="fas fa-eye"></i> ${news.views || 0} vues</small>
@@ -57,4 +57,14 @@ async function loadNews() {
 }
 
 // Initialisation
-document.addEventListener('DOMContentLoaded', loadNews);
+document.addEventListener('DOMContentLoaded', () => {
+    loadNews();
+
+    // Optionnel : bouton pour voir toutes les actualités
+    const viewAllBtn = document.getElementById('viewAllNews');
+    if (viewAllBtn) {
+        viewAllBtn.addEventListener('click', () => {
+            loadNews(1000); // charge toutes les actualités
+        });
+    }
+});
