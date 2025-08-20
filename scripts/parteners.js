@@ -4,7 +4,7 @@ import  API_BASE_URL from './config.js';
 // Charger les partenaires depuis la BD
 async function loadPartners() {
     try {
-        const res = await fetch(`${API_BASE_URL}/api/partners`);
+        const res = await fetch(`${API_BASE_URL}/partners`);
         if (!res.ok) throw new Error('Erreur lors du chargement des partenaires');
         const partners = await res.json();
 
