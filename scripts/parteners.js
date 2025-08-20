@@ -1,5 +1,4 @@
-import  API_BASE_URL from './config.js';
-
+import API_BASE_URL from './config.js';
 
 // Charger les partenaires depuis la BD
 async function loadPartners() {
@@ -13,20 +12,51 @@ async function loadPartners() {
 
         partners.forEach((partner, index) => {
             const col = document.createElement('div');
-            col.className = 'col-md-2 col-6 mb-4';
+            col.className = 'col-lg-3 col-md-4 col-6 mb-4';
             col.setAttribute('data-aos', 'fade-up');
-            col.setAttribute('data-aos-delay', 200 * (index + 1));
+            col.setAttribute('data-aos-delay', 100 * (index + 1));
 
-            const partnerDiv = document.createElement('div');
-            partnerDiv.className = 'partner-logo p-3 bg-white rounded shadow text-center';
+            const partnerCard = document.createElement('div');
+            partnerCard.className = 'partner-card bg-white rounded shadow p-3 text-center h-100 d-flex flex-column justify-content-between';
 
-            const img = document.createElement('img');
-            img.src = partner.logoUrl || 'https://via.placeholder.com/120x80?text=Logo';
-            img.alt = partner.name || 'Partenaire';
-            img.className = 'img-fluid';
+            // Logo
+            const logo = document.createElement('img');
+            logo.src = partner.logoUrl || 'https://via.placeholder.com/150x100?text=Logo';
+            logo.alt = partner.name || 'Partenaire';
+            logo.className = 'img-fluid mb-3 rounded';
+            logo.style.maxHeight = '120px';
+            logo.style.objectFit = 'contain';
 
-            partnerDiv.appendChild(img);
-            col.appendChild(partnerDiv);
+            // Nom
+            const name = document.createElement('h6');
+            name.textContent = partner.name || '';
+            name.className = 'fw-bold';
+
+            // Type
+            const type = document.createElement('small');
+            type.textContent = partner.type ? capitalize(partner.type) : '';
+            type.className = 'text-muted d-block mb-2';
+
+            // Description
+            const description = document.createElement('p');
+            description.textContent = partner.description || '';
+            description.className = 'small text-truncate';
+
+            // Lien vers le site
+            const link = document.createElement('a');
+            link.href = partner.website || '#';
+            link.target = '_blank';
+            link.className = 'btn btn-sm btn-primary mt-auto';
+            link.textContent = 'Visiter le site';
+
+            // Assemblage
+            partnerCard.appendChild(logo);
+            partnerCard.appendChild(name);
+            partnerCard.appendChild(type);
+            partnerCard.appendChild(description);
+            partnerCard.appendChild(link);
+
+            col.appendChild(partnerCard);
             partnersList.appendChild(col);
         });
 
@@ -35,6 +65,11 @@ async function loadPartners() {
         const partnersList = document.getElementById('partnersList');
         partnersList.innerHTML = '<p class="text-danger">Impossible de charger les partenaires pour le moment.</p>';
     }
+}
+
+// Capitaliser la première lettre
+function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 // Initialisation

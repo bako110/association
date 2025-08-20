@@ -548,6 +548,35 @@ img {
     display: block;
 }
 
+
+.news-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.card-text {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+
+.partner-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.partner-card img {
+    transition: transform 0.3s;
+}
+.partner-card:hover img {
+    transform: scale(1.05);
+}
+
+
 /* ============= MEDIA QUERIES RENFORCÉES ============= */
 
 @media (max-width: 1400px) {
