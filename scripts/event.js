@@ -1,12 +1,7 @@
 import API_BASE_URL from './config.js';
+import { formatDateToMonthYear } from './utils.js';
 
 const MAX_INITIAL_EVENTS = 2;
-
-function formatDateToMonthYear(dateStr) {
-  const options = { year: 'numeric', month: 'long' };
-  const date = new Date(dateStr);
-  return date.toLocaleDateString('fr-FR', options);
-}
 
 function getStatusClasses(status) {
   switch (status?.toLowerCase()) {
@@ -64,6 +59,43 @@ function createEventCard(event, index) {
   `;
 }
 
+async function loadAllEvents() {
+  const API_EVENTS_URL = `${API_BASE_URL}/events`;
+  try {
+    const res = await fetch(API_EVENTS_URL);
+    if (!res.ok) throw new Error(`Erreur chargement événements: ${res.status}`);
+    let events = await res.json();
+
+    events.sort((a, b) => {
+      const statusA = statusPriority[a.status?.toLowerCase()] || statusPriority.unknown;
+      const statusB = statusPriority[b.status?.toLowerCase()] || statusPriority.unknown;
+      if (statusA !== statusB) return statusA - statusB;
+      return new Date(a.date) - new Date(b.date);
+    });
+
+    const container = document.getElementById('eventsContainer');
+    container.innerHTML = '';
+
+    events.forEach((event, i) => {
+      container.insertAdjacentHTML('beforeend', createEventCard(event, i));
+    });
+
+    const showAllBtn = document.getElementById('showAllEventsBtn');
+    if (showAllBtn) {
+      showAllBtn.style.display = 'none';
+    }
+
+    if (window.AOS) window.AOS.refresh();
+
+  } catch (error) {
+    console.error(error);
+    const container = document.getElementById('eventsContainer');
+    if (container) {
+      container.innerHTML = `<p class="text-danger">Impossible de charger tous les événements.<br>${error.message}</p>`;
+    }
+  }
+}
+
 async function loadEvents() {
   const API_EVENTS_URL = `${API_BASE_URL}/events`;
   try {
@@ -92,7 +124,7 @@ async function loadEvents() {
     } else {
       showAllBtn.style.display = 'inline-block';
       showAllBtn.onclick = () => {
-        window.location.href = '/pages/contenu/allevent.html';
+        loadAllEvents();
       };
     }
 
@@ -109,7 +141,7 @@ async function loadEvents() {
   }
 }
 
-window.addEventListener('DOMContentLoaded', loadEvents);
+document.addEventListener('DOMContentLoaded', loadEvents);
 
 // CSS pour uniformiser les images
 const style = document.createElement('style');

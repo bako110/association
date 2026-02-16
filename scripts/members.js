@@ -2,6 +2,11 @@ import API_BASE_URL from "./config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("membershipForm");
+  
+  if (!form) {
+    console.error("Formulaire d'adhésion non trouvé");
+    return;
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();

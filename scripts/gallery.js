@@ -101,7 +101,70 @@ function setupFilterButtons() {
   });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+function loadAllGalleryItems() {
+  try {
+    const rest = JSON.parse(localStorage.getItem('galleryRest') || '[]');
+    const grid = document.getElementById('galleryGrid');
+    
+    if (rest.length === 0) {
+      alert('Aucun élément supplémentaire à afficher');
+      return;
+    }
+
+    rest.forEach(item => {
+      const col = document.createElement('div');
+      col.classList.add('col-lg-4', 'col-md-6', 'gallery-item');
+      col.dataset.category = item.category;
+
+      const card = document.createElement('div');
+      card.className = 'card border-0 shadow gallery-card';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.dataset.title = item.title;
+      card.dataset.description = item.description;
+
+      const mediaEl = createMediaElement(item);
+      card.appendChild(mediaEl);
+
+      const cardBody = document.createElement('div');
+      cardBody.className = 'card-body';
+
+      const titleEl = document.createElement('h6');
+      titleEl.className = 'card-title';
+      titleEl.textContent = item.title;
+
+      const descEl = document.createElement('p');
+      descEl.className = 'card-text small text-muted';
+      descEl.textContent = item.description || '';
+
+      cardBody.appendChild(titleEl);
+      cardBody.appendChild(descEl);
+
+      card.appendChild(cardBody);
+      col.appendChild(card);
+      grid.appendChild(col);
+    });
+
+    // Cacher le bouton après avoir tout affiché
+    const viewAllBtn = document.getElementById('viewAllGallery');
+    if (viewAllBtn) {
+      viewAllBtn.style.display = 'none';
+    }
+
+    if (window.AOS) window.AOS.refresh();
+
+  } catch (err) {
+    console.error('Erreur lors du chargement de la galerie complète:', err);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   loadGalleryItems();
   setupFilterButtons();
+
+  // Gestion du bouton "Découvrir plus"
+  const viewAllBtn = document.getElementById('viewAllGallery');
+  if (viewAllBtn) {
+    viewAllBtn.addEventListener('click', loadAllGalleryItems);
+  }
 });

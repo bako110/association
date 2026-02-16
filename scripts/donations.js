@@ -2,6 +2,11 @@ import API_BASE_URL from "./config.js";  // adapte le chemin si besoin
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("donationForm");
+  
+  if (!form) {
+    console.error("Formulaire de don non trouvé");
+    return;
+  }
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -41,15 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
     }
-console.log({
-  amount,
-  donorName,
-  donorEmail,
-  donorPhone,
-  donationPurpose,
-  paymentMethod,
-  anonymous
-});
 
     // Préparer l'objet à envoyer
     const data = {

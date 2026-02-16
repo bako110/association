@@ -1,9 +1,5 @@
 import API_BASE_URL from './config.js';
-
-// Capitaliser la première lettre
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
+import { capitalize } from './utils.js';
 
 // Charger les partenaires depuis la BD
 async function loadPartners(limit = 8) {
@@ -68,7 +64,10 @@ async function loadPartners(limit = 8) {
 
     } catch (err) {
         console.error(err);
-        document.getElementById('partnersList').innerHTML = '<p class="text-danger">Impossible de charger les partenaires pour le moment.</p>';
+        const partnersList = document.getElementById('partnersList');
+        if (partnersList) {
+            partnersList.innerHTML = '<p class="text-danger">Impossible de charger les partenaires pour le moment.</p>';
+        }
     }
 }
 
@@ -77,7 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
     loadPartners();
 
     // Gestion du bouton "Voir tous les partenaires"
-    document.getElementById('viewAllPartners').addEventListener('click', () => {
-        loadPartners(1000); // charge tous les partenaires
-    });
+    const viewAllBtn = document.getElementById('viewAllPartners');
+    if (viewAllBtn) {
+        viewAllBtn.addEventListener('click', () => {
+            loadPartners(1000); // charge tous les partenaires
+        });
+    }
 });

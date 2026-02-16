@@ -4,12 +4,6 @@ AOS.init({
     once: true
 });
 
-// Counter Up initialization
-$('.counter').counterUp({
-    delay: 10,
-    time: 1000
-});
-
 // Animation fondu pour le changement automatique des images de fond
 const heroSection = $('.hero-section');
 const bgImages = [
@@ -48,21 +42,6 @@ function changeBackground() {
 setInterval(changeBackground, 10000);
 
 $(document).ready(function() {
-    // Gallery filter buttons
-    $('.btn-group button').click(function() {
-        $('.btn-group button').removeClass('active');
-        $(this).addClass('active');
-
-        var filterValue = $(this).attr('data-filter');
-        $('.gallery-item').each(function() {
-            if (filterValue === 'all' || $(this).attr('data-category') === filterValue) {
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
-
     // Membership modal plan selection
     $('#membershipModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
@@ -74,17 +53,10 @@ $(document).ready(function() {
         }
     });
 
-    // Form submissions with alerts and reset
+    // Form submissions with alerts and reset (seulement ceux non gérés par les modules)
     $('#newsletterForm').submit(function(e) {
         e.preventDefault();
         alert('Merci pour votre abonnement à notre newsletter!');
-        this.reset();
-    });
-
-    $('#membershipForm').submit(function(e) {
-        e.preventDefault();
-        alert('Merci pour votre inscription! Nous vous contacterons bientôt.');
-        $('#membershipModal').modal('hide');
         this.reset();
     });
 
@@ -92,12 +64,6 @@ $(document).ready(function() {
         e.preventDefault();
         alert('Merci pour votre candidature! Nous vous contacterons bientôt.');
         $('#volunteerModal').modal('hide');
-        this.reset();
-    });
-
-    $('#donationForm').submit(function(e) {
-        e.preventDefault();
-        alert('Merci pour votre don généreux! Votre soutien fait la différence.');
         this.reset();
     });
 
@@ -154,35 +120,4 @@ $(document).ready(function() {
     $('.navbar-nav .nav-link').on('click', function(){
         $('.navbar-collapse').collapse('hide');
     });
-});
-
-// Modal galerie - afficher détails au clic sur une carte
-document.addEventListener('click', (e) => {
-  if (e.target.closest('.gallery-card')) {
-    const card = e.target.closest('.gallery-card');
-    const title = card.dataset.title || '';
-    const description = card.dataset.description || '';
-    const media = card.querySelector('img, video');
-
-    const modalTitle = document.getElementById('galleryDetailLabel');
-    const modalImage = document.getElementById('galleryDetailImage');
-    const modalText = document.getElementById('galleryDetailText');
-
-    modalTitle.textContent = title;
-    modalText.textContent = description;
-
-    if (media) {
-      if (media.tagName === 'IMG') {
-        modalImage.src = media.src;
-        modalImage.style.display = 'block';
-      } else {
-        // Pour les vidéos, masquer l'image ou tu peux ajouter une miniature si tu veux
-        modalImage.style.display = 'none';
-      }
-    }
-
-    // Afficher le modal avec Bootstrap 5 JS
-    const galleryModal = new bootstrap.Modal(document.getElementById('galleryDetailModal'));
-    galleryModal.show();
-  }
 });

@@ -1042,3 +1042,74 @@ img, svg, video, iframe {
 .position-relative, .position-absolute, .position-fixed, .position-sticky {
     max-width: 100%;
 }
+
+/* Styles pour les modales responsives */
+.news-detail-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.news-image-container img {
+    max-height: 300px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Responsive pour les modales */
+@media (max-width: 768px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-header {
+        padding: 1rem;
+    }
+    
+    .modal-footer {
+        padding: 1rem;
+    }
+    
+    .news-detail-content {
+        max-height: 60vh;
+    }
+    
+    .news-image-container img {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-dialog {
+        margin: 0.25rem;
+        max-width: calc(100% - 0.5rem);
+    }
+    
+    .modal-body {
+        padding: 0.75rem;
+    }
+    
+    .modal-header {
+        padding: 0.75rem;
+    }
+    
+    .modal-footer {
+        padding: 0.75rem;
+    }
+    
+    .modal-title {
+        font-size: 1rem;
+    }
+    
+    .news-detail-content {
+        max-height: 50vh;
+    }
+    
+    .news-image-container img {
+        max-height: 150px;
+    }
+}
